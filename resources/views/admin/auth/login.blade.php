@@ -197,7 +197,7 @@ h2 {
     <!-- <body data-layout="horizontal"> -->
 
         <div class="d-lg-flex half">
-            <div class="bg order-1 bg-perpus order-md-2" style="background-image: url(''); "></div>
+        <div class="bg order-1 bg-perpus order-md-2" style="background-color: #1C3F94;"></div>
             <div class="contents">
         
               <div class="container">
@@ -237,7 +237,7 @@ h2 {
 
                        
                         <div class="mb-3">
-                            <button class="btn bg-perpus w-100 waves-effect waves-light font-telkom" type="submit">Masuk</button>
+                        <button class="btn bg-perpus w-100" style="background-color: #1C3F94; color: white;" type="submit">Masuk</button>
                         </div>
                     </form>
                   </div>
