@@ -114,6 +114,21 @@ Route::middleware('auth:web')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard.index');
     // Dashboard umum
 
+    Route::get('beasiswa-list', [BeasiswaController::class, 'index'])->name('beasiswa-list');
+
+    Route::get('rekap-list', [RekapPrestasiController::class, 'index'])->name('rekap-list');
+
+    Route::get('ukm-list', [UkmController::class, 'index'])->name('ukm-list');
+
+    Route::get('bkm-list', [BkmController::class, 'index'])->name('bkm-list');
+
+    Route::get('berita-list', [BeritaController::class, 'index'])->name('berita-list');
+
+    Route::get('hima-list', [HimaController::class, 'index'])->name('hima-list');
+
+    Route::get('pkm-list', [PkmController::class, 'index'])->name('pkm-list');
+
+    Route::get('ppk-list', [PpkController::class, 'index'])->name('ppk-list');
     
 });
 
