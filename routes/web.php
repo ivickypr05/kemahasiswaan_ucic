@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BeasiswaController;
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\BkmController;
 use App\Http\Controllers\CategoryPrestasiController;
 use App\Http\Controllers\ContactController;
@@ -79,11 +80,15 @@ Route::get('/ppk', function () {
     return view('frontend.simbelmawa.ppk', $data);
 })->name('ppk');
 
-Route::get('kegiatan', [DaftarKegiatanController::class, 'frontKegiatan'])->name('kegiatan');
-Route::get('detail-kegiatan/{id}', [DaftarKegiatanController::class, 'detailKegiatan'])->name('detail-kegiatan');
+// Route::get('berita', [BeritaController::class, 'show'])->name('berita');
+Route::get('/berita', function () {
+    $data['page_title'] = "Berita";
+    $data['berita'] = [];
 
-Route::get('pengumuman', [PengumumanController::class, 'frontPengumuman'])->name('pengumuman');
-Route::get('detail-pengumuman/{id}', [PengumumanController::class, 'detailPengumuman'])->name('detail-pengumuman');
+    return view('frontend.berita.berita', $data);
+})->name('berita');
+
+Route::get('detail-berita/{id}', [BeritaController::class, 'show'])->name('detail-berita');
 
 Route::get('contact', [ContactController::class, 'index'])->name('contact');
 Route::post('send-mail', [ContactController::class, 'sendMail'])->name('send-mail');
