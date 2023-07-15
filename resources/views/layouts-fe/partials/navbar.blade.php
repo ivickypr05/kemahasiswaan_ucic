@@ -5,6 +5,12 @@
       <ul>
         <li><a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</a></li>
         <li><a href="{{ route('beasiswa') }}" class="{{ request()->routeIs('beasiswa') ? 'active' : '' }}"><span>Beasiswa</span></a></li>
+        <li class="dropdown"><a href="#"><span>Prestasi</span> <i class="bi bi-chevron-down"></i></a>
+          <ul>
+            <li><a href="{{ route('akademik') }}" class="{{ request()->routeIs('akademik') ? 'active' : '' }}">Akademik</a></li>
+            <li><a href="{{ route('non-akademik') }}" class="{{ request()->routeIs('non-akademik') ? 'active' : '' }}">Non Akademik</a></li>
+          </ul>
+        </li>
         <li class="dropdown"><a href="#"><span>Organisasi Kemahasiswaan</span> <i class="bi bi-chevron-down"></i></a>
           <ul>
             <li><a href="{{ route('organisasi-ukm') }}" class="{{ request()->routeIs('organisasi-ukm') ? 'active' : '' }}">UKM</a></li>

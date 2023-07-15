@@ -44,6 +44,20 @@ Route::get('/beasiswa', function () {
 
 Route::get('beasiswa/{id}', [BeasiswaController::class, 'show'])->name('detail-beasiswa');
 
+Route::get('/akademik', function () {
+    $data['page_title'] = "Prestasi Akademik";
+    $data['akademik'] = [];
+
+    return view('frontend.prestasi.akademik', $data);
+})->name('akademik');
+
+Route::get('/non-akademik', function () {
+    $data['page_title'] = "Prestasi Non Akademik";
+    $data['nonakademik'] = [];
+
+    return view('frontend.prestasi.nonakademik', $data);
+})->name('non-akademik');
+
 // Route::get('organisasi-ukm', [OrganisasiUkmController::class, 'frontUkm'])->name('organisasi-ukm');
 Route::get('/organisasi-ukm', function () {
     $data['page_title'] = "UKM";
