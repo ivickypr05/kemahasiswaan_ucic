@@ -10,23 +10,15 @@
           <li class="dropdown"><a href="#"><span>Organisasi Kemahasiswaan</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <li><a href="{{ route('organisasi-ukm') }}">UKM</a></li>
-              <li><a href="{{ route('organisasi-bem') }}">BEM</a></li>
+              <li><a href="{{ route('organisasi-bkm') }}">BKM</a></li>
+              <li><a href="{{ route('organisasi-hima') }}">HIMA</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="#"><span>Agenda kemahasiswaan</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><a href="#"><span>SIMBELMAWA</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
               <!-- <li class="dropdown"><a href="#"><span>Prodi</span> <i class="bi bi-chevron-right"></i></a> -->
-              <li><a href="{{route('kegiatan','&tipe=Teknologi%20Informasi')}}">Simblemawa</a></li>
-              <li><a href="{{route('kegiatan','&tipe=Teknologi%20Informasi')}}">PKM 8 Bidang</a></li>
-                <ul>
-                  <!-- <li><a href="{{route('kegiatan','&tipe=Teknologi%20Informasi')}}">Simblemawa</a></li>
-                  <li><a href="{{route('kegiatan','&tipe=Teknologi%20Informasi')}}">PKM 8 Bidang</a></li> -->
-                  <!-- <li><a href="{{route('kegiatan','&tipe=Teknologi%20Informasi')}}">TI</a></li>
-                  <li><a href="{{route('kegiatan','&tipe=Manajemen%20Informasi')}}">MI</a></li>
-                  <li><a href="{{route('kegiatan','&tipe=Sistem%20informasi')}}">SI</a></li>
-                  <li><a href="{{route('kegiatan','&tipe=DKV')}}">DKV</a></li>
-                  <li><a href="{{route('kegiatan','&tipe=AKUNTANSI')}}">AKUNTANSI</a></li> -->
-                </ul>
+              <li><a href="{{route('pkm')}}">PKM</a></li>
+              <li><a href="{{route('ppk')}}">PPK</a></li>
               </li>
             </ul>
           </li>

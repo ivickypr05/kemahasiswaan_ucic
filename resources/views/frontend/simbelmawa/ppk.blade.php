@@ -49,7 +49,7 @@
 @endsection
 
 @section('content-fe')
-    @forelse ($ukm as $item)
+    @forelse ($ppk as $item)
     <section id="about" class="about mb-5">
       <div class="container">
 
@@ -80,7 +80,7 @@
                         <br></br>
                         <br></br>
                         <br></br>
-                        <h4 class="text-center">Belum ada informasi UKM.</h4>
+                        <h4 class="text-center">Belum ada informasi PPK.</h4>
                     </div>
                 </div>
             </div>
