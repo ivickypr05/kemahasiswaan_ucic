@@ -19,7 +19,15 @@ Route::get('/', function () {
 })->name('home');
 
 
-Route::get('beasiswa', [BeasiswaController::class, 'frontBeasiswa'])->name('beasiswa');
+// Route::get('beasiswa', [BeasiswaController::class, 'frontBeasiswa'])->name('beasiswa');
+Route::get('/beasiswa', function () {
+    $data['page_title'] = "Beasiswa";
+    $data['beasiswa'] = [];
+
+    return view('front-end.beasiswa.index', $data);
+})->name('beasiswa');
+
+
 Route::get('beasiswa/{id}', [BeasiswaController::class, 'show'])->name('detail-beasiswa');
 
 Route::get('organisasi-ukm', [OrganisasiUkmController::class, 'frontUkm'])->name('organisasi-ukm');
