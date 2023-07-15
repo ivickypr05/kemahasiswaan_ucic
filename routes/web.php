@@ -131,6 +131,11 @@ Route::middleware('auth:web')->group(function () {
     // Dashboard umum
 
     Route::get('beasiswa-list', [BeasiswaController::class, 'index'])->name('beasiswa-list');
+    Route::get('beasiswa-create', [BeasiswaController::class, 'create'])->name('beasiswa-create');
+    Route::post('beasiswa-store', [BeasiswaController::class, 'store'])->name('beasiswa-store');
+    Route::get('beasiswa-edit/{id}', [BeasiswaController::class, 'edit'])->name('beasiswa-edit');
+    Route::post('beasiswa-update/{id}', [BeasiswaController::class, 'update'])->name('beasiswa-update');
+    Route::get('beasiswa-destroy/{id}', [BeasiswaController::class, 'destroy'])->name('beasiswa-destroy');
 
     Route::get('rekap-list', [RekapPrestasiController::class, 'index'])->name('rekap-list');
 
