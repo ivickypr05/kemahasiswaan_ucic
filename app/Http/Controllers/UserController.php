@@ -38,7 +38,7 @@ class UserController extends Controller
                 
                 if (Auth::attempt($credentials)) {
                     
-                        return redirect()->route('dashboard.index');
+                        return redirect()->route('admin.dashboard.index');
                    
                 }
         
@@ -190,5 +190,14 @@ class UserController extends Controller
         } else {
             return redirect()->route('users.edit', Auth::user()->id)->with('failed', 'Password change failed');
         }
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/login-admin');
     }
 }

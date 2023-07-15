@@ -5,6 +5,7 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\BkmController;
 use App\Http\Controllers\CategoryPrestasiController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HimaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PkmController;
@@ -104,4 +105,15 @@ Route::get('login-admin', function () {
 
 Route::get('register', [RegisterController::class, 'index'])->name('register');
 Route::post('loginPost2', [UserController::class, 'loginPost2'])->name('loginPost2');
-Route::post('loginPostAdmin', [UserController::class, 'loginPostAdmin'])->name('loginPostAdmin');   
+Route::post('loginPostAdmin', [UserController::class, 'loginPostAdmin'])->name('loginPostAdmin');
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+
+
+Route::middleware('auth:web')->group(function () {
+    // Dashboard admin
+    Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard.index');
+    // Dashboard umum
+
+    
+});
+
