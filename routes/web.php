@@ -92,3 +92,15 @@ Route::get('detail-berita/{id}', [BeritaController::class, 'show'])->name('detai
 
 Route::get('contact', [ContactController::class, 'index'])->name('contact');
 Route::post('send-mail', [ContactController::class, 'sendMail'])->name('send-mail');
+
+
+// admmin
+
+Route::get('login-admin', function () {
+    $data['page_title'] = "Login Admin";
+    return view('admin.auth.login', $data);
+})->name('login-admin');
+
+Route::get('register', [RegisterController::class, 'index'])->name('register');
+Route::post('loginPost2', [UserController::class, 'loginPost2'])->name('loginPost2');
+Route::post('loginPostAdmin', [UserController::class, 'loginPostAdmin'])->name('loginPostAdmin');   
