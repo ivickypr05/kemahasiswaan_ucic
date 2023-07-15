@@ -33,6 +33,17 @@ span {
                 <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="mdi mdi-folder-outline"></i>
+                        <span key="t-dashboards">Prestasi</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('akademik') }}" key="t-default">Akademik</a></li>
+                        <li><a href="{{ route('non-akademik') }}" key="t-default">Non Akademik</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="mdi mdi-folder-outline"></i>
                         <span key="t-dashboards">Organisasi</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
