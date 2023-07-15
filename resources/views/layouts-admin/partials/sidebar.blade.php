@@ -36,8 +36,8 @@ span {
                         <span key="t-dashboards">Prestasi</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('akademik') }}" key="t-default">Akademik</a></li>
-                        <li><a href="{{ route('non-akademik') }}" key="t-default">Non Akademik</a></li>
+                        <li><a href="{{ route('akademik-list') }}" key="t-default">Akademik</a></li>
+                        <li><a href="{{ route('nonakademik-list') }}" key="t-default">Non Akademik</a></li>
                     </ul>
                 </li>
 

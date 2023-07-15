@@ -14,6 +14,8 @@ use App\Http\Controllers\PrestasiIndividuController;
 use App\Http\Controllers\PrestasiTimController;
 use App\Http\Controllers\UkmController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AkademikController;
+use App\Http\Controllers\NonAkademikController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -143,6 +145,10 @@ Route::middleware('auth:web')->group(function () {
     Route::get('pkm-list', [PkmController::class, 'index'])->name('pkm-list');
 
     Route::get('ppk-list', [PpkController::class, 'index'])->name('ppk-list');
+
+    Route::get('akademik-list', [AkademikController::class, 'index'])->name('akademik-list');
+
+    Route::get('nonakademik-list', [NonAkademikController::class, 'index'])->name('nonakademik-list');
     
 });
 
