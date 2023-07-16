@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Beasiswa;
 use Illuminate\Http\Request;
-use DB;
-use File;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+
 class BeasiswaController extends Controller
 {
     /**
@@ -15,9 +16,8 @@ class BeasiswaController extends Controller
      */
     public function index()
     {
-        $data['page_title'] = 'Beasiswa';
         $data['breadcumb'] = 'Beasiswa';
-        $data['beasiswa'] = Beasiswa::orderby('id', 'asc')->get();
+        $data['beasiswa'] = Beasiswa::get();
         return view('admin.beasiswa.index', $data);
     }
 
@@ -28,9 +28,7 @@ class BeasiswaController extends Controller
      */
     public function create()
     {
-        $data['page_title'] = 'Beasiswa';
         $data['breadcumb'] = 'Beasiswa';
-
         return view('admin.beasiswa.add', $data);
     }
 
@@ -42,7 +40,7 @@ class BeasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        $validateData = $request->validate([
+        $validatedData = $request->validate([
             'title'   => 'required|string|min:3',
             'content'   => 'required|string|min:3',
             'gambar'   => 'required',
@@ -50,21 +48,11 @@ class BeasiswaController extends Controller
             'sampai_tanggal'   => 'required',
         ]);
 
-        $beasiswa = new Beasiswa();
-        $beasiswa->title = $validateData['title'];
-        $beasiswa->content = $validateData['content'];
-        $beasiswa->dari_tanggal = $validateData['dari_tanggal'];
-        $beasiswa->sampai_tanggal = $validateData['sampai_tanggal'];
-        if ($request->hasFile('gambar')) {
-            $image = $request->file('gambar');
-            $name = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('img/beasiswa/');
-            $image->move($destinationPath, $name);
-            $beasiswa->gambar = $name;
-        }
-        $beasiswa->save();
+        $gambar = $request->file('gambar')->store('gambar_beasiswa', 'public');
+        $validatedData['gambar'] = $gambar;
 
-        return redirect()->route('beasiswa-list')->with(['success' => ' successfully!']);
+        Beasiswa::create($validatedData);
+        return redirect('/beasiswa-list')->with('toast_success', 'Beasiswa berhasil ditambah');
     }
 
     /**
@@ -75,10 +63,10 @@ class BeasiswaController extends Controller
      */
     public function show($id)
     {
-        $beasiswa = Beasiswa::findOrFail($id);
+        $beasiswa = Beasiswa::find($id);
         return view('frontend.beasiswa.detail', compact('beasiswa'));
     }
-    
+
 
     /**
      * Show the form for editing the specified resource.
@@ -88,10 +76,8 @@ class BeasiswaController extends Controller
      */
     public function edit($id)
     {
-        $data['page_title'] = 'Beasiswa';
         $data['breadcumb'] = 'Beasiswa';
         $data['beasiswa'] = Beasiswa::find($id);
-
         return view('admin.beasiswa.edit', $data);
     }
 
@@ -104,35 +90,22 @@ class BeasiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validateData = $request->validate([
+        $validatedData = $request->validate([
             'title'   => 'required|string|min:3',
             'content'   => 'required|string|min:3',
-            'gambar'   => 'required',
+            'gambar'   => 'required|mimes:jpeg,jpg,png,gif',
             'dari_tanggal'   => 'required',
             'sampai_tanggal'   => 'required',
         ]);
 
         $beasiswa = Beasiswa::find($id);
-        $beasiswa->title = $validateData['title'];
-        $beasiswa->content = $validateData['content'];
-        $beasiswa->dari_tanggal = $validateData['dari_tanggal'];
-        $beasiswa->sampai_tanggal = $validateData['sampai_tanggal'];
-        if ($request->hasFile('gambar')) {
-            // Delete Img
-            if ($beasiswa->gambar) {
-                $image_path = public_path('img/beasiswa/'.$beasiswa->gambar); // Value is not URL but directory file path
-                if (File::exists($image_path)) {
-                    File::delete($image_path);
-                }
-            }
-            
-            $image = $request->file('gambar');
-            $name = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('img/beasiswa/');
-            $image->move($destinationPath, $name);
-            $beasiswa->gambar = $name;
+        if ($request->file('gambar')) {
+            $gambar = $request->file('gambar')->store('beasiswa_gambar', 'public');
+            File::delete('storage/' .  $beasiswa->gambar);
+            $validatedData['gambar'] = $gambar;
         }
-        $beasiswa->save();
+        $beasiswa->update($validatedData);
+
 
         return redirect()->route('beasiswa-list')->with(['success' => ' successfully!']);
     }
@@ -145,23 +118,15 @@ class BeasiswaController extends Controller
      */
     public function destroy($id)
     {
-        DB::transaction(function () use ($id) {
-            $beasiswa = Beasiswa::findOrFail($id);
-            if ($beasiswa->avatar) {
-                $image_path = public_path('img/beasiswa/'.$beasiswa->avatar); // Value is not URL but directory file path
-                if (File::exists($image_path)) {
-                    File::delete($image_path);
-                }
-            }
+        $beasiswa = Beasiswa::findOrFail($id);
+        File::delete('storage/' .  $beasiswa->gambar);
+        $beasiswa->delete();
 
-            $beasiswa->delete();
-        });
-        
         return redirect()->route('beasiswa-list')->with(['success' => ' successfully!']);
     }
 
-    public function frontBeasiswa(){
-        $data['page_title'] = 'Beasiswa';
+    public function frontBeasiswa()
+    {
         $data['breadcumb'] = 'Beasiswa';
         $data['beasiswa'] = Beasiswa::get();
 
