@@ -81,13 +81,9 @@ Route::get('organisasi-ukm/{id}', [UkmController::class, 'show'])->name('detail-
 Route::get('organisasi-bkm', [BkmController::class, 'frontBkm'])->name('organisasi-bkm');
 Route::get('organisasi-bkm/{id}', [BkmController::class, 'show'])->name('detail-bkm');
 
-// Route::get('organisasi-hima', [HimaController::class, 'frontBem'])->name('organisasi-hima');
-Route::get('/organisasi-hima', function () {
-    $data['page_title'] = "HIMA";
-    $data['hima'] = [];
-
-    return view('frontend.organisasi.hima', $data);
-})->name('organisasi-hima');
+Route::get('organisasi-hima', [HimaController::class, 'frontHima'])->name('organisasi-hima');
+Route::get('organisasi-hima/{id}', [HimaController::class, 'show'])->name('detail-hima');
+// Route::get('organisasi-hima/{id}', [HimaController::class, 'show'])->name('organisasi-hima');
 
 Route::get('/pkm', function () {
     $data['page_title'] = "PKM";
@@ -161,6 +157,11 @@ Route::middleware('auth:web')->group(function () {
     Route::get('berita-list', [BeritaController::class, 'index'])->name('berita-list');
 
     Route::get('hima-list', [HimaController::class, 'index'])->name('hima-list');
+    Route::get('hima-create', [HimaController::class, 'create'])->name('hima-create');
+    Route::post('hima-store', [HimaController::class, 'store'])->name('hima-store');
+    Route::get('hima-edit/{id}', [HimaController::class, 'edit'])->name('hima-edit');
+    Route::post('hima-update/{id}', [HimaController::class, 'update'])->name('hima-update');
+    Route::get('hima-destroy/{id}', [HimaController::class, 'destroy'])->name('hima-destroy');
 
     Route::get('pkm-list', [PkmController::class, 'index'])->name('pkm-list');
 
