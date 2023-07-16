@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoryPrestasi;
+use App\Models\PrestasiIndividu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class PrestasiIndividuController extends Controller
 {
@@ -13,7 +16,8 @@ class PrestasiIndividuController extends Controller
      */
     public function index()
     {
-        //
+        $preindividu = PrestasiIndividu::with('categoryprestasi')->get();
+        return view('admin.prestasi.individu.index', compact('preindividu'));
     }
 
     /**
@@ -23,7 +27,8 @@ class PrestasiIndividuController extends Controller
      */
     public function create()
     {
-        //
+        $categoryprestasi = CategoryPrestasi::get();
+        return view('admin.prestasi.individu.add', compact('categoryprestasi'));
     }
 
     /**
@@ -34,7 +39,32 @@ class PrestasiIndividuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'judul_prestasi' => 'required|string|min:2|max:100',
+            'nama_peserta' => 'required|string|min:2|max:50',
+            'tingkat_kejuaraan' => 'required|string|min:2|max:50',
+            'gambar_1' => 'required|mimes:jpeg,jpg,png,gif',
+            'gambar_2' => 'mimes:jpeg,jpg,png,gif',
+            'gambar_3' => 'mimes:jpeg,jpg,png,gif',
+            'deskripsi' => 'required|string|min:5|max:255',
+            'tanggal' => 'required|string|min:2|max:50',
+            'category_prestasi_id' => 'required|integer|exists:category_prestasis,id',
+        ]);
+        // nyimpen path nya ke variabel gambar_1, gambar_2, gambar_3
+        $gambar_1 = $request->file('gambar_1')->store('gambar_prestasi', 'public');
+        $gambar_2 = $request->file('gambar_2')->store('gambar_prestasi', 'public');
+        $gambar_3 = $request->file('gambar_3')->store('gambar_prestasi', 'public');
+
+        // nyimpen path nya dari gambar_1, gambar_2, gambar_3 ke array $validatedData
+        $validatedData['gambar_1'] = $gambar_1;
+        $validatedData['gambar_2'] = $gambar_2;
+        $validatedData['gambar_3'] = $gambar_3;
+
+        // nyimpen ke database
+        PrestasiIndividu::create($validatedData);
+
+        // redirect ke halaman yang sama dengan pesan sukses
+        return redirect('/prestasiindividu')->with('toast_success', 'Prestasi individu berhasil ditambah');
     }
 
     /**
@@ -56,7 +86,9 @@ class PrestasiIndividuController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['categoryprestasi'] = CategoryPrestasi::get();
+        $data['prestasiindividu'] = PrestasiIndividu::find($id);
+        return view('admin.prestasi.individu.edit', $data);
     }
 
     /**
@@ -68,7 +100,35 @@ class PrestasiIndividuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'judul_prestasi' => 'required|string|min:2|max:100',
+            'nama_peserta' => 'required|string|min:2|max:50',
+            'tingkat_kejuaraan' => 'required|string|min:2|max:50',
+            'gambar_1' => 'required|mimes:jpeg,jpg,png,gif',
+            'gambar_2' => 'mimes:jpeg,jpg,png,gif',
+            'gambar_3' => 'mimes:jpeg,jpg,png,gif',
+            'deskripsi' => 'required|string|min:5|max:255',
+            'tanggal' => 'required|string|min:2|max:50',
+            'category_prestasi_id' => 'required|integer|exists:category_prestasis,id',
+        ]);
+
+        $preindividu = PrestasiIndividu::find($id);
+        if ($request->file('gambar_1', 'gambar_1', 'gambar_3')) {
+            $gambar_1 = $request->file('gambar_1')->store('gambar_prestasi', 'public');
+            $gambar_2 = $request->file('gambar_2')->store('gambar_prestasi', 'public');
+            $gambar_3 = $request->file('gambar_3')->store('gambar_prestasi', 'public');
+
+            File::delete('storage/' .  $preindividu->gambar_1);
+            File::delete('storage/' .  $preindividu->gambar_2);
+            File::delete('storage/' .  $preindividu->gambar_3);
+
+            $validatedData['gambar_1'] = $gambar_1;
+            $validatedData['gambar_2'] = $gambar_2;
+            $validatedData['gambar_3'] = $gambar_3;
+        }
+        $preindividu->update($validatedData);
+
+        return redirect('/product')->with('toast_success', 'Prestasi Individu berhasil diedit');
     }
 
     /**
@@ -79,6 +139,11 @@ class PrestasiIndividuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $preindividu = PrestasiIndividu::findOrFail($id);
+        File::delete('storage/' .  $preindividu->gambar_1);
+        File::delete('storage/' .  $preindividu->gambar_2);
+        File::delete('storage/' .  $preindividu->gambar_3);
+        $preindividu->delete();
+        return redirect('/prestasiindividu')->with('toast_success', 'Prestasi individu berhasil dihapus');
     }
 }

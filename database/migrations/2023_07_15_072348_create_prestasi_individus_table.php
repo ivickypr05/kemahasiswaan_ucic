@@ -17,14 +17,14 @@ return new class extends Migration
             $table->id();
             $table->string('judul_prestasi');
             $table->string('nama_peserta');
+            $table->string('tingkat_kejuaraan');
             $table->string('gambar_1')->nullable();
             $table->string('gambar_2')->nullable();
             $table->string('gambar_3')->nullable();
             $table->string('deskripsi');
-            $table->string('tingkat_kejuaraan');
             $table->string('tanggal');
-            $table->foreignId('category_prestasi_id');
-            $table->foreign('category_prestasi_id')->references('id')->on('category_prestasis');
+            $table->foreignId('categoryprestasi_id');
+            $table->foreign('categoryprestasi_id')->references('id')->on('category_prestasis');
             $table->timestamps();
         });
     }

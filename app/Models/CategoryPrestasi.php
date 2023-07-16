@@ -14,10 +14,10 @@ class CategoryPrestasi extends Model
     ];
     public function prestasiindividu(): HasMany
     {
-        return $this->hasMany(PrestasiIndividu::class, 'category_prestasi_id', 'id');
+        return $this->hasMany(PrestasiIndividu::class, 'categoryprestasi_id', 'id');
     }
     public function prestasitim(): HasMany
     {
-        return $this->hasMany(PrestasiTim::class, 'category_prestasi_id', 'id');
+        return $this->hasMany(PrestasiTim::class, 'categoryprestasi_id', 'id');
     }
 }
