@@ -5,6 +5,7 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\BkmController;
 use App\Http\Controllers\CategoryPrestasiController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HimaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PkmController;
@@ -12,6 +13,9 @@ use App\Http\Controllers\PpkController;
 use App\Http\Controllers\PrestasiIndividuController;
 use App\Http\Controllers\PrestasiTimController;
 use App\Http\Controllers\UkmController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AkademikController;
+use App\Http\Controllers\NonAkademikController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,6 +45,20 @@ Route::get('/beasiswa', function () {
 
 
 Route::get('beasiswa/{id}', [BeasiswaController::class, 'show'])->name('detail-beasiswa');
+
+Route::get('/akademik', function () {
+    $data['page_title'] = "Prestasi Akademik";
+    $data['akademik'] = [];
+
+    return view('frontend.prestasi.akademik', $data);
+})->name('akademik');
+
+Route::get('/non-akademik', function () {
+    $data['page_title'] = "Prestasi Non Akademik";
+    $data['nonakademik'] = [];
+
+    return view('frontend.prestasi.nonakademik', $data);
+})->name('non-akademik');
 
 // Route::get('organisasi-ukm', [OrganisasiUkmController::class, 'frontUkm'])->name('organisasi-ukm');
 Route::get('/organisasi-ukm', function () {
@@ -92,3 +110,50 @@ Route::get('detail-berita/{id}', [BeritaController::class, 'show'])->name('detai
 
 Route::get('contact', [ContactController::class, 'index'])->name('contact');
 Route::post('send-mail', [ContactController::class, 'sendMail'])->name('send-mail');
+
+
+// admmin
+
+Route::get('login-admin', function () {
+    $data['page_title'] = "Login Admin";
+    return view('admin.auth.login', $data);
+})->name('login-admin');
+
+Route::get('register', [RegisterController::class, 'index'])->name('register');
+Route::post('loginPost2', [UserController::class, 'loginPost2'])->name('loginPost2');
+Route::post('loginPostAdmin', [UserController::class, 'loginPostAdmin'])->name('loginPostAdmin');
+Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+
+
+Route::middleware('auth:web')->group(function () {
+    // Dashboard admin
+    Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard.index');
+    // Dashboard umum
+
+    Route::get('beasiswa-list', [BeasiswaController::class, 'index'])->name('beasiswa-list');
+    Route::get('beasiswa-create', [BeasiswaController::class, 'create'])->name('beasiswa-create');
+    Route::post('beasiswa-store', [BeasiswaController::class, 'store'])->name('beasiswa-store');
+    Route::get('beasiswa-edit/{id}', [BeasiswaController::class, 'edit'])->name('beasiswa-edit');
+    Route::post('beasiswa-update/{id}', [BeasiswaController::class, 'update'])->name('beasiswa-update');
+    Route::get('beasiswa-destroy/{id}', [BeasiswaController::class, 'destroy'])->name('beasiswa-destroy');
+
+    Route::get('rekap-list', [RekapPrestasiController::class, 'index'])->name('rekap-list');
+
+    Route::get('ukm-list', [UkmController::class, 'index'])->name('ukm-list');
+
+    Route::get('bkm-list', [BkmController::class, 'index'])->name('bkm-list');
+
+    Route::get('berita-list', [BeritaController::class, 'index'])->name('berita-list');
+
+    Route::get('hima-list', [HimaController::class, 'index'])->name('hima-list');
+
+    Route::get('pkm-list', [PkmController::class, 'index'])->name('pkm-list');
+
+    Route::get('ppk-list', [PpkController::class, 'index'])->name('ppk-list');
+
+    Route::get('akademik-list', [AkademikController::class, 'index'])->name('akademik-list');
+
+    Route::get('nonakademik-list', [NonAkademikController::class, 'index'])->name('nonakademik-list');
+    
+});
+
