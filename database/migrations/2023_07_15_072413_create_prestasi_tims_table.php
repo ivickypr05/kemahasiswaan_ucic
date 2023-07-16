@@ -33,8 +33,8 @@ return new class extends Migration
             $table->string('gambar_3')->nullable();
             $table->string('deskripsi');
             $table->string('tanggal');
-            $table->foreignId('category_prestasi_id');
-            $table->foreign('category_prestasi_id')->references('id')->on('category_prestasis');
+            $table->foreignId('categoryprestasi_id');
+            $table->foreign('categoryprestasi_id')->references('id')->on('category_prestasis');
             $table->timestamps();
         });
     }

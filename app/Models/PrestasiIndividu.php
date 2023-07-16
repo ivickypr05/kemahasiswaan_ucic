@@ -12,6 +12,6 @@ class PrestasiIndividu extends Model
 
     public function categoryprestasi(): BelongsTo
     {
-        return $this->belongsTo(CategoryPrestasi::class, 'category_prestasi_id', 'id');
+        return $this->belongsTo(CategoryPrestasi::class, 'categoryprestasi_id', 'id');
     }
 }

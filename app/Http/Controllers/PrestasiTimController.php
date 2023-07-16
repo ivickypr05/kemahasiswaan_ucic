@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PrestasiTim;
 use Illuminate\Http\Request;
+use App\Models\CategoryPrestasi;
+use Illuminate\Support\Facades\File;
 
 class PrestasiTimController extends Controller
 {
@@ -13,7 +16,8 @@ class PrestasiTimController extends Controller
      */
     public function index()
     {
-        //
+        $pretim = PrestasiTim::with('categoryprestasi')->get();
+        return view('admin.prestasi.tim.index', compact('pretimtim'));
     }
 
     /**
@@ -23,7 +27,8 @@ class PrestasiTimController extends Controller
      */
     public function create()
     {
-        //
+        $categoryprestasi = CategoryPrestasi::get();
+        return view('admin.prestasi.tim.add', compact('categoryprestasi'));
     }
 
     /**
@@ -34,7 +39,42 @@ class PrestasiTimController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'judul_prestasi' => 'required|string|min:2|max:100',
+            'nama_peserta_1' => 'required|string|min:2|max:50',
+            'nama_peserta_2' => 'required|string|min:2|max:50',
+            'nama_peserta_3' => 'string|min:2|max:50',
+            'nama_peserta_4' => 'string|min:2|max:50',
+            'nama_peserta_5' => 'string|min:2|max:50',
+            'nama_peserta_6' => 'string|min:2|max:50',
+            'nama_peserta_7' => 'string|min:2|max:50',
+            'nama_peserta_8' => 'string|min:2|max:50',
+            'nama_peserta_9' => 'string|min:2|max:50',
+            'nama_peserta_10' => 'string|min:2|max:50',
+            'nama_peserta_11' => 'string|min:2|max:50',
+            'tingkat_kejuaraan' => 'required|string|min:2|max:50',
+            'gambar_1' => 'required|mimes:jpeg,jpg,png,gif',
+            'gambar_2' => 'mimes:jpeg,jpg,png,gif',
+            'gambar_3' => 'mimes:jpeg,jpg,png,gif',
+            'deskripsi' => 'required|string|min:5|max:255',
+            'tanggal' => 'required|string|min:2|max:50',
+            'category_prestasi_id' => 'required|integer|exists:category_prestasis,id',
+        ]);
+        // nyimpen path nya ke variabel gambar_1, gambar_2, gambar_3
+        $gambar_1 = $request->file('gambar_1')->store('gambar_prestasi', 'public');
+        $gambar_2 = $request->file('gambar_2')->store('gambar_prestasi', 'public');
+        $gambar_3 = $request->file('gambar_3')->store('gambar_prestasi', 'public');
+
+        // nyimpen path nya dari gambar_1, gambar_2, gambar_3 ke array $validatedData
+        $validatedData['gambar_1'] = $gambar_1;
+        $validatedData['gambar_2'] = $gambar_2;
+        $validatedData['gambar_3'] = $gambar_3;
+
+        // nyimpen ke database
+        PrestasiTim::create($validatedData);
+
+        // redirect ke halaman yang sama dengan pesan sukses
+        return redirect('/prestasitim')->with('toast_success', 'Prestasi tim berhasil ditambah');
     }
 
     /**
@@ -56,7 +96,9 @@ class PrestasiTimController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['categoryprestasi'] = CategoryPrestasi::get();
+        $data['prestasitim'] = PrestasiTim::find($id);
+        return view('admin.prestasi.tim.edit', $data);
     }
 
     /**
@@ -68,7 +110,45 @@ class PrestasiTimController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'judul_prestasi' => 'required|string|min:2|max:100',
+            'nama_peserta_1' => 'required|string|min:2|max:50',
+            'nama_peserta_2' => 'required|string|min:2|max:50',
+            'nama_peserta_3' => 'string|min:2|max:50',
+            'nama_peserta_4' => 'string|min:2|max:50',
+            'nama_peserta_5' => 'string|min:2|max:50',
+            'nama_peserta_6' => 'string|min:2|max:50',
+            'nama_peserta_7' => 'string|min:2|max:50',
+            'nama_peserta_8' => 'string|min:2|max:50',
+            'nama_peserta_9' => 'string|min:2|max:50',
+            'nama_peserta_10' => 'string|min:2|max:50',
+            'nama_peserta_11' => 'string|min:2|max:50',
+            'tingkat_kejuaraan' => 'required|string|min:2|max:50',
+            'gambar_1' => 'required|mimes:jpeg,jpg,png,gif',
+            'gambar_2' => 'mimes:jpeg,jpg,png,gif',
+            'gambar_3' => 'mimes:jpeg,jpg,png,gif',
+            'deskripsi' => 'required|string|min:5|max:255',
+            'tanggal' => 'required|string|min:2|max:50',
+            'category_prestasi_id' => 'required|integer|exists:category_prestasis,id',
+        ]);
+
+        $pretim = PrestasiTim::find($id);
+        if ($request->file('gambar_1', 'gambar_1', 'gambar_3')) {
+            $gambar_1 = $request->file('gambar_1')->store('gambar_prestasi', 'public');
+            $gambar_2 = $request->file('gambar_2')->store('gambar_prestasi', 'public');
+            $gambar_3 = $request->file('gambar_3')->store('gambar_prestasi', 'public');
+
+            File::delete('storage/' .  $pretim->gambar_1);
+            File::delete('storage/' .  $pretim->gambar_2);
+            File::delete('storage/' .  $pretim->gambar_3);
+
+            $validatedData['gambar_1'] = $gambar_1;
+            $validatedData['gambar_2'] = $gambar_2;
+            $validatedData['gambar_3'] = $gambar_3;
+        }
+        $pretim->update($validatedData);
+
+        return redirect('/prestasitim')->with('toast_success', 'Prestasi tim berhasil diedit');
     }
 
     /**
@@ -79,6 +159,11 @@ class PrestasiTimController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pretim = PrestasiTim::findOrFail($id);
+        File::delete('storage/' .  $pretim->gambar_1);
+        File::delete('storage/' .  $pretim->gambar_2);
+        File::delete('storage/' .  $pretim->gambar_3);
+        $pretim->delete();
+        return redirect('/prestasitim')->with('toast_success', 'Prestasi tim berhasil dihapus');
     }
 }
