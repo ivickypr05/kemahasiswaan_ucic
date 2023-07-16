@@ -12,7 +12,7 @@
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item">Home</li>
+                    <li class="breadcrumb-item">Admin</li>
                     <li class="breadcrumb-item">/</li>
                     <li class="breadcrumb-item">Beasiswa</li>
                     <li class="breadcrumb-item">/</li>

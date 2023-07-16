@@ -12,10 +12,11 @@
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item">home</li>
+                <li class="breadcrumb-item">Admin</li>
                     <li class="breadcrumb-item">/</li>
-                    
+                    <li class="breadcrumb-item">UKM</li>
                     <li class="breadcrumb-item">/</li>
+                    <li class="breadcrumb-item">List UKM</li>
                    
                 </ol>
             </div>
@@ -74,7 +75,7 @@
                             class="image img" />
                       </th>
                       <th>{{ $item->title }}</th>
-                      <th>{{ $item->content }}</th>
+                      <th>{{ Str::limit($item->content, 100) }}</th>
                       <th>{{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }} -  {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }} </th>
                       <th>
                          <div class="btn-group">
