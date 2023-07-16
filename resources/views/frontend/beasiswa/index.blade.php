@@ -61,7 +61,7 @@
                                 alt="">
                         </div>
                     </div>
-                    <div class="col-lg-6 pt-4 pt-lg-0" style="padding-top: 2%!important;">
+                    <div class="col-lg-6 pt-4 pt-lg-0" style="padding-top: 10%!important;">
                         <div class="beasiswa-info">
                             <h4 class="beasiswa-title">{{ $item->title }}</h4>
                             <div class="beasiswa-time">

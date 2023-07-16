@@ -36,14 +36,6 @@ Route::get('/', function () {
 
 
 Route::get('beasiswa', [BeasiswaController::class, 'frontBeasiswa'])->name('beasiswa');
-// Route::get('/beasiswa', function () {
-//     $data['page_title'] = "Beasiswa";
-//     $data['beasiswa'] = [];
-
-//     return view('frontend.beasiswa.index', $data);
-// })->name('beasiswa');
-
-
 Route::get('beasiswa/{id}', [BeasiswaController::class, 'show'])->name('detail-beasiswa');
 
 Route::get('/akademik', function () {
@@ -60,13 +52,8 @@ Route::get('/non-akademik', function () {
     return view('frontend.prestasi.nonakademik', $data);
 })->name('non-akademik');
 
-// Route::get('organisasi-ukm', [OrganisasiUkmController::class, 'frontUkm'])->name('organisasi-ukm');
-Route::get('/organisasi-ukm', function () {
-    $data['page_title'] = "UKM";
-    $data['ukm'] = [];
-
-    return view('frontend.organisasi.ukm', $data);
-})->name('organisasi-ukm');
+Route::get('organisasi-ukm', [UkmController::class, 'frontUkm'])->name('organisasi-ukm');
+Route::get('organisasi-ukm/{id}', [UkmController::class, 'show'])->name('detail-ukm');
 
 // Route::get('organisasi-bkm', [BkmController::class, 'frontBem'])->name('organisasi-bem');
 Route::get('/organisasi-bkm', function () {
@@ -140,6 +127,11 @@ Route::middleware('auth:web')->group(function () {
     Route::get('rekap-list', [RekapPrestasiController::class, 'index'])->name('rekap-list');
 
     Route::get('ukm-list', [UkmController::class, 'index'])->name('ukm-list');
+    Route::get('ukm-create', [UkmController::class, 'create'])->name('ukm-create');
+    Route::post('ukm-store', [UkmController::class, 'store'])->name('ukm-store');
+    Route::get('ukm-edit/{id}', [UkmController::class, 'edit'])->name('ukm-edit');
+    Route::post('ukm-update/{id}', [UkmController::class, 'update'])->name('ukm-update');
+    Route::get('ukm-destroy/{id}', [UkmController::class, 'destroy'])->name('ukm-destroy');
 
     Route::get('bkm-list', [BkmController::class, 'index'])->name('bkm-list');
 
