@@ -61,7 +61,7 @@ span {
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('pkm-list') }}" key="t-default">PKM</a></li>
-                        <li><a href="{{ route('ppk-list') }}" key="t-default">PPK</a></li>
+                        <li><a href="{{ route('pkk-list') }}" key="t-default">PKK</a></li>
                     </ul>
                 </li>
 

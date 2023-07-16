@@ -9,7 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HimaController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PkmController;
-use App\Http\Controllers\PpkController;
+use App\Http\Controllers\PkkController;
 use App\Http\Controllers\PrestasiIndividuController;
 use App\Http\Controllers\PrestasiTimController;
 use App\Http\Controllers\UkmController;
@@ -87,12 +87,8 @@ Route::get('organisasi-hima/{id}', [HimaController::class, 'show'])->name('detai
 Route::get('pkm', [PkmController::class, 'frontPkm'])->name('pkm');
 Route::get('pkm/{id}', [PkmController::class, 'show'])->name('detail-pkm');
 
-Route::get('/ppk', function () {
-    $data['page_title'] = "PPK";
-    $data['ppk'] = [];
-
-    return view('frontend.simbelmawa.ppk', $data);
-})->name('ppk');
+Route::get('pkk', [PkkController::class, 'frontPkk'])->name('pkk');
+Route::get('pkk/{id}', [PkkController::class, 'show'])->name('detail-pkk');
 
 // Route::get('berita', [BeritaController::class, 'show'])->name('berita');
 Route::get('/berita', function () {
@@ -165,7 +161,12 @@ Route::middleware('auth:web')->group(function () {
     Route::post('pkm-update/{id}', [PkmController::class, 'update'])->name('pkm-update');
     Route::get('pkm-destroy/{id}', [PkmController::class, 'destroy'])->name('pkm-destroy');
 
-    Route::get('ppk-list', [PpkController::class, 'index'])->name('ppk-list');
+    Route::get('pkk-list', [PkkController::class, 'index'])->name('pkk-list');
+    Route::get('pkk-create', [PkkController::class, 'create'])->name('pkk-create');
+    Route::post('pkk-store', [PkkController::class, 'store'])->name('pkk-store');
+    Route::get('pkk-edit/{id}', [PkkController::class, 'edit'])->name('pkk-edit');
+    Route::post('pkk-update/{id}', [PkkController::class, 'update'])->name('pkk-update');
+    Route::get('pkk-destroy/{id}', [PkkController::class, 'destroy'])->name('pkk-destroy');
 
     Route::get('akademik-list', [AkademikController::class, 'index'])->name('akademik-list');
 

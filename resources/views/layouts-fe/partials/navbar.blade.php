@@ -21,7 +21,7 @@
         <li class="dropdown"><a href="#"><span>SIMBELMAWA</span> <i class="bi bi-chevron-down"></i></a>
           <ul>
             <li><a href="{{ route('pkm') }}" class="{{ request()->routeIs('pkm') ? 'active' : '' }}">PKM</a></li>
-            <li><a href="{{ route('ppk') }}" class="{{ request()->routeIs('ppk') ? 'active' : '' }}">PPK</a></li>
+            <li><a href="{{ route('pkk') }}" class="{{ request()->routeIs('pkk') ? 'active' : '' }}">PKK</a></li>
           </ul>
         </li>
         <li><a href="{{ route('berita') }}" class="{{ request()->routeIs('berita') ? 'active' : '' }}">Berita</a></li>
