@@ -12,11 +12,11 @@
 
             <div class="page-title-right">
                 <ol class="breadcrumb m-0">
-                    <li class="breadcrumb-item">home</li>
+                <li class="breadcrumb-item">Home</li>
                     <li class="breadcrumb-item">/</li>
-
+                    <li class="breadcrumb-item">Beasiswa</li>
                     <li class="breadcrumb-item">/</li>
-       
+                    <li class="breadcrumb-item">Add Beasiswa</li>
                 </ol>
             </div>
 
