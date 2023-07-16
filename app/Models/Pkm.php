@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Pkm extends Model
 {
     use HasFactory;
+    use HasFactory;
+    protected $fillable = [
+        'judul',
+        'gambar',
+        'deskripsi',
+        'mulai_tanggal',
+        'akhir_tanggal'
+    ];
 }

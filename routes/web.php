@@ -83,14 +83,9 @@ Route::get('organisasi-bkm/{id}', [BkmController::class, 'show'])->name('detail-
 
 Route::get('organisasi-hima', [HimaController::class, 'frontHima'])->name('organisasi-hima');
 Route::get('organisasi-hima/{id}', [HimaController::class, 'show'])->name('detail-hima');
-// Route::get('organisasi-hima/{id}', [HimaController::class, 'show'])->name('organisasi-hima');
 
-Route::get('/pkm', function () {
-    $data['page_title'] = "PKM";
-    $data['pkm'] = [];
-
-    return view('frontend.simbelmawa.pkm', $data);
-})->name('pkm');
+Route::get('pkm', [PkmController::class, 'frontPkm'])->name('pkm');
+Route::get('pkm/{id}', [PkmController::class, 'show'])->name('detail-pkm');
 
 Route::get('/ppk', function () {
     $data['page_title'] = "PPK";
@@ -164,6 +159,11 @@ Route::middleware('auth:web')->group(function () {
     Route::get('hima-destroy/{id}', [HimaController::class, 'destroy'])->name('hima-destroy');
 
     Route::get('pkm-list', [PkmController::class, 'index'])->name('pkm-list');
+    Route::get('pkm-create', [PkmController::class, 'create'])->name('pkm-create');
+    Route::post('pkm-store', [PkmController::class, 'store'])->name('pkm-store');
+    Route::get('pkm-edit/{id}', [PkmController::class, 'edit'])->name('pkm-edit');
+    Route::post('pkm-update/{id}', [PkmController::class, 'update'])->name('pkm-update');
+    Route::get('pkm-destroy/{id}', [PkmController::class, 'destroy'])->name('pkm-destroy');
 
     Route::get('ppk-list', [PpkController::class, 'index'])->name('ppk-list');
 
