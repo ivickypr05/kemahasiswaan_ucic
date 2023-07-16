@@ -45,7 +45,7 @@
                             <label for="name">Gambar</label>
                             @if ($beasiswa->gambar)
                                 <div class="mb-3">
-                                    <img id="beasiswa_gambar" src="{{ url('storage/' . $beasiswa->gambar) }}" width="110px"
+                                    <img id="gambar_beasiswa" src="{{ url('storage/' . $beasiswa->gambar) }}" width="110px"
                                         alt="">
                                 </div>
                             @endif

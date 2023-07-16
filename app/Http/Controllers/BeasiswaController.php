@@ -100,7 +100,7 @@ class BeasiswaController extends Controller
 
         $beasiswa = Beasiswa::find($id);
         if ($request->file('gambar')) {
-            $gambar = $request->file('gambar')->store('beasiswa_gambar', 'public');
+            $gambar = $request->file('gambar')->store('gambar_beasiswa', 'public');
             File::delete('storage/' .  $beasiswa->gambar);
             $validatedData['gambar'] = $gambar;
         }
