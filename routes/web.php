@@ -38,19 +38,42 @@ Route::get('/', function () {
 Route::get('beasiswa', [BeasiswaController::class, 'frontBeasiswa'])->name('beasiswa');
 Route::get('beasiswa/{id}', [BeasiswaController::class, 'show'])->name('detail-beasiswa');
 
-Route::get('/akademik', function () {
-    $data['page_title'] = "Prestasi Akademik";
-    $data['akademik'] = [];
+Route::get('/prestasi-individu', function () {
+    $data['page_title'] = "Prestasi Individu";
+    $data['prestasi-individu'] = [];
 
-    return view('frontend.prestasi.akademik', $data);
-})->name('akademik');
+    return view('admin.prestasi.individu.index', $data);
+})->name('prestasi-individu');
 
-Route::get('/non-akademik', function () {
-    $data['page_title'] = "Prestasi Non Akademik";
-    $data['nonakademik'] = [];
+Route::get('/prestasi-tim', function () {
+    $data['page_title'] = "Prestasi Tim";
+    $data['prestasi-tim'] = [];
 
-    return view('frontend.prestasi.nonakademik', $data);
-})->name('non-akademik');
+    return view('admin.prestasi.tim.index', $data);
+})->name('prestasi-tim');
+
+Route::get('/prestasi-individu', function () {
+    $data['page_title'] = "Prestasi Individu";
+    $data['prestasi-individu'] = [];
+
+    return view('frontend.prestasi.individu', $data);
+})->name('prestasi-individu');
+
+Route::get('/prestasi-tim', function () {
+    $data['page_title'] = "Prestasi Tim";
+    $data['prestasi-tim'] = [];
+
+    return view('frontend.prestasi.tim', $data);
+})->name('prestasi-tim');
+
+Route::get('/category', function () {
+    $data['page_title'] = "Category";
+    $data['category'] = [];
+
+    return view('admin.prestasi.category.index', $data);
+})->name('category');
+
+
 
 Route::get('organisasi-ukm', [UkmController::class, 'frontUkm'])->name('organisasi-ukm');
 Route::get('organisasi-ukm/{id}', [UkmController::class, 'show'])->name('detail-ukm');
