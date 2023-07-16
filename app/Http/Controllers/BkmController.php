@@ -42,37 +42,27 @@ class BkmController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+     public function store(Request $request)
     {
-        $validateData = $request->validate([
+        $validatedData = $request->validate([
             'nama_kegiatan'   => 'required|string|min:3',
-            'gambar'   => 'required',
             'deskripsi'   => 'required|string|min:3',
+            'gambar'   => 'required',
             'mulai_tanggal'   => 'required',
             'akhir_tanggal'   => 'required',
         ]);
 
-        $beasiswa = new Bkm();
-        $beasiswa->nama_kegiatan = $validateData['nama_kegiatan'];
-        $beasiswa->deskripsi = $validateData['deskripsi'];
-        $beasiswa->mulai_tanggal = $validateData['mulai_tanggal'];
-        $beasiswa->akhir_tanggal = $validateData['akhir_tanggal'];
-        if ($request->hasFile('gambar')) {
-            $image = $request->file('gambar');
-            $name = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('img/bkm/');
-            $image->move($destinationPath, $name);
-            $beasiswa->gambar = $name;
-        }
-        $beasiswa->save();
+        $gambar = $request->file('gambar')->store('gambar_bkm', 'public');
+        $validatedData['gambar'] = $gambar;
 
-        return redirect()->route('bkm-list')->with(['success' => ' successfully!']);
+        Bkm::create($validatedData);
+        return redirect('/bkm-list')->with('toast_success', 'BKM berhasil ditambah');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Beasiswa  $beasiswa
+     * @param  \App\Models\Bkm  $bkm
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -84,7 +74,7 @@ class BkmController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Beasiswa  $beasiswa
+     * @param  \App\Models\Bkm  $bkm
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -100,40 +90,27 @@ class BkmController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Beasiswa  $beasiswa
+     * @param  \App\Models\Bkm  $bkm
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $validateData = $request->validate([
+        $validatedData = $request->validate([
             'nama_kegiatan'   => 'required|string|min:3',
-            'gambar'   => 'required',
             'deskripsi'   => 'required|string|min:3',
+            'gambar'   => 'required|mimes:jpeg,jpg,png,gif',
             'mulai_tanggal'   => 'required',
             'akhir_tanggal'   => 'required',
         ]);
 
-        $beasiswa = Bkm::find($id);
-        $beasiswa->nama_kegiatan = $validateData['nama_kegiatan'];
-        $beasiswa->deskripsi = $validateData['deskripsi'];
-        $beasiswa->mulai_tanggal = $validateData['mulai_tanggal'];
-        $beasiswa->akhir_tanggal = $validateData['akhir_tanggal'];
-        if ($request->hasFile('gambar')) {
-            // Delete Img
-            if ($beasiswa->gambar) {
-                $image_path = public_path('img/bkm/'.$beasiswa->gambar); // Value is not URL but directory file path
-                if (File::exists($image_path)) {
-                    File::delete($image_path);
-                }
-            }
-            
-            $image = $request->file('gambar');
-            $name = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('img/bkm/');
-            $image->move($destinationPath, $name);
-            $beasiswa->gambar = $name;
+        $bkm = Bkm::find($id);
+        if ($request->file('gambar')) {
+            $gambar = $request->file('gambar')->store('bkm_gambar', 'public');
+            File::delete('storage/' .  $bkm->gambar);
+            $validatedData['gambar'] = $gambar;
         }
-        $beasiswa->save();
+        $bkm->update($validatedData);
+
 
         return redirect()->route('bkm-list')->with(['success' => ' successfully!']);
     }
@@ -141,27 +118,27 @@ class BkmController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Beasiswa  $beasiswa
+     * @param  \App\Models\Bkm  $bkm
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         DB::transaction(function () use ($id) {
-            $beasiswa = Bkm::findOrFail($id);
-            if ($beasiswa->avatar) {
-                $image_path = public_path('img/bkm/'.$beasiswa->avatar); // Value is not URL but directory file path
+            $bkm = Bkm::findOrFail($id);
+            if ($bkm->avatar) {
+                $image_path = public_path('img/bkm/'.$bkm->avatar); // Value is not URL but directory file path
                 if (File::exists($image_path)) {
                     File::delete($image_path);
                 }
             }
 
-            $beasiswa->delete();
+            $bkm->delete();
         });
         
         return redirect()->route('bkm-list')->with(['success' => ' successfully!']);
     }
 
-    public function frontUkm(){
+    public function frontBkm(){
         $data['page_title'] = 'Organisasi BKM';
         $data['breadcumb'] = 'Organisasi BKM';
         $data['bkm'] = Bkm::get();

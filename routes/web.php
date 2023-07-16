@@ -78,13 +78,8 @@ Route::get('/category', function () {
 Route::get('organisasi-ukm', [UkmController::class, 'frontUkm'])->name('organisasi-ukm');
 Route::get('organisasi-ukm/{id}', [UkmController::class, 'show'])->name('detail-ukm');
 
-// Route::get('organisasi-bkm', [BkmController::class, 'frontBem'])->name('organisasi-bem');
-Route::get('/organisasi-bkm', function () {
-    $data['page_title'] = "BKM";
-    $data['bkm'] = [];
-
-    return view('frontend.organisasi.bkm', $data);
-})->name('organisasi-bkm');
+Route::get('organisasi-bkm', [BkmController::class, 'frontBkm'])->name('organisasi-bkm');
+Route::get('organisasi-bkm/{id}', [BkmController::class, 'show'])->name('detail-bkm');
 
 // Route::get('organisasi-hima', [HimaController::class, 'frontBem'])->name('organisasi-hima');
 Route::get('/organisasi-hima', function () {
@@ -157,6 +152,11 @@ Route::middleware('auth:web')->group(function () {
     Route::get('ukm-destroy/{id}', [UkmController::class, 'destroy'])->name('ukm-destroy');
 
     Route::get('bkm-list', [BkmController::class, 'index'])->name('bkm-list');
+    Route::get('bkm-create', [BkmController::class, 'create'])->name('bkm-create');
+    Route::post('bkm-store', [BkmController::class, 'store'])->name('bkm-store');
+    Route::get('bkm-edit/{id}', [BkmController::class, 'edit'])->name('bkm-edit');
+    Route::post('bkm-update/{id}', [BkmController::class, 'update'])->name('bkm-update');
+    Route::get('bkm-destroy/{id}', [BkmController::class, 'destroy'])->name('bkm-destroy');
 
     Route::get('berita-list', [BeritaController::class, 'index'])->name('berita-list');
 

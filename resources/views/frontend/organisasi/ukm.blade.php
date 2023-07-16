@@ -60,12 +60,12 @@
                         </div>
                     </div>
                     <div class="col-lg-6 pt-4 pt-lg-0" style="padding-top: 10%!important;">
-                        <div class="ukm-info">
-                            <div class="left" style="float:left">
-                                <h4><b>{{ $item->title }}</b></h4>
-                            </div>
-                            <div class="right" style="float:right">
-                                <p style="float:right">{{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }} - {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}</p>
+                    <div class="ukm-info">
+                            <h4 class="ukm-title">{{ $item->title }}</h4>
+                            <div class="ukm-time">
+                                <i class="bi bi-clock"></i>
+                                <p>{{ \Carbon\Carbon::parse($item->mulai_tanggal)->translatedFormat('d F Y') }}
+                                    - {{ \Carbon\Carbon::parse($item->akhir_tanggal)->translatedFormat('d F Y') }}</p>
                             </div>
                         </div>
                         @php
