@@ -31,7 +31,7 @@ class BeasiswaController extends Controller
         $data['page_title'] = 'Beasiswa';
         $data['breadcumb'] = 'Beasiswa';
 
-        return view('admin.beasiswa.create', $data);
+        return view('admin.beasiswa.add', $data);
     }
 
     /**

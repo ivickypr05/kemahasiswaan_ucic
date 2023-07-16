@@ -15,6 +15,11 @@ return new class extends Migration
     {
         Schema::create('beasiswas', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('content');
+            $table->string('gambar');
+            $table->string('dari_tanggal');
+            $table->string('sampai_tanggal');
             $table->timestamps();
         });
     }
