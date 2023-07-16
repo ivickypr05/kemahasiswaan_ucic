@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ukm;
+use App\Models\Bkm;
 use Illuminate\Http\Request;
 use DB;
 use File;
