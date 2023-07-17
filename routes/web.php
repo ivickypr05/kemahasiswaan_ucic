@@ -101,11 +101,11 @@ Route::middleware('auth:web')->group(function () {
 
     // Prestasi Individu Manajemen
     Route::get('prestasi-individu-list', [PrestasiIndividuController::class, 'index'])->name('prestasi-individu-list');
-    Route::get('prestasi-individu-create', [PrestasiIndviduController::class, 'create'])->name('prestasi-individu-create');
-    Route::post('prestasi-individu-store', [PrestasiIndviduController::class, 'store'])->name('prestasi-individu-store');
-    Route::get('prestasi-individu-edit/{id}', [PrestasiIndviduController::class, 'edit'])->name('prestasi-individu-edit');
-    Route::post('prestasi-individu-update/{id}', [PrestasiIndviduController::class, 'update'])->name('prestasi-individu-update');
-    Route::get('prestasi-individu-destroy/{id}', [PrestasiIndviduController::class, 'destroy'])->name('prestasi-individu-destroy');
+    Route::get('prestasi-individu-create', [PrestasiIndividuController::class, 'create'])->name('prestasi-individu-create');
+    Route::post('prestasi-individu-store', [PrestasiIndividuController::class, 'store'])->name('prestasi-individu-store');
+    Route::get('prestasi-individu-edit/{id}', [PrestasiIndividuController::class, 'edit'])->name('prestasi-individu-edit');
+    Route::post('prestasi-individu-update/{id}', [PrestasiIndividuController::class, 'update'])->name('prestasi-individu-update');
+    Route::get('prestasi-individu-destroy/{id}', [PrestasiIndividuController::class, 'destroy'])->name('prestasi-individu-destroy');
 
     // Prestasi Tim Manajmen
     Route::get('prestasi-tim-list', [PrestasiTimController::class, 'index'])->name('prestasi-tim-list');
