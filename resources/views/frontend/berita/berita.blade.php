@@ -55,9 +55,8 @@
 
                 <div class="row content">
                     <div class="col-lg-6">
-                        <div class="square-image">
-                            <img
-                                src="{{ asset('img/beasiswa/'.($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
+                    <div class="square-image">
+                            <img src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
                                 alt="">
                         </div>
                     </div>
@@ -76,7 +75,7 @@
                         @endphp
                         <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
                         @if (strlen($item->content) > 200)
-                            <a href="{{ route('detail-beasiswa', $item->id) }}"
+                            <a href="{{ route('detail-berita', $item->id) }}"
                                 class="btn btn-primary" style="float:right">Read More</a>
                         @endif
                     </div>

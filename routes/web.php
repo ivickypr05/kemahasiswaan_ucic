@@ -90,15 +90,8 @@ Route::get('pkm/{id}', [PkmController::class, 'show'])->name('detail-pkm');
 Route::get('pkk', [PkkController::class, 'frontPkk'])->name('pkk');
 Route::get('pkk/{id}', [PkkController::class, 'show'])->name('detail-pkk');
 
-// Route::get('berita', [BeritaController::class, 'show'])->name('berita');
-Route::get('/berita', function () {
-    $data['page_title'] = "Berita";
-    $data['berita'] = [];
-
-    return view('frontend.berita.berita', $data);
-})->name('berita');
-
-Route::get('detail-berita/{id}', [BeritaController::class, 'show'])->name('detail-berita');
+Route::get('berita', [BeritaController::class, 'frontBerita'])->name('berita');
+Route::get('berita/{id}', [BeritaController::class, 'show'])->name('detail-berita');
 
 Route::get('contact', [ContactController::class, 'index'])->name('contact');
 Route::post('send-mail', [ContactController::class, 'sendMail'])->name('send-mail');
@@ -146,6 +139,11 @@ Route::middleware('auth:web')->group(function () {
     Route::get('bkm-destroy/{id}', [BkmController::class, 'destroy'])->name('bkm-destroy');
 
     Route::get('berita-list', [BeritaController::class, 'index'])->name('berita-list');
+    Route::get('berita-create', [BeritaController::class, 'create'])->name('berita-create');
+    Route::post('berita-store', [BeritaController::class, 'store'])->name('berita-store');
+    Route::get('berita-edit/{id}', [BeritaController::class, 'edit'])->name('berita-edit');
+    Route::post('berita-update/{id}', [BeritaController::class, 'update'])->name('berita-update');
+    Route::get('berita-destroy/{id}', [BeritaController::class, 'destroy'])->name('berita-destroy');
 
     Route::get('hima-list', [HimaController::class, 'index'])->name('hima-list');
     Route::get('hima-create', [HimaController::class, 'create'])->name('hima-create');
