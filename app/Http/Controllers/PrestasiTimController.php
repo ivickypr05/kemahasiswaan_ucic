@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pretim;
+use App\Models\Category;
 use App\Models\PrestasiTim;
 use Illuminate\Http\Request;
 use App\Models\CategoryPrestasi;
@@ -16,8 +18,8 @@ class PrestasiTimController extends Controller
      */
     public function index()
     {
-        $pretim = PrestasiTim::with('categoryprestasi')->get();
-        return view('admin.prestasi.tim.index', compact('pretimtim'));
+        $pretim = Pretim::with('category')->get();
+        return view('admin.prestasi.tim.index', compact('pretim'));
     }
 
     /**
@@ -27,7 +29,7 @@ class PrestasiTimController extends Controller
      */
     public function create()
     {
-        $categoryprestasi = CategoryPrestasi::get();
+        $category = Category::get();
         return view('admin.prestasi.tim.add', compact('categoryprestasi'));
     }
 
@@ -71,10 +73,10 @@ class PrestasiTimController extends Controller
         $validatedData['gambar_3'] = $gambar_3;
 
         // nyimpen ke database
-        PrestasiTim::create($validatedData);
+        Pretim::create($validatedData);
 
         // redirect ke halaman yang sama dengan pesan sukses
-        return redirect('/prestasitim')->with('toast_success', 'Prestasi tim berhasil ditambah');
+        return redirect('/prestasi-tim-list')->with('toast_success', 'Prestasi tim berhasil ditambah');
     }
 
     /**
@@ -96,8 +98,8 @@ class PrestasiTimController extends Controller
      */
     public function edit($id)
     {
-        $data['categoryprestasi'] = CategoryPrestasi::get();
-        $data['prestasitim'] = PrestasiTim::find($id);
+        $data['categories'] = Category::get();
+        $data['pretim'] = Pretim::find($id);
         return view('admin.prestasi.tim.edit', $data);
     }
 
@@ -132,7 +134,7 @@ class PrestasiTimController extends Controller
             'category_prestasi_id' => 'required|integer|exists:category_prestasis,id',
         ]);
 
-        $pretim = PrestasiTim::find($id);
+        $pretim = Pretim::find($id);
         if ($request->file('gambar_1', 'gambar_1', 'gambar_3')) {
             $gambar_1 = $request->file('gambar_1')->store('gambar_prestasi', 'public');
             $gambar_2 = $request->file('gambar_2')->store('gambar_prestasi', 'public');
@@ -148,7 +150,7 @@ class PrestasiTimController extends Controller
         }
         $pretim->update($validatedData);
 
-        return redirect('/prestasitim')->with('toast_success', 'Prestasi tim berhasil diedit');
+        return redirect('/prestasi-tim-list')->with('toast_success', 'Prestasi tim berhasil diedit');
     }
 
     /**
@@ -159,11 +161,11 @@ class PrestasiTimController extends Controller
      */
     public function destroy($id)
     {
-        $pretim = PrestasiTim::findOrFail($id);
+        $pretim = Pretim::findOrFail($id);
         File::delete('storage/' .  $pretim->gambar_1);
         File::delete('storage/' .  $pretim->gambar_2);
         File::delete('storage/' .  $pretim->gambar_3);
         $pretim->delete();
-        return redirect('/prestasitim')->with('toast_success', 'Prestasi tim berhasil dihapus');
+        return redirect('/prestasi-tim-list')->with('toast_success', 'Prestasi tim berhasil dihapus');
     }
 }

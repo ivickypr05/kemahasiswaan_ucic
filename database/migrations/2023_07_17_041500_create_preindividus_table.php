@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('preindividus', function (Blueprint $table) {
             $table->id();
-            $table->string('judul_prestasi');
-            $table->string('nama_peserta');
+            $table->string('title');
+            $table->string('nama');
             $table->string('tingkat_kejuaraan');
-            $table->string('gambar_1')->nullable();
+            $table->string('gambar_1');
             $table->string('gambar_2')->nullable();
             $table->string('gambar_3')->nullable();
             $table->string('deskripsi');

@@ -35,9 +35,11 @@ Route::get('/', function () {
 Route::get('beasiswa', [BeasiswaController::class, 'frontBeasiswa'])->name('beasiswa');
 Route::get('beasiswa/{id}', [BeasiswaController::class, 'show'])->name('detail-beasiswa');
 
-Route::get('prestasi-individu', [PrestasiIndividuController::class, 'frontPrestasiInvividu'])->name('prestasi-individu');
-Route::get('prestasi-individu', [PrestasiIndividuController::class, 'frontPrestasiInvividu'])->name('prestasi-individu');
-Route::get('prestasi-individu', [PrestasiIndividuController::class, 'frontPrestasiInvividu'])->name('prestasi-individu');
+Route::get('prestasi-individu', [PrestasiIndividuController::class, 'frontPrestasiIndividu'])->name('prestasi-individu');
+Route::get('prestasi-individu-detail', [PrestasiIndividuController::class, 'show'])->name('detail-prestasi-individu');
+
+Route::get('prestasi-tim', [PrestasiIndividuController::class, 'frontPrestasiTim'])->name('prestasi-tim');
+Route::get('prestasi-tim-detail', [PrestasiIndividuController::class, 'show'])->name('detail-prestasi-tim');
 
 
 Route::get('organisasi-ukm', [UkmController::class, 'frontUkm'])->name('organisasi-ukm');
@@ -95,14 +97,23 @@ Route::middleware('auth:web')->group(function () {
     Route::post('category-store', [CategoryController::class, 'store'])->name('category-store');
     Route::get('category-edit/{id}', [CategoryController::class, 'edit'])->name('category-edit');
     Route::post('category-update/{id}', [CategoryController::class, 'update'])->name('category-update');
-    Route::get('/category-destroy/{id}', [CategoryController::class, 'destroy'])->name('category-destroy');
+    Route::get('category-destroy/{id}', [CategoryController::class, 'destroy'])->name('category-destroy');
 
     // Prestasi Individu Manajemen
     Route::get('prestasi-individu-list', [PrestasiIndividuController::class, 'index'])->name('prestasi-individu-list');
+    Route::get('prestasi-individu-create', [PrestasiIndviduController::class, 'create'])->name('prestasi-individu-create');
+    Route::post('prestasi-individu-store', [PrestasiIndviduController::class, 'store'])->name('prestasi-individu-store');
+    Route::get('prestasi-individu-edit/{id}', [PrestasiIndviduController::class, 'edit'])->name('prestasi-individu-edit');
+    Route::post('prestasi-individu-update/{id}', [PrestasiIndviduController::class, 'update'])->name('prestasi-individu-update');
+    Route::get('prestasi-individu-destroy/{id}', [PrestasiIndviduController::class, 'destroy'])->name('prestasi-individu-destroy');
 
     // Prestasi Tim Manajmen
     Route::get('prestasi-tim-list', [PrestasiTimController::class, 'index'])->name('prestasi-tim-list');
-
+    Route::get('prestasi-tim-create', [PrestasiTimController::class, 'create'])->name('prestasi-tim-create');
+    Route::post('prestasi-tim-store', [PrestasiTimController::class, 'store'])->name('prestasi-tim-store');
+    Route::get('prestasi-tim-edit/{id}', [PrestasiTimController::class, 'edit'])->name('prestasi-tim-edit');
+    Route::post('prestasi-tim-update/{id}', [PrestasiTimController::class, 'update'])->name('prestasi-tim-update');
+    Route::get('prestasi-tim-destroy/{id}', [PrestasiTimController::class, 'destroy'])->name('prestasi-tim-destroy');
 
     //UKM Manajemen
     Route::get('prestasi-list', [RekapPrestasiController::class, 'index'])->name('prestasi-list');

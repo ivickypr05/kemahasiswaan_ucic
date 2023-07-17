@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Preindividu;
 use Illuminate\Http\Request;
-use App\Models\CategoryPrestasi;
-use App\Models\PrestasiIndividu;
 use Illuminate\Support\Facades\File;
 
 class PrestasiIndividuController extends Controller
@@ -17,7 +16,7 @@ class PrestasiIndividuController extends Controller
      */
     public function index()
     {
-        $preindividu = Preindividu::with('categoryprestasi')->get();
+        $preindividu = Preindividu::with('category')->get();
         return view('admin.prestasi.individu.index', compact('preindividu'));
     }
 
@@ -28,8 +27,8 @@ class PrestasiIndividuController extends Controller
      */
     public function create()
     {
-        $categoryprestasi = Categoryprestasi::get();
-        return view('admin.prestasi.individu.add', compact('categoryprestasi'));
+        $category = Category::get();
+        return view('admin.prestasi.individu.add', compact('Category'));
     }
 
     /**
@@ -87,7 +86,7 @@ class PrestasiIndividuController extends Controller
      */
     public function edit($id)
     {
-        $data['categoryprestasi'] = Categoryprestasi::get();
+        $data['categories'] = Category::get();
         $data['preindividu'] = Preindividu::find($id);
         return view('admin.prestasi.individu.edit', $data);
     }
@@ -129,7 +128,7 @@ class PrestasiIndividuController extends Controller
         }
         $preindividu->update($validatedData);
 
-        return redirect('/prestasi-individu')->with('toast_success', 'Prestasi Individu berhasil diedit');
+        return redirect('/prestasi-individu-list')->with('toast_success', 'Prestasi Individu berhasil diedit');
     }
 
     /**
@@ -145,12 +144,12 @@ class PrestasiIndividuController extends Controller
         File::delete('storage/' .  $preindividu->gambar_2);
         File::delete('storage/' .  $preindividu->gambar_3);
         $preindividu->delete();
-        return redirect('/prestasi-individu')->with('toast_success', 'Prestasi individu berhasil dihapus');
+        return redirect('/prestasi-individu-list')->with('toast_success', 'Prestasi individu berhasil dihapus');
     }
 
     public function frontPrestasiIndividu()
     {
-        $preindividu = Preindividu::with('categoryprestasi')->get();
-        return view('admin.prestasi.individu.index', compact('preindividu'));
+        $preindividu = Preindividu::with('category')->get();
+        return view('frontend.prestasi.individu', compact('preindividu'));
     }
 }
