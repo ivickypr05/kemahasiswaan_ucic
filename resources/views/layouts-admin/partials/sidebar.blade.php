@@ -36,9 +36,9 @@ span {
                         <span key="t-dashboards">Prestasi</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('prestasi-individu') }}" key="t-default">Prestasi Individu</a></li>
-                        <li><a href="{{ route('prestasi-tim') }}" key="t-default">Prestasi Tim</a></li>
-                        <li><a href="{{ route('category') }}" key="t-default">Category</a></li>
+                        <li><a href="{{ route('category-list') }}" key="t-default">Category Prestasi</a></li>
+                        <li><a href="{{ route('prestasi-individu-list') }}" key="t-default">Prestasi Individu</a></li>
+                        <li><a href="{{ route('prestasi-tim-list') }}" key="t-default">Prestasi Tim</a></li>
                     </ul>
                 </li>
 

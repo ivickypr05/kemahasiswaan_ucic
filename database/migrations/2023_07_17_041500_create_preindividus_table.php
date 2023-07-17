@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('prestasi_individus', function (Blueprint $table) {
+        Schema::create('preindividus', function (Blueprint $table) {
             $table->id();
             $table->string('judul_prestasi');
             $table->string('nama_peserta');
@@ -23,8 +23,8 @@ return new class extends Migration
             $table->string('gambar_3')->nullable();
             $table->string('deskripsi');
             $table->string('tanggal');
-            $table->foreignId('categoryprestasi_id');
-            $table->foreign('categoryprestasi_id')->references('id')->on('category_prestasis');
+            $table->foreignId('category_id');
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });
     }
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('prestasi_individus');
+        Schema::dropIfExists('preindividus');
     }
 };

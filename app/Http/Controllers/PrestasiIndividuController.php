@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Preindividu;
+use Illuminate\Http\Request;
 use App\Models\CategoryPrestasi;
 use App\Models\PrestasiIndividu;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
 class PrestasiIndividuController extends Controller
@@ -16,7 +17,7 @@ class PrestasiIndividuController extends Controller
      */
     public function index()
     {
-        $preindividu = PrestasiIndividu::with('categoryprestasi')->get();
+        $preindividu = Preindividu::with('categoryprestasi')->get();
         return view('admin.prestasi.individu.index', compact('preindividu'));
     }
 
@@ -27,7 +28,7 @@ class PrestasiIndividuController extends Controller
      */
     public function create()
     {
-        $categoryprestasi = CategoryPrestasi::get();
+        $categoryprestasi = Categoryprestasi::get();
         return view('admin.prestasi.individu.add', compact('categoryprestasi'));
     }
 
@@ -61,10 +62,10 @@ class PrestasiIndividuController extends Controller
         $validatedData['gambar_3'] = $gambar_3;
 
         // nyimpen ke database
-        PrestasiIndividu::create($validatedData);
+        Preindividu::create($validatedData);
 
         // redirect ke halaman yang sama dengan pesan sukses
-        return redirect('/prestasiindividu')->with('toast_success', 'Prestasi individu berhasil ditambah');
+        return redirect('/prestasi-individu')->with('toast_success', 'Prestasi individu berhasil ditambah');
     }
 
     /**
@@ -86,8 +87,8 @@ class PrestasiIndividuController extends Controller
      */
     public function edit($id)
     {
-        $data['categoryprestasi'] = CategoryPrestasi::get();
-        $data['prestasiindividu'] = PrestasiIndividu::find($id);
+        $data['categoryprestasi'] = Categoryprestasi::get();
+        $data['preindividu'] = Preindividu::find($id);
         return view('admin.prestasi.individu.edit', $data);
     }
 
@@ -112,7 +113,7 @@ class PrestasiIndividuController extends Controller
             'category_prestasi_id' => 'required|integer|exists:category_prestasis,id',
         ]);
 
-        $preindividu = PrestasiIndividu::find($id);
+        $preindividu = Preindividu::find($id);
         if ($request->file('gambar_1', 'gambar_1', 'gambar_3')) {
             $gambar_1 = $request->file('gambar_1')->store('gambar_prestasi', 'public');
             $gambar_2 = $request->file('gambar_2')->store('gambar_prestasi', 'public');
@@ -128,7 +129,7 @@ class PrestasiIndividuController extends Controller
         }
         $preindividu->update($validatedData);
 
-        return redirect('/product')->with('toast_success', 'Prestasi Individu berhasil diedit');
+        return redirect('/prestasi-individu')->with('toast_success', 'Prestasi Individu berhasil diedit');
     }
 
     /**
@@ -139,11 +140,17 @@ class PrestasiIndividuController extends Controller
      */
     public function destroy($id)
     {
-        $preindividu = PrestasiIndividu::findOrFail($id);
+        $preindividu = Preindividu::findOrFail($id);
         File::delete('storage/' .  $preindividu->gambar_1);
         File::delete('storage/' .  $preindividu->gambar_2);
         File::delete('storage/' .  $preindividu->gambar_3);
         $preindividu->delete();
-        return redirect('/prestasiindividu')->with('toast_success', 'Prestasi individu berhasil dihapus');
+        return redirect('/prestasi-individu')->with('toast_success', 'Prestasi individu berhasil dihapus');
+    }
+
+    public function frontPrestasiIndividu()
+    {
+        $preindividu = Preindividu::with('categoryprestasi')->get();
+        return view('admin.prestasi.individu.index', compact('preindividu'));
     }
 }
