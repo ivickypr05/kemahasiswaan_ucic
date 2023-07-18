@@ -83,7 +83,7 @@ class PrestasiTimController extends Controller
         Pretim::create($validatedData);
 
         // redirect ke halaman yang sama dengan pesan sukses
-        return redirect('/prestasi-tim-list')->with('toast_success', 'Prestasi tim berhasil ditambah');
+        return redirect('/prestasi-tim-list')->with('toast_success', 'Prestasi Tim berhasil ditambah');
     }
 
     /**
@@ -173,7 +173,7 @@ class PrestasiTimController extends Controller
 
         $pretim->update($validatedData);
 
-        return redirect('/prestasi-tim-list')->with('toast_success', 'Prestasi tim berhasil diedit');
+        return redirect('/prestasi-tim-list')->with('toast_success', 'Prestasi Tim berhasil diubah');
     }
 
     /**
@@ -189,7 +189,7 @@ class PrestasiTimController extends Controller
         File::delete('storage/' .  $pretim->gambar_2);
         File::delete('storage/' .  $pretim->gambar_3);
         $pretim->delete();
-        return redirect('/prestasi-tim-list')->with('toast_success', 'Prestasi tim berhasil dihapus');
+        return redirect('/prestasi-tim-list')->with('toast_success', 'Prestasi Tim berhasil dihapus');
     }
 
     public function frontPrestasiTim()

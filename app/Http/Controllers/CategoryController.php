@@ -82,7 +82,7 @@ class CategoryController extends Controller
         ]);
         $category = Category::find($id);
         $category->update($validatedData);
-        return redirect('/category-list')->with('toast_success', 'Kategori Prestasi berhasil diedit');
+        return redirect('/category-list')->with('toast_success', 'Kategori Prestasi berhasil diubah');
     }
 
     /**

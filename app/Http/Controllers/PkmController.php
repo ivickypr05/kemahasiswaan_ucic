@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Models\Pkm;
 use Illuminate\Http\Request;
-use DB;
-use File;
+use Illuminate\Support\Facades\File;
 
 class PkmController extends Controller
 {
@@ -16,8 +16,6 @@ class PkmController extends Controller
      */
     public function index()
     {
-        $data['page_title'] = 'PKM';
-        $data['breadcumb'] = 'PKM';
         $data['pkm'] = Pkm::orderby('id', 'asc')->get();
 
         return view('admin.simbelmawa.pkm.index', $data);
@@ -30,10 +28,8 @@ class PkmController extends Controller
      */
     public function create()
     {
-        $data['page_title'] = 'PKM';
-        $data['breadcumb'] = 'PKM';
 
-        return view('admin.simbelmawa.pkm.add', $data);
+        return view('admin.simbelmawa.pkm.add');
     }
 
     /**
@@ -42,12 +38,12 @@ class PkmController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-     public function store(Request $request)
+    public function store(Request $request)
     {
         $validatedData = $request->validate([
             'judul'   => 'required|string|min:3',
-            'deskripsi'   => 'required|string|min:3',
-            'gambar'   => 'required',
+            'deskripsi'   => 'required|min:3',
+            'gambar'   => 'required|mimes:jpeg,jpg,png,gif',
             'mulai_tanggal'   => 'required',
             'akhir_tanggal'   => 'required',
         ]);
@@ -79,10 +75,7 @@ class PkmController extends Controller
      */
     public function edit($id)
     {
-        $data['page_title'] = 'PKM';
-        $data['breadcumb'] = 'PKM';
         $data['pkm'] = Pkm::find($id);
-
         return view('admin.simbelmawa.pkm.edit', $data);
     }
 
@@ -97,22 +90,22 @@ class PkmController extends Controller
     {
         $validatedData = $request->validate([
             'judul'   => 'required|string|min:3',
-            'deskripsi'   => 'required|string|min:3',
-            'gambar'   => 'required|mimes:jpeg,jpg,png,gif',
+            'deskripsi'   => 'required|min:3',
+            'gambar'   => 'mimes:jpeg,jpg,png,gif',
             'mulai_tanggal'   => 'required',
             'akhir_tanggal'   => 'required',
         ]);
 
         $pkm = Pkm::find($id);
         if ($request->file('gambar')) {
-            $gambar = $request->file('gambar')->store('pkm_gambar', 'public');
+            $gambar = $request->file('gambar')->store('gambar_pkm', 'public');
             File::delete('storage/' .  $pkm->gambar);
             $validatedData['gambar'] = $gambar;
         }
         $pkm->update($validatedData);
 
 
-        return redirect()->route('pkm-list')->with(['success' => ' successfully!']);
+        return redirect()->route('pkm-list')->with('toast success', 'PKM berhasil diubah');
     }
 
     /**
@@ -123,26 +116,16 @@ class PkmController extends Controller
      */
     public function destroy($id)
     {
-        DB::transaction(function () use ($id) {
-            $pkm = Pkm::findOrFail($id);
-            if ($pkm->avatar) {
-                $image_path = public_path('img/pkm/'.$pkm->avatar); // Value is not URL but directory file path
-                if (File::exists($image_path)) {
-                    File::delete($image_path);
-                }
-            }
+        $pkm = Pkm::find($id);
+        File::delete('storage/' . $pkm->gambar);
+        $pkm->delete();
 
-            $pkm->delete();
-        });
-        
-        return redirect()->route('pkm-list')->with(['success' => ' successfully!']);
+        return redirect()->route('pkm-list')->with('toast success', 'PKM berhasil dihapus');
     }
 
-    public function frontPkm(){
-        $data['page_title'] = 'PKM';
-        $data['breadcumb'] = 'PKM';
+    public function frontPkm()
+    {
         $data['pkm'] = Pkm::get();
-
         return view('frontend.simbelmawa.pkm', $data);
     }
 }

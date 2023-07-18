@@ -16,7 +16,7 @@ class BeritaController extends Controller
      */
     public function index()
     {
-        $data['breadcumb'] = 'Berita';
+
         $data['berita'] = Berita::get();
         return view('admin.berita.index', $data);
     }
@@ -28,8 +28,8 @@ class BeritaController extends Controller
      */
     public function create()
     {
-        $data['breadcumb'] = 'Berita';
-        return view('admin.berita.add', $data);
+
+        return view('admin.berita.add');
     }
 
     /**
@@ -42,8 +42,8 @@ class BeritaController extends Controller
     {
         $validatedData = $request->validate([
             'title'   => 'required|string|min:3',
-            'content'   => 'required|string|min:3',
-            'gambar'   => 'required',
+            'content'   => 'required|min:3',
+            'gambar'   => 'required|mimes:jpeg,jpg,png,gif',
             'dari_tanggal'   => 'required',
             'sampai_tanggal'   => 'required',
         ]);
@@ -76,7 +76,7 @@ class BeritaController extends Controller
      */
     public function edit($id)
     {
-        $data['breadcumb'] = 'Berita';
+
         $data['berita'] = Berita::find($id);
         return view('admin.berita.edit', $data);
     }
@@ -92,8 +92,8 @@ class BeritaController extends Controller
     {
         $validatedData = $request->validate([
             'title'   => 'required|string|min:3',
-            'content'   => 'required|string|min:3',
-            'gambar'   => 'required|mimes:jpeg,jpg,png,gif',
+            'content'   => 'required|min:3',
+            'gambar'   => 'mimes:jpeg,jpg,png,gif',
             'dari_tanggal'   => 'required',
             'sampai_tanggal'   => 'required',
         ]);
@@ -107,7 +107,7 @@ class BeritaController extends Controller
         $berita->update($validatedData);
 
 
-        return redirect()->route('berita-list')->with(['success' => ' successfully!']);
+        return redirect()->route('berita-list')->with('toast_success', 'Berita berhasil diubah');
     }
 
     /**
@@ -122,14 +122,13 @@ class BeritaController extends Controller
         File::delete('storage/' .  $berita->gambar);
         $berita->delete();
 
-        return redirect()->route('berita-list')->with(['success' => ' successfully!']);
+        return redirect()->route('berita-list')->with('toast_success', 'Berita berhasil dihapus');
     }
 
     public function frontBerita()
     {
-        $data['breadcumb'] = 'Berita';
-        $data['berita'] = Berita::get();
 
+        $data['berita'] = Berita::get();
         return view('frontend.berita.berita', $data);
     }
 }

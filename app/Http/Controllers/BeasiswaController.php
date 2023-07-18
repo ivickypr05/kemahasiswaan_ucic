@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Beasiswa;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class BeasiswaController extends Controller
@@ -16,7 +15,7 @@ class BeasiswaController extends Controller
      */
     public function index()
     {
-        $data['breadcumb'] = 'Beasiswa';
+
         $data['beasiswa'] = Beasiswa::get();
         return view('admin.beasiswa.index', $data);
     }
@@ -28,8 +27,8 @@ class BeasiswaController extends Controller
      */
     public function create()
     {
-        $data['breadcumb'] = 'Beasiswa';
-        return view('admin.beasiswa.add', $data);
+
+        return view('admin.beasiswa.add');
     }
 
     /**
@@ -42,8 +41,8 @@ class BeasiswaController extends Controller
     {
         $validatedData = $request->validate([
             'title'   => 'required|string|min:3',
-            'content'   => 'required|string|min:3',
-            'gambar'   => 'required',
+            'content'   => 'required|min:3',
+            'gambar'   => 'required|mimes:jpeg,jpg,png,gif',
             'dari_tanggal'   => 'required',
             'sampai_tanggal'   => 'required',
         ]);
@@ -76,7 +75,7 @@ class BeasiswaController extends Controller
      */
     public function edit($id)
     {
-        $data['breadcumb'] = 'Beasiswa';
+
         $data['beasiswa'] = Beasiswa::find($id);
         return view('admin.beasiswa.edit', $data);
     }
@@ -93,7 +92,7 @@ class BeasiswaController extends Controller
         $validatedData = $request->validate([
             'title'   => 'required|string|min:3',
             'content'   => 'required|string|min:3',
-            'gambar'   => 'required|mimes:jpeg,jpg,png,gif',
+            'gambar'   => 'mimes:jpeg,jpg,png,gif',
             'dari_tanggal'   => 'required',
             'sampai_tanggal'   => 'required',
         ]);
@@ -107,7 +106,7 @@ class BeasiswaController extends Controller
         $beasiswa->update($validatedData);
 
 
-        return redirect()->route('beasiswa-list')->with(['success' => ' successfully!']);
+        return redirect()->route('beasiswa-list')->with('toast_success', 'Beasiswa berhasil diubah');
     }
 
     /**
@@ -122,12 +121,12 @@ class BeasiswaController extends Controller
         File::delete('storage/' .  $beasiswa->gambar);
         $beasiswa->delete();
 
-        return redirect()->route('beasiswa-list')->with(['success' => ' successfully!']);
+        return redirect()->route('beasiswa-list')->with('toast_success', 'Beasiswa berhasil dihapus');
     }
 
     public function frontBeasiswa()
     {
-        $data['breadcumb'] = 'Beasiswa';
+
         $data['beasiswa'] = Beasiswa::get();
 
         return view('frontend.beasiswa.index', $data);

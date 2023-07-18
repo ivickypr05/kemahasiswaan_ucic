@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Ukm;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
 class UkmController extends Controller
@@ -16,9 +15,7 @@ class UkmController extends Controller
      */
     public function index()
     {
-        $data['breadcumb'] = 'Organisasi UKM';
         $data['ukm'] = Ukm::orderby('id', 'asc')->get();
-
         return view('admin.organisasi.ukm.index', $data);
     }
 
@@ -29,9 +26,7 @@ class UkmController extends Controller
      */
     public function create()
     {
-        $data['breadcumb'] = 'Organisasi UKM';
-
-        return view('admin.organisasi.ukm.add', $data);
+        return view('admin.organisasi.ukm.add');
     }
 
     /**
@@ -46,7 +41,7 @@ class UkmController extends Controller
             'nama_kegiatan'   => 'required|string|min:3',
             'nama_ukm'   => 'required|string|min:3',
             'gambar'   => 'required|mimes:jpeg,jpg,png,gif',
-            'deskripsi'   => 'required|min:5',
+            'deskripsi'   => 'required|min:3',
             'dari_tanggal'   => 'required',
             'sampai_tanggal'   => 'required',
         ]);
@@ -55,7 +50,7 @@ class UkmController extends Controller
 
         Ukm::create($validatedData);
 
-        return redirect()->route('ukm-list')->with(['success' => ' successfully!']);
+        return redirect()->route('ukm-list')->with('toast success', 'Kegiatan UKM berhasil ditambah');
     }
 
     /**
@@ -78,9 +73,7 @@ class UkmController extends Controller
      */
     public function edit($id)
     {
-        $data['breadcumb'] = 'Organisasi UKM';
         $data['ukm'] = Ukm::find($id);
-
         return view('admin.organisasi.ukm.edit', $data);
     }
 
@@ -97,7 +90,7 @@ class UkmController extends Controller
             'nama_kegiatan'   => 'required|string|min:3',
             'nama_ukm'   => 'required|string|min:3',
             'gambar'   => 'mimes:jpeg,jpg,png,gif',
-            'deskripsi'   => 'required|min:5',
+            'deskripsi'   => 'required|min:3',
             'dari_tanggal'   => 'required',
             'sampai_tanggal'   => 'required',
         ]);
@@ -109,7 +102,7 @@ class UkmController extends Controller
         }
         $ukm->update($validatedData);
 
-        return redirect()->route('ukm-list')->with(['success' => ' successfully!']);
+        return redirect()->route('ukm-list')->with('toast success', 'Kegiatan UKM berhasil diubah');
     }
 
     /**
@@ -124,15 +117,12 @@ class UkmController extends Controller
         File::delete('storage/' .  $ukm->gambar);
         $ukm->delete();
 
-        return redirect()->route('ukm-list')->with(['success' => ' successfully!']);
+        return redirect()->route('ukm-list')->with('toast success', 'Kegiatan UKM berhasil dihapus');
     }
 
     public function frontUkm()
     {
-        $data['page_title'] = 'Organisasi UKM';
-        $data['breadcumb'] = 'Organisasi UKM';
         $data['ukm'] = Ukm::get();
-
         return view('frontend.organisasi.ukm', $data);
     }
 }

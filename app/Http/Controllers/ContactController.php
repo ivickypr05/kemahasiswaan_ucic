@@ -24,6 +24,6 @@ class ContactController extends Controller
         ];
         Mail::to($request->email)->send(new MailContact($data));
 
-        return redirect()->route('contact')->with(['success' => 'Email sent successfully!']);
+        return redirect()->route('contact')->with(['success' => 'Email Berhasil dikirim!']);
     }
 }

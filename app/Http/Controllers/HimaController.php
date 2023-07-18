@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Models\Hima;
 use Illuminate\Http\Request;
-use DB;
-use File;
+use Illuminate\Support\Facades\File;
 
 class HimaController extends Controller
 {
@@ -16,8 +16,6 @@ class HimaController extends Controller
      */
     public function index()
     {
-        $data['page_title'] = 'Organisasi HIMA';
-        $data['breadcumb'] = 'Organisasi HIMA';
         $data['hima'] = Hima::orderby('id', 'asc')->get();
 
         return view('admin.organisasi.hima.index', $data);
@@ -30,10 +28,8 @@ class HimaController extends Controller
      */
     public function create()
     {
-        $data['page_title'] = 'Organisasi HIMA';
-        $data['breadcumb'] = 'Organisasi HIMA';
 
-        return view('admin.organisasi.hima.add', $data);
+        return view('admin.organisasi.hima.add');
     }
 
     /**
@@ -42,13 +38,13 @@ class HimaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-     public function store(Request $request)
+    public function store(Request $request)
     {
         $validatedData = $request->validate([
             'nama_kegiatan'   => 'required|string|min:3',
             'nama_himpunan'   => 'required|string|min:3',
-            'deskripsi'   => 'required|string|min:3',
-            'gambar'   => 'required',
+            'deskripsi'   => 'required|min:3',
+            'gambar'   => 'required|mimes:jpeg,jpg,png,gif',
             'mulai_tanggal'   => 'required',
             'akhir_tanggal'   => 'required',
         ]);
@@ -57,13 +53,13 @@ class HimaController extends Controller
         $validatedData['gambar'] = $gambar;
 
         Hima::create($validatedData);
-        return redirect('/hima-list')->with('toast_success', 'HIMA berhasil ditambah');
+        return redirect('/hima-list')->with('toast_success', 'Kegiatan HIMA berhasil ditambah');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Hima  $bkm
+     * @param  \App\Models\Hima  $hima
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -75,13 +71,11 @@ class HimaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Hima  $bkm
+     * @param  \App\Models\Hima  $hima
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $data['page_title'] = 'Organisasi HIMA';
-        $data['breadcumb'] = 'Organisasi HIMA';
         $data['hima'] = Hima::find($id);
 
         return view('admin.organisasi.hima.edit', $data);
@@ -91,7 +85,7 @@ class HimaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Hima  $bkm
+     * @param  \App\Models\Hima  $hima
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -99,8 +93,8 @@ class HimaController extends Controller
         $validatedData = $request->validate([
             'nama_kegiatan'   => 'required|string|min:3',
             'nama_himpunan'   => 'required|string|min:3',
-            'deskripsi'   => 'required|string|min:3',
-            'gambar'   => 'required|mimes:jpeg,jpg,png,gif',
+            'deskripsi'   => 'required|min:3',
+            'gambar'   => 'mimes:jpeg,jpg,png,gif',
             'mulai_tanggal'   => 'required',
             'akhir_tanggal'   => 'required',
         ]);
@@ -114,35 +108,26 @@ class HimaController extends Controller
         $hima->update($validatedData);
 
 
-        return redirect()->route('hima-list')->with(['success' => ' successfully!']);
+        return redirect()->route('hima-list')->with('toast_success', 'Kegiatan HIMA berhasil diubah');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Hima  $bkm
+     * @param  \App\Models\Hima  $hima
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        DB::transaction(function () use ($id) {
-            $hima = Hima::findOrFail($id);
-            if ($hima->avatar) {
-                $image_path = public_path('img/hima/'.$hima->avatar); // Value is not URL but directory file path
-                if (File::exists($image_path)) {
-                    File::delete($image_path);
-                }
-            }
+        $hima = Hima::findOrFail($id);
+        File::delete('storage/' .  $hima->gambar);
+        $hima->delete();
 
-            $hima->delete();
-        });
-        
-        return redirect()->route('hima-list')->with(['success' => ' successfully!']);
+        return redirect()->route('hima-list')->with('toast_success', 'Kegiatan HIMA berhasil dihapus');
     }
 
-    public function frontHima(){
-        $data['page_title'] = 'Organisasi HIMA';
-        $data['breadcumb'] = 'Organisasi HIMA';
+    public function frontHima()
+    {
         $data['hima'] = Hima::get();
 
         return view('frontend.organisasi.hima', $data);

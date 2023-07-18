@@ -46,7 +46,7 @@ class PrestasiIndividuController extends Controller
             'gambar_1' => 'required|mimes:jpeg,jpg,png,gif',
             'gambar_2' => 'nullable|mimes:jpeg,jpg,png,gif',
             'gambar_3' => 'nullable|mimes:jpeg,jpg,png,gif',
-            'deskripsi' => 'required|min:5',
+            'deskripsi' => 'required|min:3',
             'tanggal' => 'required|string|min:2|max:50',
             'category_id' => 'required|integer|exists:categories,id',
         ]);
@@ -114,7 +114,7 @@ class PrestasiIndividuController extends Controller
             'gambar_1' => 'mimes:jpeg,jpg,png,gif',
             'gambar_2' => 'mimes:jpeg,jpg,png,gif',
             'gambar_3' => 'mimes:jpeg,jpg,png,gif',
-            'deskripsi' => 'required|min:5',
+            'deskripsi' => 'required|min:3',
             'tanggal' => 'required|string|min:2|max:50',
             'category_id' => 'required|integer|exists:categories,id',
         ]);
@@ -166,7 +166,7 @@ class PrestasiIndividuController extends Controller
         File::delete('storage/' .  $preindividu->gambar_2);
         File::delete('storage/' .  $preindividu->gambar_3);
         $preindividu->delete();
-        return redirect('/prestasi-individu-list')->with('toast_success', 'Prestasi individu berhasil dihapus');
+        return redirect('/prestasi-individu-list')->with('toast_success', 'Prestasi Individu berhasil dihapus');
     }
 
     public function frontPrestasiIndividu()

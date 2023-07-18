@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Models\Bkm;
 use Illuminate\Http\Request;
-use DB;
-use File;
+use Illuminate\Support\Facades\File;
 
 class BkmController extends Controller
 {
@@ -16,8 +16,6 @@ class BkmController extends Controller
      */
     public function index()
     {
-        $data['page_title'] = 'Organisasi BKM';
-        $data['breadcumb'] = 'Organisasi BKM';
         $data['bkm'] = Bkm::orderby('id', 'asc')->get();
 
         return view('admin.organisasi.bkm.index', $data);
@@ -30,10 +28,8 @@ class BkmController extends Controller
      */
     public function create()
     {
-        $data['page_title'] = 'Organisasi BKM';
-        $data['breadcumb'] = 'Organisasi BKM';
 
-        return view('admin.organisasi.bkm.add', $data);
+        return view('admin.organisasi.bkm.add');
     }
 
     /**
@@ -42,12 +38,12 @@ class BkmController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-     public function store(Request $request)
+    public function store(Request $request)
     {
         $validatedData = $request->validate([
             'nama_kegiatan'   => 'required|string|min:3',
-            'deskripsi'   => 'required|string|min:3',
-            'gambar'   => 'required',
+            'deskripsi'   => 'required|min:3',
+            'gambar'   => 'required|mimes:jpeg,jpg,png,gif',
             'mulai_tanggal'   => 'required',
             'akhir_tanggal'   => 'required',
         ]);
@@ -56,7 +52,7 @@ class BkmController extends Controller
         $validatedData['gambar'] = $gambar;
 
         Bkm::create($validatedData);
-        return redirect('/bkm-list')->with('toast_success', 'BKM berhasil ditambah');
+        return redirect('/bkm-list')->with('toast_success', 'Kegiatan BKM berhasil ditambah');
     }
 
     /**
@@ -79,10 +75,7 @@ class BkmController extends Controller
      */
     public function edit($id)
     {
-        $data['page_title'] = 'Organisasi BKM';
-        $data['breadcumb'] = 'Organisasi BKM';
         $data['bkm'] = Bkm::find($id);
-
         return view('admin.organisasi.bkm.edit', $data);
     }
 
@@ -97,22 +90,22 @@ class BkmController extends Controller
     {
         $validatedData = $request->validate([
             'nama_kegiatan'   => 'required|string|min:3',
-            'deskripsi'   => 'required|string|min:3',
-            'gambar'   => 'required|mimes:jpeg,jpg,png,gif',
+            'deskripsi'   => 'required|min:3',
+            'gambar'   => 'mimes:jpeg,jpg,png,gif',
             'mulai_tanggal'   => 'required',
             'akhir_tanggal'   => 'required',
         ]);
 
         $bkm = Bkm::find($id);
         if ($request->file('gambar')) {
-            $gambar = $request->file('gambar')->store('bkm_gambar', 'public');
+            $gambar = $request->file('gambar')->store('gambar_bkm', 'public');
             File::delete('storage/' .  $bkm->gambar);
             $validatedData['gambar'] = $gambar;
         }
         $bkm->update($validatedData);
 
 
-        return redirect()->route('bkm-list')->with(['success' => ' successfully!']);
+        return redirect()->route('bkm-list')->with('toast_success', 'Kegiatan BKM berhasil diubah');
     }
 
     /**
@@ -123,26 +116,16 @@ class BkmController extends Controller
      */
     public function destroy($id)
     {
-        DB::transaction(function () use ($id) {
-            $bkm = Bkm::findOrFail($id);
-            if ($bkm->avatar) {
-                $image_path = public_path('img/bkm/'.$bkm->avatar); // Value is not URL but directory file path
-                if (File::exists($image_path)) {
-                    File::delete($image_path);
-                }
-            }
+        $bkm = Bkm::findOrFail($id);
+        File::delete('storage/' .  $bkm->gambar);
+        $bkm->delete();
 
-            $bkm->delete();
-        });
-        
-        return redirect()->route('bkm-list')->with(['success' => ' successfully!']);
+        return redirect()->route('bkm-list')->with('toast_success', 'BKM berhasil dihapus');
     }
 
-    public function frontBkm(){
-        $data['page_title'] = 'Organisasi BKM';
-        $data['breadcumb'] = 'Organisasi BKM';
+    public function frontBkm()
+    {
         $data['bkm'] = Bkm::get();
-
         return view('frontend.organisasi.bkm', $data);
     }
 }
