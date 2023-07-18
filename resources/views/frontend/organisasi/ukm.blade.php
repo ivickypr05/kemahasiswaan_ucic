@@ -56,25 +56,29 @@
                 <div class="row content">
                     <div class="col-lg-6">
                         <div class="square-image">
-                            <img src="{{ asset('img/ukm/'.($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}" alt="">
+                            <img src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
+                                alt="">
                         </div>
                     </div>
                     <div class="col-lg-6 pt-4 pt-lg-0" style="padding-top: 10%!important;">
-                    <div class="ukm-info">
-                            <h4 class="ukm-title">{{ $item->title }}</h4>
+                        <div class="ukm-info">
+                            <h4 class="ukm-title">{{ $item->nama_kegiatan }}</h4>
+
                             <div class="ukm-time">
                                 <i class="bi bi-clock"></i>
                                 <p>{{ \Carbon\Carbon::parse($item->mulai_tanggal)->translatedFormat('d F Y') }}
                                     - {{ \Carbon\Carbon::parse($item->akhir_tanggal)->translatedFormat('d F Y') }}</p>
                             </div>
                         </div>
+                        <strong class="text">by : {{ $item->nama_ukm }}</strong>
                         @php
-                            $limitedContent = Str::limit($item->content, 960);
+                            $limitedContent = Str::limit($item->deskripsi, 960);
                             $formattedContent = nl2br($limitedContent);
                         @endphp
                         <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
                         @if (strlen($item->content) > 960)
-                            <a href="{{ route('detail-ukm', $item->id) }}" class="btn btn-primary" style="float:right">Read More</a>
+                            <a href="{{ route('detail-ukm', $item->id) }}" class="btn btn-primary" style="float:right">Read
+                                More</a>
                         @endif
                     </div>
                 </div>
