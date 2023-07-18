@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Ukm;
 use Illuminate\Http\Request;
-use DB;
-use File;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class UkmController extends Controller
 {
@@ -16,7 +16,6 @@ class UkmController extends Controller
      */
     public function index()
     {
-        $data['page_title'] = 'Organisasi UKM';
         $data['breadcumb'] = 'Organisasi UKM';
         $data['ukm'] = Ukm::orderby('id', 'asc')->get();
 
@@ -30,7 +29,6 @@ class UkmController extends Controller
      */
     public function create()
     {
-        $data['page_title'] = 'Organisasi UKM';
         $data['breadcumb'] = 'Organisasi UKM';
 
         return view('admin.organisasi.ukm.add', $data);
@@ -44,27 +42,18 @@ class UkmController extends Controller
      */
     public function store(Request $request)
     {
-        $validateData = $request->validate([
-            'title'   => 'required|string|min:3',
-            'content'   => 'required|string|min:3',
-            'gambar'   => 'required',
+        $validatedData = $request->validate([
+            'nama_kegiatan'   => 'required|string|min:3',
+            'nama_ukm'   => 'required|string|min:3',
+            'gambar'   => 'required|mimes:jpeg,jpg,png,gif',
+            'deskripsi'   => 'required|min:5',
             'dari_tanggal'   => 'required',
             'sampai_tanggal'   => 'required',
         ]);
+        $gambar = $request->file('gambar')->store('gambar_ukm', 'public');
+        $validatedData['gambar'] = $gambar;
 
-        $beasiswa = new Ukm();
-        $beasiswa->title = $validateData['title'];
-        $beasiswa->content = $validateData['content'];
-        $beasiswa->dari_tanggal = $validateData['dari_tanggal'];
-        $beasiswa->sampai_tanggal = $validateData['sampai_tanggal'];
-        if ($request->hasFile('gambar')) {
-            $image = $request->file('gambar');
-            $name = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('img/ukm/');
-            $image->move($destinationPath, $name);
-            $beasiswa->gambar = $name;
-        }
-        $beasiswa->save();
+        Ukm::create($validatedData);
 
         return redirect()->route('ukm-list')->with(['success' => ' successfully!']);
     }
@@ -89,7 +78,6 @@ class UkmController extends Controller
      */
     public function edit($id)
     {
-        $data['page_title'] = 'Organisasi UKM';
         $data['breadcumb'] = 'Organisasi UKM';
         $data['ukm'] = Ukm::find($id);
 
@@ -105,35 +93,21 @@ class UkmController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validateData = $request->validate([
-            'title'   => 'required|string|min:3',
-            'content'   => 'required|string|min:3',
-            'gambar'   => 'required',
+        $validatedData = $request->validate([
+            'nama_kegiatan'   => 'required|string|min:3',
+            'nama_ukm'   => 'required|string|min:3',
+            'gambar'   => 'mimes:jpeg,jpg,png,gif',
+            'deskripsi'   => 'required|min:5',
             'dari_tanggal'   => 'required',
             'sampai_tanggal'   => 'required',
         ]);
-
-        $beasiswa = Ukm::find($id);
-        $beasiswa->title = $validateData['title'];
-        $beasiswa->content = $validateData['content'];
-        $beasiswa->dari_tanggal = $validateData['dari_tanggal'];
-        $beasiswa->sampai_tanggal = $validateData['sampai_tanggal'];
-        if ($request->hasFile('gambar')) {
-            // Delete Img
-            if ($beasiswa->gambar) {
-                $image_path = public_path('img/ukm/'.$beasiswa->gambar); // Value is not URL but directory file path
-                if (File::exists($image_path)) {
-                    File::delete($image_path);
-                }
-            }
-            
-            $image = $request->file('gambar');
-            $name = time() . '.' . $image->getClientOriginalExtension();
-            $destinationPath = public_path('img/ukm/');
-            $image->move($destinationPath, $name);
-            $beasiswa->gambar = $name;
+        $ukm = Ukm::find($id);
+        if ($request->file('gambar')) {
+            $gambar = $request->file('gambar')->store('gambar_ukm', 'public');
+            File::delete('storage/' .  $ukm->gambar);
+            $validatedData['gambar'] = $gambar;
         }
-        $beasiswa->save();
+        $ukm->update($validatedData);
 
         return redirect()->route('ukm-list')->with(['success' => ' successfully!']);
     }
@@ -146,22 +120,15 @@ class UkmController extends Controller
      */
     public function destroy($id)
     {
-        DB::transaction(function () use ($id) {
-            $beasiswa = Ukm::findOrFail($id);
-            if ($beasiswa->avatar) {
-                $image_path = public_path('img/ukm/'.$beasiswa->avatar); // Value is not URL but directory file path
-                if (File::exists($image_path)) {
-                    File::delete($image_path);
-                }
-            }
+        $ukm = ukm::findOrFail($id);
+        File::delete('storage/' .  $ukm->gambar);
+        $ukm->delete();
 
-            $beasiswa->delete();
-        });
-        
         return redirect()->route('ukm-list')->with(['success' => ' successfully!']);
     }
 
-    public function frontUkm(){
+    public function frontUkm()
+    {
         $data['page_title'] = 'Organisasi UKM';
         $data['breadcumb'] = 'Organisasi UKM';
         $data['ukm'] = Ukm::get();

@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('ukms', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('content');
+            $table->string('nama_kegiatan');
+            $table->string('nama_ukm');
             $table->string('gambar');
-            $table->date('dari_tanggal');
-            $table->date('sampai_tanggal');
+            $table->text('deskripsi');
+            $table->string('dari_tanggal');
+            $table->string('sampai_tanggal');
             $table->timestamps();
         });
     }

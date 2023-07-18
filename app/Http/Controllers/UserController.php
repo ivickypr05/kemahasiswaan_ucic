@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-Use File;
+use File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -20,32 +20,29 @@ class UserController extends Controller
         // $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
         // $this->middleware('permission:user-delete', ['only' => ['destroy']]);
     }
-    
+
     public function loginPost2(Request $request)
     {
         $val = $request->nip;
         $password = $request->password;
 
-        $cekMail = User::where('username',$val)->first();
-   
+        $cekMail = User::where('username', $val)->first();
 
-            if($cekMail != null){
-                // request untuk login menggunakan nim
-                $credentials = ([
-                    'username' => $val,
-                    'password' => $password,
-                ]);
-                
-                if (Auth::attempt($credentials)) {
-                    
-                        return redirect()->route('admin.dashboard.index');
-                   
-                }
-        
-            }elseif ($cekMail == null ){
-                return redirect()->back()->with(['failed' => 'No Credentials']);
+
+        if ($cekMail != null) {
+            // request untuk login menggunakan nim
+            $credentials = ([
+                'username' => $val,
+                'password' => $password,
+            ]);
+
+            if (Auth::attempt($credentials)) {
+
+                return redirect()->route('admin.dashboard.index');
             }
-     
+        } elseif ($cekMail == null) {
+            return redirect()->back()->with(['failed' => 'No Credentials']);
+        }
     }
 
 
@@ -80,13 +77,13 @@ class UserController extends Controller
             'role' => 'required',
         ]);
 
-    
+
 
         $user = new User();
         $user->name = $validateData['name'];
         $user->username = $validateData['username'];
         $user->email = $validateData['email'];
-       
+
         $user->password = Hash::make($validateData['password']);
 
         if ($request->hasFile('avatar')) {
@@ -119,8 +116,8 @@ class UserController extends Controller
     {
         $validateData = $request->validate([
             'name'   => 'required|string|min:3',
-            'username'   => 'required|alpha_dash|unique:users,username,'.$id,
-            'email'   => 'required|unique:users,email,'.$id,
+            'username'   => 'required|alpha_dash|unique:users,username,' . $id,
+            'email'   => 'required|unique:users,email,' . $id,
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
             'role' => 'required',
         ]);
@@ -130,16 +127,16 @@ class UserController extends Controller
         $user->name = $validateData['name'];
         $user->username = $validateData['username'];
         $user->email = $validateData['email'];
-        
-         if ($request->hasFile('avatar')) {
+
+        if ($request->hasFile('avatar')) {
             // Delete Img
             if ($user->avatar) {
-                $image_path = public_path('img/users/'.$user->avatar); // Value is not URL but directory file path
+                $image_path = public_path('img/users/' . $user->avatar); // Value is not URL but directory file path
                 if (File::exists($image_path)) {
                     File::delete($image_path);
                 }
             }
-            
+
             $image = $request->file('avatar');
             $name = time() . '.' . $image->getClientOriginalExtension();
             $destinationPath = public_path('img/users/');
@@ -148,7 +145,7 @@ class UserController extends Controller
         }
 
         $user->save();
-        DB::table('model_has_roles')->where('model_id',$id)->delete();
+        DB::table('model_has_roles')->where('model_id', $id)->delete();
         $user->assignRole($validateData['role']);
 
         return redirect()->route('users.index')->with(['success' => 'User edited successfully!']);
@@ -159,7 +156,7 @@ class UserController extends Controller
         DB::transaction(function () use ($id) {
             $user = User::findOrFail($id);
             if ($user->avatar) {
-                $image_path = public_path('img/users/'.$user->avatar); // Value is not URL but directory file path
+                $image_path = public_path('img/users/' . $user->avatar); // Value is not URL but directory file path
                 if (File::exists($image_path)) {
                     File::delete($image_path);
                 }
@@ -168,7 +165,7 @@ class UserController extends Controller
 
             $user->delete();
         });
-        
+
         return redirect()->route('users.index')->with(['success' => ' successfully!']);
     }
 
@@ -184,7 +181,7 @@ class UserController extends Controller
         if (Hash::check($validateData['password'], $user->password)) {
             $user->password = Hash::make($request->get('new_password'));
             $user->save();
-    
+
 
             return redirect()->route('users.edit', Auth::user()->id)->with('success', 'Password changed successfully!');
         } else {
@@ -198,6 +195,6 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login-admin');
+        return redirect('/login');
     }
 }
