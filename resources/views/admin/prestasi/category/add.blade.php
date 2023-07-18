@@ -1,5 +1,5 @@
 @extends('layouts-admin.app')
-@section('title', 'Tambah Data Kategori')
+@section('title', 'UCIC | Tambah Kategori Prestasi')
 @section('style')
 
 @endsection
@@ -14,7 +14,9 @@
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item">Admin</li>
                         <li class="breadcrumb-item">/</li>
-                        <li class="breadcrumb-item">Beasiswa</li>
+                        <li class="breadcrumb-item">Prestasi</li>
+                        <li class="breadcrumb-item">/</li>
+                        <li class="breadcrumb-item">Kategori Prestasi</li>
                         <li class="breadcrumb-item">/</li>
                         <li class="breadcrumb-item">Add Kategori Prestasi</li>
                     </ol>

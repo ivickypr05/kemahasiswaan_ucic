@@ -1,5 +1,5 @@
 @extends('layouts-admin.app')
-@section('title', 'Tambah Data Berita')
+@section('title', 'UCIC | Tambah Data Berita')
 @section('style')
 
 @endsection

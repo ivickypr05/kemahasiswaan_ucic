@@ -1,5 +1,5 @@
 @extends('layouts-admin.app')
-
+@section('title', 'UCIC | List Kegiatan UKM')
 @section('style')
 @endsection
 
@@ -36,8 +36,7 @@
                         <div class="col-6 mt-1">
                             <span class="tx-bold text-lg text-white" style="font-size:1.2rem;">
                                 <i class="far fa-user text-lg"></i>
-                                Kegiatan Organisasi UKM List
-                            </span>
+                                List Kegiatan Organisasi UKM </span>
                         </div>
 
                         <div class="col-6 d-flex justify-content-end">

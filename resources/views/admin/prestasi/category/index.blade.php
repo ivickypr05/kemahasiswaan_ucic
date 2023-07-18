@@ -1,5 +1,5 @@
 @extends('layouts-admin.app')
-@section('title', 'Kategori Prestasi List')
+@section('title', 'UCIC | List Kategori Prestasi')
 @section('style')
 
 @endsection

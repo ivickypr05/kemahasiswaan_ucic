@@ -1,5 +1,5 @@
 @extends('layouts-admin.app')
-@section('title', 'Edit Data BKM')
+@section('title', 'UCIC | Edit Kegiatan BKM')
 @section('style')
 
 @endsection
@@ -13,6 +13,8 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item">Admin</li>
+                        <li class="breadcrumb-item">/</li>
+                        <li class="breadcrumb-item">Organisasi</li>
                         <li class="breadcrumb-item">/</li>
                         <li class="breadcrumb-item">BKM</li>
                         <li class="breadcrumb-item">/</li>
@@ -61,8 +63,9 @@
 
                         <div class="form-group mb-3">
                             <label for="name">Nama Kegiatan</label>
-                            <input type="text" class="form-control @error('nama_kegiatan') is-invalid @enderror" id="nama_kegiatan"
-                                name="nama_kegiatan" placeholder="Enter " value="{{ $bkm->nama_kegiatan }}">
+                            <input type="text" class="form-control @error('nama_kegiatan') is-invalid @enderror"
+                                id="nama_kegiatan" name="nama_kegiatan" placeholder="Enter "
+                                value="{{ $bkm->nama_kegiatan }}">
 
                             @error('nama_kegiatan')
                                 <span class="invalid-feedback" role="alert">

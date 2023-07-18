@@ -1,5 +1,5 @@
 @extends('layouts-admin.app')
-@section('title', 'Beasiswa')
+@section('title', 'UCIC | List Beasiswa')
 @section('style')
 
 @endsection

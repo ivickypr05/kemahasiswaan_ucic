@@ -1,5 +1,5 @@
 @extends('layouts-admin.app')
-@section('title', 'Edit Data Kategori Prestasi')
+@section('title', 'UCIC | Edit Kategori Prestasi')
 @section('style')
 
 @endsection
@@ -13,6 +13,8 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item">Admin</li>
+                        <li class="breadcrumb-item">/</li>
+                        <li class="breadcrumb-item">Prestasi</li>
                         <li class="breadcrumb-item">/</li>
                         <li class="breadcrumb-item">Kategori Prestasi</li>
                         <li class="breadcrumb-item">/</li>

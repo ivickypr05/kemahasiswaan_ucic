@@ -1,5 +1,5 @@
 @extends('layouts-admin.app')
-@section('title', 'Tambah Data PKK')
+@section('title', 'UCIC | Tambah Data PPK Ormawa')
 @section('style')
 
 @endsection
@@ -14,9 +14,11 @@
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item">Admin</li>
                         <li class="breadcrumb-item">/</li>
-                        <li class="breadcrumb-item">PKK</li>
+                        <li class="breadcrumb-item">SIMBELMAWA</li>
                         <li class="breadcrumb-item">/</li>
-                        <li class="breadcrumb-item">Add PKK</li>
+                        <li class="breadcrumb-item">PPK</li>
+                        <li class="breadcrumb-item">/</li>
+                        <li class="breadcrumb-item">Add PPK</li>
                     </ol>
                 </div>
 

@@ -1,5 +1,5 @@
 @extends('layouts-admin.app')
-@section('title', 'Tambah Data Prestasi Tim')
+@section('title', 'UCIC | Tambah Prestasi Tim')
 @section('style')
 
 @endsection

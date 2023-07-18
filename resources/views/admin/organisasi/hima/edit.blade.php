@@ -1,5 +1,5 @@
 @extends('layouts-admin.app')
-@section('title', 'Edit Data Hima')
+@section('title', 'UCIC | Edit Kegiatan Hima')
 @section('style')
 
 @endsection
@@ -13,6 +13,8 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item">Admin</li>
+                        <li class="breadcrumb-item">/</li>
+                        <li class="breadcrumb-item">Organisasi</li>
                         <li class="breadcrumb-item">/</li>
                         <li class="breadcrumb-item">HIMA</li>
                         <li class="breadcrumb-item">/</li>
@@ -61,8 +63,9 @@
 
                         <div class="form-group mb-3">
                             <label for="name">Nama Kegiatan</label>
-                            <input type="text" class="form-control @error('nama_kegiatan') is-invalid @enderror" id="nama_kegiatan"
-                                name="nama_kegiatan" placeholder="Enter " value="{{ $hima->nama_kegiatan }}">
+                            <input type="text" class="form-control @error('nama_kegiatan') is-invalid @enderror"
+                                id="nama_kegiatan" name="nama_kegiatan" placeholder="Enter "
+                                value="{{ $hima->nama_kegiatan }}">
 
                             @error('nama_kegiatan')
                                 <span class="invalid-feedback" role="alert">
@@ -73,8 +76,9 @@
 
                         <div class="form-group mb-3">
                             <label for="name">Nama Himpunan</label>
-                            <input type="text" class="form-control @error('nama_himpunan') is-invalid @enderror" id="nama_himpunan"
-                                name="nama_himpunan" placeholder="Enter " value="{{ $hima->nama_himpunan }}">
+                            <input type="text" class="form-control @error('nama_himpunan') is-invalid @enderror"
+                                id="nama_himpunan" name="nama_himpunan" placeholder="Enter "
+                                value="{{ $hima->nama_himpunan }}">
 
                             @error('nama_himpunan')
                                 <span class="invalid-feedback" role="alert">

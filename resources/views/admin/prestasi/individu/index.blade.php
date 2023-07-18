@@ -1,5 +1,5 @@
 @extends('layouts-admin.app')
-@section('title', 'List Prestasi Individu')
+@section('title', 'UCIC | List Prestasi Individu')
 @section('style')
 
 @endsection

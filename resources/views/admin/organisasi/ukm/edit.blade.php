@@ -1,5 +1,5 @@
 @extends('layouts-admin.app')
-
+@section('title', 'UCIC | Edit Kegiatan UKM')
 @section('style')
 @endsection
 
@@ -12,6 +12,8 @@
                 <div class="page-title-right">
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item">Admin</li>
+                        <li class="breadcrumb-item">/</li>
+                        <li class="breadcrumb-item">Organisasi</li>
                         <li class="breadcrumb-item">/</li>
                         <li class="breadcrumb-item">UKM</li>
                         <li class="breadcrumb-item">/</li>

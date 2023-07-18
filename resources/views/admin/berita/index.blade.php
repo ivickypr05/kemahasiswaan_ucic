@@ -1,5 +1,5 @@
 @extends('layouts-admin.app')
-@section('title', 'Berita')
+@section('title', 'UCIC | List Berita')
 @section('style')
 
 @endsection
@@ -85,8 +85,7 @@
                                                 <i class="far fa-edit"></i>
                                                 Edit
                                             </a>
-                                            <a href="{{ route('berita-destroy', $item->id) }}"
-                                                class="btn btn-danger f-12">
+                                            <a href="{{ route('berita-destroy', $item->id) }}" class="btn btn-danger f-12">
                                                 <i class="far fa-trash-alt"></i>
                                                 Delete
                                             </a>
