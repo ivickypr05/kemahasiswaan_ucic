@@ -58,7 +58,7 @@ class PrestasiTimController extends Controller
             'gambar_1' => 'required|mimes:jpeg,jpg,png,gif',
             'gambar_2' => 'nullable|mimes:jpeg,jpg,png,gif',
             'gambar_3' => 'nullable|mimes:jpeg,jpg,png,gif',
-            'deskripsi' => 'required|string|min:5|max:255',
+            'deskripsi' => 'required|min:5',
             'tanggal' => 'required|string|min:2|max:50',
             'category_id' => 'required|integer|exists:categories,id',
         ]);
@@ -136,7 +136,7 @@ class PrestasiTimController extends Controller
             'gambar_1' => 'mimes:jpeg,jpg,png,gif',
             'gambar_2' => 'mimes:jpeg,jpg,png,gif',
             'gambar_3' => 'mimes:jpeg,jpg,png,gif',
-            'deskripsi' => 'required|string|min:5|max:255',
+            'deskripsi' => 'required|min:5',
             'tanggal' => 'required|string|min:2|max:50',
             'category_id' => 'required|integer|exists:categories,id',
         ]);
@@ -190,5 +190,11 @@ class PrestasiTimController extends Controller
         File::delete('storage/' .  $pretim->gambar_3);
         $pretim->delete();
         return redirect('/prestasi-tim-list')->with('toast_success', 'Prestasi tim berhasil dihapus');
+    }
+
+    public function frontPrestasiTim()
+    {
+        $preindividu = Pretim::with('categories')->get();
+        return view('frontend.prestasi.tim', compact('preindividu'));
     }
 }
