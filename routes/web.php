@@ -66,10 +66,10 @@ Route::post('send-mail', [ContactController::class, 'sendMail'])->name('send-mai
 
 // admmin
 
-Route::get('login-admin', function () {
+Route::get('login', function () {
     $data['page_title'] = "Login Admin";
     return view('admin.auth.login', $data);
-})->name('login-admin');
+})->name('login');
 
 Route::get('register', [RegisterController::class, 'index'])->name('register');
 Route::post('loginPost2', [UserController::class, 'loginPost2'])->name('loginPost2');
