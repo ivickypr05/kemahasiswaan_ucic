@@ -55,14 +55,14 @@
                 </div>
 
 
-                <div class="card-body">
+                <div class="card-body table-responsive">
                     <table id="example" class="table table-hover table-bordered dt-responsive" style="width:100%">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Gambar</th>
-                                <th>Title</th>
-                                <th>Content</th>
+                                <th>Judul Berita</th>
+                                <th>Gambar Berita</th>
+                                <th>Konten</th>
                                 <th>Tanggal</th>
                                 <th>Action</th>
                             </tr>
@@ -71,10 +71,10 @@
                             @foreach ($berita as $item)
                                 <tr>
                                     <th>{{ $loop->iteration }}</th>
+                                    <th>{{ $item->title }}</th>
                                     <th>
                                         <img src="{{ asset('storage/' . $item->gambar) }}" width="110px">
                                     </th>
-                                    <th>{{ $item->title }}</th>
                                     <th>{{ Str::limit($item->content, 100) }}</th>
                                     <th>{{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }} -
                                         {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }} </th>

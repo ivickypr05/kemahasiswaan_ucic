@@ -43,11 +43,11 @@
                     <div class="card-body">
 
                         <div class="form-group mb-3">
-                            <label for="name">Gambar</label>
-                            <input type="file" class="form-control @error('gambar') is-invalid @enderror" id="gambar"
-                                name="gambar" value="{{ old('gambar') }}" placeholder="Masukkan gambar">
+                            <label for="name">Judul PKM</label>
+                            <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul"
+                                name="judul" value="{{ old('judul') }}" placeholder="enter">
 
-                            @error('gambar')
+                            @error('judul')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -55,11 +55,11 @@
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="name">Judul</label>
-                            <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul"
-                                name="judul" value="{{ old('judul') }}" placeholder="Masukkan nama kegiatan">
+                            <label for="name">Gambar</label>
+                            <input type="file" class="form-control @error('gambar') is-invalid @enderror" id="gambar"
+                                name="gambar" value="{{ old('gambar') }}" placeholder="Masukkan gambar">
 
-                            @error('judul')
+                            @error('gambar')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

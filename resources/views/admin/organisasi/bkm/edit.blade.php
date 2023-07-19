@@ -42,9 +42,19 @@
 
                         @include('components.form-message')
 
-
                         <div class="form-group mb-3">
-                            <label for="name">Gambar</label>
+                            <label for="name">Judul Kegiatan</label>
+                            <input type="text" class="form-control @error('nama_kegiatan') is-invalid @enderror"
+                                id="nama_kegiatan" name="nama_kegiatan" placeholder="Enter "
+                                value="{{ $bkm->nama_kegiatan }}">
+                            @error('nama_kegiatan')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="name">Gambar Kegiatan</label>
                             @if ($bkm->gambar)
                                 <div class="mb-3">
                                     <img id="bkm_gambar" src="{{ url('storage/' . $bkm->gambar) }}" width="110px"
@@ -60,20 +70,6 @@
                                 </span>
                             @enderror
                         </div>
-
-                        <div class="form-group mb-3">
-                            <label for="name">Nama Kegiatan</label>
-                            <input type="text" class="form-control @error('nama_kegiatan') is-invalid @enderror"
-                                id="nama_kegiatan" name="nama_kegiatan" placeholder="Enter "
-                                value="{{ $bkm->nama_kegiatan }}">
-
-                            @error('nama_kegiatan')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
                         <div class="form-group mb-3">
                             <label for="name">Deskripsi</label>
                             <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" rows="4" cols="50">{{ $bkm->deskripsi }}</textarea>

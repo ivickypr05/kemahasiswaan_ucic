@@ -45,7 +45,7 @@
                             <label for="name">Judul Kegiatan</label>
                             <input type="text" class="form-control @error('nama_kegiatan') is-invalid @enderror"
                                 id="nama_kegiatan" name="nama_kegiatan" value="{{ old('nama_kegiatan') }}"
-                                placeholder="Enter ">
+                                placeholder="Masukan Nama Kegiatan ">
 
                             @error('nama_kegiatan')
                                 <span class="invalid-feedback" role="alert">
@@ -54,9 +54,9 @@
                             @enderror
                         </div>
                         <div class="form-group mb-3">
-                            <label for="name">Nama UKM (contoh : UKM Esport)</label>
+                            <label for="name">Nama UKM (contoh : UKM Esports)</label>
                             <input type="text" class="form-control @error('nama_ukm') is-invalid @enderror"
-                                id="nama_ukm" name="nama_ukm" value="{{ old('nama_ukm') }}" placeholder="Enter ">
+                                id="nama_ukm" name="nama_ukm" value="{{ old('nama_ukm') }}" placeholder="Masukan Nama UKM">
 
                             @error('nama_ukm')
                                 <span class="invalid-feedback" role="alert">
@@ -77,7 +77,7 @@
                             @enderror
                         </div>
                         <div class="form-group mb-3">
-                            <label for="name">Deskripsi Kegiatan</label>
+                            <label for="name">Deskripsi</label>
                             <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" rows="4" cols="50">
                         </textarea>
 

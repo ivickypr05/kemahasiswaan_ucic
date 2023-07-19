@@ -43,19 +43,7 @@
                     <div class="card-body">
 
                         <div class="form-group mb-3">
-                            <label for="name">Gambar</label>
-                            <input type="file" class="form-control @error('gambar') is-invalid @enderror" id="gambar"
-                                name="gambar" value="{{ old('gambar') }}" placeholder="Masukkan gambar">
-
-                            @error('gambar')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label for="name">Nama Kegiatan</label>
+                            <label for="name">Judul Kegiatan</label>
                             <input type="text" class="form-control @error('nama_kegiatan') is-invalid @enderror"
                                 id="nama_kegiatan" name="nama_kegiatan" value="{{ old('nama_kegiatan') }}"
                                 placeholder="Masukkan nama kegiatan">
@@ -66,7 +54,17 @@
                                 </span>
                             @enderror
                         </div>
+                        <div class="form-group mb-3">
+                            <label for="name">Gambar Kegiatan</label>
+                            <input type="file" class="form-control @error('gambar') is-invalid @enderror" id="gambar"
+                                name="gambar" value="{{ old('gambar') }}" placeholder="Masukkan gambar">
 
+                            @error('gambar')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                         <div class="form-group mb-3">
                             <label for="name">Deskripsi</label>
                             <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" rows="4" cols="50">{{ old('deskripsi') }}</textarea>

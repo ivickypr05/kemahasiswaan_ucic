@@ -40,9 +40,20 @@
 
                         @include('components.form-message')
 
+                        <div class="form-group mb-3">
+                            <label for="name">Judul Berita</label>
+                            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
+                                name="title" placeholder="Enter " value="{{ $berita->title }}">
+
+                            @error('title')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
 
                         <div class="form-group mb-3">
-                            <label for="name">Gambar</label>
+                            <label for="name">Gambar Berita</label>
                             @if ($berita->gambar)
                                 <div class="mb-3">
                                     <img id="gambar_berita" src="{{ url('storage/' . $berita->gambar) }}" width="110px"
@@ -60,19 +71,7 @@
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="name">Title</label>
-                            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
-                                name="title" placeholder="Enter " value="{{ $berita->title }}">
-
-                            @error('title')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label for="name">Content</label>
+                            <label for="name">Konten</label>
                             <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="4" cols="50">{{ $berita->content }}</textarea>
 
                             @error('content')

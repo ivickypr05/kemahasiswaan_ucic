@@ -42,7 +42,17 @@
 
                         @include('components.form-message')
 
+                        <div class="form-group mb-3">
+                            <label for="name">Judul PPK Ormawa</label>
+                            <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul"
+                                name="judul" placeholder="Enter " value="{{ $pkk->judul }}">
 
+                            @error('judul')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                         <div class="form-group mb-3">
                             <label for="name">Gambar</label>
                             @if ($pkk->gambar)
@@ -55,18 +65,6 @@
                                 name="gambar" value="" placeholder="Enter ">
 
                             @error('gambar')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label for="name">Judul</label>
-                            <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul"
-                                name="judul" placeholder="Enter " value="{{ $pkk->judul }}">
-
-                            @error('judul')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

@@ -54,7 +54,7 @@
                             @enderror
                         </div>
                         <div class="form-group mb-3">
-                            <label for="name">Nama UKM</label>
+                            <label for="name">Nama UKM (contoh : UKM Esports)</label>
                             <input type="text" class="form-control @error('nama_ukm') is-invalid @enderror"
                                 id="nama_ukm" name="nama_ukm" placeholder="Enter " value="{{ $ukm->nama_ukm }}">
 
@@ -87,7 +87,7 @@
 
 
                         <div class="form-group mb-3">
-                            <label for="name">Deskripsi Kegiatan</label>
+                            <label for="name">Deskripsi</label>
                             <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" rows="4" cols="50">
                         {{ $ukm->deskripsi }}
                         </textarea>

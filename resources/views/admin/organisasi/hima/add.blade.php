@@ -43,19 +43,7 @@
                     <div class="card-body">
 
                         <div class="form-group mb-3">
-                            <label for="name">Gambar</label>
-                            <input type="file" class="form-control @error('gambar') is-invalid @enderror" id="gambar"
-                                name="gambar" value="{{ old('gambar') }}" placeholder="Masukkan gambar">
-
-                            @error('gambar')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label for="name">Nama Kegiatan</label>
+                            <label for="name">Judul Kegiatan</label>
                             <input type="text" class="form-control @error('nama_kegiatan') is-invalid @enderror"
                                 id="nama_kegiatan" name="nama_kegiatan" value="{{ old('nama_kegiatan') }}"
                                 placeholder="Masukkan nama kegiatan">
@@ -68,12 +56,23 @@
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="name">Nama Himpunan</label>
+                            <label for="name">Nama Himpunan (contoh : HIMATIF / HIMASI)</label>
                             <input type="text" class="form-control @error('nama_himpunan') is-invalid @enderror"
                                 id="nama_himpunan" name="nama_himpunan" value="{{ old('nama_himpunan') }}"
                                 placeholder="Masukkan nama himpunan">
 
                             @error('nama_himpunan')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="name">Gambar Kegiatan</label>
+                            <input type="file" class="form-control @error('gambar') is-invalid @enderror" id="gambar"
+                                name="gambar" value="{{ old('gambar') }}" placeholder="Masukkan gambar">
+
+                            @error('gambar')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

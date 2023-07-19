@@ -1,9 +1,6 @@
 @extends('layouts-admin.app')
 @section('title', 'UCIC | Edit Data Beasiswa')
 @section('style')
-
-@endsection
-
 @section('breadcumb')
     <div class="row">
         <div class="col-12">
@@ -40,6 +37,17 @@
 
                         @include('components.form-message')
 
+                        <div class="form-group mb-3">
+                            <label for="name">Judul</label>
+                            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
+                                name="title" placeholder="Enter " value="{{ $beasiswa->title }}">
+
+                            @error('title')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
 
                         <div class="form-group mb-3">
                             <label for="name">Gambar</label>
@@ -58,21 +66,8 @@
                                 </span>
                             @enderror
                         </div>
-
                         <div class="form-group mb-3">
-                            <label for="name">Title</label>
-                            <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
-                                name="title" placeholder="Enter " value="{{ $beasiswa->title }}">
-
-                            @error('title')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label for="name">Content</label>
+                            <label for="name">Konten</label>
                             <textarea class="form-control @error('content') is-invalid @enderror" name="content" rows="4" cols="50">{{ $beasiswa->content }}</textarea>
 
                             @error('content')
