@@ -56,7 +56,7 @@
                 <div class="row content">
                     <div class="col-lg-6">
                         <img style="width:100%"
-                            src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }} "
+                            src="{{ asset('storage/' . ($item->gambar_1 ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }} "
                             alt="">
                     </div>
                     <div class="col-lg-6 pt-4 pt-lg-0" style="padding-top: 10%!important;">
@@ -70,7 +70,7 @@
                                     {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }} </p>
                             </div>
                         </div>
-                        <p class="mt-2">{{ $item->content }}</p>
+                        <p class="mt-2">{{ $item->deskripsi }}</p>
                     </div>
                 </div>
 

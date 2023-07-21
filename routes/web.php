@@ -38,8 +38,8 @@ Route::get('beasiswa/{id}', [BeasiswaController::class, 'show'])->name('detail-b
 Route::get('prestasi-individu', [PrestasiIndividuController::class, 'frontPrestasiIndividu'])->name('prestasi-individu');
 Route::get('prestasi-individu-detail', [PrestasiIndividuController::class, 'show'])->name('detail-prestasi-individu');
 
-Route::get('prestasi-tim', [PrestasiIndividuController::class, 'frontPrestasiTim'])->name('prestasi-tim');
-Route::get('prestasi-tim-detail', [PrestasiIndividuController::class, 'show'])->name('detail-prestasi-tim');
+Route::get('prestasi-tim', [PrestasiTimController::class, 'frontPrestasiTim'])->name('prestasi-tim');
+Route::get('prestasi-tim-detail', [PrestasiTimController::class, 'show'])->name('detail-prestasi-tim');
 
 
 Route::get('organisasi-ukm', [UkmController::class, 'frontUkm'])->name('organisasi-ukm');

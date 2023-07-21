@@ -194,7 +194,7 @@ class PrestasiTimController extends Controller
 
     public function frontPrestasiTim()
     {
-        $preindividu = Pretim::with('categories')->get();
-        return view('frontend.prestasi.tim', compact('preindividu'));
+        $pretim = Pretim::with('categories')->get();
+        return view('frontend.prestasi.tim', compact('pretim'));
     }
 }
