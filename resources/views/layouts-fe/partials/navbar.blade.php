@@ -11,13 +11,21 @@
             <li><a href="{{ route('prestasi-tim') }}" class="{{ request()->routeIs('prestasi-tim') ? 'active' : '' }}">Prestasi Tim</a></li>
           </ul>
         </li>
-        <li class="dropdown"><a href="#"><span>Organisasi Kemahasiswaan</span> <i class="bi bi-chevron-down"></i></a>
-          <ul>
-            <li><a href="{{ route('organisasi-ukm') }}" class="{{ request()->routeIs('organisasi-ukm') ? 'active' : '' }}">UKM</a></li>
-            <li><a href="{{ route('organisasi-bkm') }}" class="{{ request()->routeIs('organisasi-bkm') ? 'active' : '' }}">BKM</a></li>
-            <li><a href="{{ route('organisasi-hima') }}" class="{{ request()->routeIs('organisasi-hima') ? 'active' : '' }}">HIMA</a></li>
-          </ul>
-        </li>
+        <li class="dropdown">
+  <a href="#"><span>Organisasi Kemahasiswaan</span> <i class="bi bi-chevron-down"></i></a>
+  <ul>
+    <li><a href="{{ route('organisasi-ukm') }}" class="{{ request()->routeIs('organisasi-ukm') ? 'active' : '' }}">UKM</a></li>
+    <li class="dropdown">
+    <a href="#"><span>BKM</span></a>
+      <ul>
+        <li><a href="{{ route('struktur-bkm') }}" class="{{ request()->routeIs('struktur-bkm') ? 'active' : '' }}">Struktur Organisasi BKM</a></li>
+        <li><a href="{{ route('organisasi-bkm') }}" class="{{ request()->routeIs('organisasi-bkm') ? 'active' : '' }}">Daftar Organisasi BKM</a></li>
+      </ul>
+    </li>
+    <li><a href="{{ route('organisasi-hima') }}" class="{{ request()->routeIs('organisasi-hima') ? 'active' : '' }}">HIMA</a></li>
+  </ul>
+</li>
+
         <li class="dropdown"><a href="#"><span>SIMBELMAWA</span> <i class="bi bi-chevron-down"></i></a>
           <ul>
             <li><a href="{{ route('pkm') }}" class="{{ request()->routeIs('pkm') ? 'active' : '' }}">PKM</a></li>

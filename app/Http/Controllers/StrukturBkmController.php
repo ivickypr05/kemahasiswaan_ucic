@@ -107,4 +107,10 @@ class StrukturBkmController extends Controller
         $strukturbkm->delete();
         return redirect('/struktur-bkm-list')->with('toast success', 'Struktur BKM berhasil dihapus');
     }
+
+    public function frontStrukturBkm()
+    {
+        $data['strukturbkm'] = Strukturbkm::get();
+        return view('frontend.organisasi.struktur_bkm', $data);
+    }
 }

@@ -91,7 +91,7 @@
                         <br></br>
                         <br></br>
                         <br></br>
-                        <h4 class="text-center">Belum ada informasi bkm.</h4>
+                        <h4 class="text-center">Belum ada informasi mengenai Organisasi BKM.</h4>
                     </div>
                 </div>
             </div>

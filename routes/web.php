@@ -48,6 +48,7 @@ Route::get('organisasi-ukm/{id}', [UkmController::class, 'show'])->name('detail-
 
 Route::get('organisasi-bkm', [BkmController::class, 'frontBkm'])->name('organisasi-bkm');
 Route::get('organisasi-bkm/{id}', [BkmController::class, 'show'])->name('detail-bkm');
+Route::get('struktur-bkm', [StrukturBkmController::class, 'frontStrukturBkm'])->name('struktur-bkm');
 
 Route::get('organisasi-hima', [HimaController::class, 'frontHima'])->name('organisasi-hima');
 Route::get('organisasi-hima/{id}', [HimaController::class, 'show'])->name('detail-hima');
