@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Pkk extends Model
 {
     use HasFactory;
-    use HasFactory;
     protected $fillable = [
         'judul',
         'gambar',

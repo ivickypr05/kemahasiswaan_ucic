@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Beasiswa extends Model
+class Strukturukm extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'title',
-        'content',
-        'gambar',
-        'dari_tanggal',
-        'sampai_tanggal'
+        'struktur_esport',
+        'struktur_futsal',
+        'struktur_badminton',
+        'struktur_musik',
+        'struktur_nusantari'
     ];
 }

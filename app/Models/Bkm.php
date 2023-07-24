@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Bkm extends Model
 {
     use HasFactory;
-    use HasFactory;
     protected $fillable = [
         'nama_kegiatan',
         'gambar',

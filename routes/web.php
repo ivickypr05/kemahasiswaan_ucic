@@ -13,6 +13,7 @@ use App\Http\Controllers\BeasiswaController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PrestasiTimController;
+use App\Http\Controllers\StrukturBkmController;
 use App\Http\Controllers\PrestasiIndividuController;
 
 /*
@@ -107,7 +108,7 @@ Route::middleware('auth:web')->group(function () {
     Route::post('prestasi-individu-update/{id}', [PrestasiIndividuController::class, 'update'])->name('prestasi-individu-update');
     Route::get('prestasi-individu-destroy/{id}', [PrestasiIndividuController::class, 'destroy'])->name('prestasi-individu-destroy');
 
-    // Prestasi Tim Manajmen
+    // Prestasi Tim Manajemen
     Route::get('prestasi-tim-list', [PrestasiTimController::class, 'index'])->name('prestasi-tim-list');
     Route::get('prestasi-tim-create', [PrestasiTimController::class, 'create'])->name('prestasi-tim-create');
     Route::post('prestasi-tim-store', [PrestasiTimController::class, 'store'])->name('prestasi-tim-store');
@@ -119,7 +120,7 @@ Route::middleware('auth:web')->group(function () {
     Route::get('prestasi-list', [RekapPrestasiController::class, 'index'])->name('prestasi-list');
 
 
-
+    // Organisasi UKM Manajemen
     Route::get('ukm-list', [UkmController::class, 'index'])->name('ukm-list');
     Route::get('ukm-create', [UkmController::class, 'create'])->name('ukm-create');
     Route::post('ukm-store', [UkmController::class, 'store'])->name('ukm-store');
@@ -127,12 +128,20 @@ Route::middleware('auth:web')->group(function () {
     Route::post('ukm-update/{id}', [UkmController::class, 'update'])->name('ukm-update');
     Route::get('ukm-destroy/{id}', [UkmController::class, 'destroy'])->name('ukm-destroy');
 
+    //Organisasi BKM Manajemmen
     Route::get('bkm-list', [BkmController::class, 'index'])->name('bkm-list');
     Route::get('bkm-create', [BkmController::class, 'create'])->name('bkm-create');
     Route::post('bkm-store', [BkmController::class, 'store'])->name('bkm-store');
     Route::get('bkm-edit/{id}', [BkmController::class, 'edit'])->name('bkm-edit');
     Route::post('bkm-update/{id}', [BkmController::class, 'update'])->name('bkm-update');
     Route::get('bkm-destroy/{id}', [BkmController::class, 'destroy'])->name('bkm-destroy');
+    //Sturktur Organisasi BKM Manajemen
+    Route::get('struktur-bkm-list', [StrukturBkmController::class, 'index'])->name('struktur-bkm-list');
+    Route::get('struktur-bkm-create', [StrukturBkmController::class, 'create'])->name('struktur-bkm-create');
+    Route::post('struktur-bkm-store', [StrukturBkmController::class, 'store'])->name('struktur-bkm-store');
+    Route::get('struktur-bkm-edit/{id}', [StrukturBkmController::class, 'edit'])->name('struktur-bkm-edit');
+    Route::post('struktur-bkm-update/{id}', [StrukturBkmController::class, 'update'])->name('struktur-bkm-update');
+    Route::get('struktur-bkm-destroy/{id}', [StrukturBkmController::class, 'destroy'])->name('struktur-bkm-destroy');
 
     Route::get('berita-list', [BeritaController::class, 'index'])->name('berita-list');
     Route::get('berita-create', [BeritaController::class, 'create'])->name('berita-create');
