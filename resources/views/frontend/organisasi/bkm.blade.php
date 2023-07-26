@@ -49,18 +49,28 @@
 @endsection
 
 @section('content-fe')
-    @forelse ($bkm as $item)
-        <section id="about" class="about mb-5">
-            <div class="container">
+    <div class="container d-flex justify-content-center mb-5" style="padding-top: 10%!important;">
+        <div class="card">
+            <div class="row content mt-3 mb-3">
+                <h4 class="text-center mb-4">Struktur Organisasi BKM</h4>
+                <div class="d-flex justify-content-center">
+                    <a href="{{ route('struktur-bkm') }}" class="btn btn-dark">Lihat Disini</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    @forelse ($bkm as $item)
+        <section id="about" class="about mt-2">
+            <div class="container">
                 <div class="row content">
-                    <div class="col-lg-6">
-                        <div class="square-image">
+                    <div class="col-lg-4 mt-3">
+                        <div class="">
                             <img src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
-                                alt="">
+                                width="350px" height="250" alt="">
                         </div>
                     </div>
-                    <div class="col-lg-6 pt-4 pt-lg-0" style="padding-top: 10%!important;">
+                    <div class="col-lg-8 pt-4 pt-lg-0 mt-3">
                         <div class="bkm-info">
                             <h4 class="bkm-title">{{ $item->nama_kegiatan }}</h4>
                             <div class="bkm-time">
@@ -75,8 +85,8 @@
                         @endphp
                         <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
                         @if (strlen($item->deskripsi) > 200)
-                            <a href="{{ route('detail-bkm', $item->id) }}" class="btn btn-primary"
-                                style="float:right">Read More</a>
+                            <a href="{{ route('detail-bkm', $item->id) }}" class="btn btn-primary" style="float:right">Read
+                                More</a>
                         @endif
                     </div>
                 </div>
