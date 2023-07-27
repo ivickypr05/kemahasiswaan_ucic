@@ -30,7 +30,7 @@
         <div class="col-md-6">
             <div class="card card-primary">
                 <div class="card-header text-center" style="border-radius:10px 10px 0px 0px; background-color: #1C3F94;">
-                    <h3 class="card-title text-white">Add User</h3>
+                    <h3 class="card-title text-white">Add Data Berita</h3>
                 </div>
 
                 <form action="{{ route('berita-store') }}" method="POST" enctype="multipart/form-data">
