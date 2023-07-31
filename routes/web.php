@@ -6,6 +6,7 @@ use App\Http\Controllers\PkkController;
 use App\Http\Controllers\PkmController;
 use App\Http\Controllers\UkmController;
 use App\Http\Controllers\HimaController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\ContactController;
@@ -27,17 +28,19 @@ use App\Http\Controllers\PrestasiIndividuController;
 |
 */
 
-Route::get('/', function () {
-    $data['page_title'] = "Home Kemahasiswaan";
-    return view('frontend.home', $data);
-})->name('home');
+// Route::get('/', function () {
+//     $data['page_title'] = "Home Kemahasiswaan";
+//     return view('frontend.home', $data);
+// })->name('home');
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 Route::get('beasiswa', [BeasiswaController::class, 'frontBeasiswa'])->name('beasiswa');
 Route::get('beasiswa/{id}', [BeasiswaController::class, 'show'])->name('detail-beasiswa');
 
 Route::get('prestasi-individu', [PrestasiIndividuController::class, 'frontPrestasiIndividu'])->name('prestasi-individu');
-Route::get('prestasi-individu-detail', [PrestasiIndividuController::class, 'show'])->name('detail-prestasi-individu');
+Route::get('prestasi-individu-detail/{id}', [PrestasiIndividuController::class, 'show'])->name('detail-prestasi-individu');
 
 Route::get('prestasi-tim', [PrestasiTimController::class, 'frontPrestasiTim'])->name('prestasi-tim');
 Route::get('prestasi-tim-detail', [PrestasiTimController::class, 'show'])->name('detail-prestasi-tim');
