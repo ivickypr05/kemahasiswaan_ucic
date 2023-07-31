@@ -62,57 +62,42 @@
 @endsection
 
 @section('content-fe')
-    @forelse ($berita as $item)
     <section id="pricing" class="pricing">
-  <div class="container">
-
-    <div class="row">
-    <div class="col-lg-12">
-        <center><h5><b>Halaman Berita</b></h5></center>
-        <br><br>
-      </div>
-      @foreach ($berita->take(3) as $item)
-        <div class="col-lg-4 col-md-6">
-          <div class="box">
-            <div>
-              <h5 class="card-title"><b>{{ $item->title }}</b></h5>
-              <p>{{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }} - {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}</p>
-            </div>
-
-            <div class="square-image">
-              <img class="small-square-img" src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
-                alt="">
-            </div>
-
-            @php
-            $limitedContent = Str::limit($item->content, 300);
-            $formattedContent = nl2br($limitedContent);
-            @endphp
-            <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
-            @if (strlen($item->content) > 200)
-              <a href="{{ route('detail-berita', $item->id) }}" class="btn btn-primary">Read More</a>
-            @endif
-          </div>
-        </div>
-      @endforeach
-    </div>
-
-  </div>
-</section>
-    @empty
-        <section id="about" class="about mb-5">
-            <div class="container">
-                <div class="row content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <center><h5><b>Halaman Berita</b></h5></center>
+                    <br><br>
+                </div>
+                @forelse ($berita as $item)
+                    <div class="col-lg-4 col-md-6">
+                        <div class="box">
+                            <div>
+                                <h5 class="card-title"><b>{{ $item->title }}</b></h5>
+                                <p>{{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }} - {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}</p>
+                            </div>
+                            <div class="square-image">
+                                <img class="small-square-img" src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}" alt="">
+                            </div>
+                            @php
+                                $limitedContent = Str::limit($item->content, 300);
+                                $formattedContent = nl2br($limitedContent);
+                            @endphp
+                            <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
+                            @if (strlen($item->content) > 200)
+                                <a href="{{ route('detail-berita', $item->id) }}" class="btn btn-primary">Read More</a>
+                            @endif
+                        </div>
+                    </div>
+                @empty
                     <div class="col-lg-12">
-                        <br></br>
-                        <br></br>
-                        <br></br>
+                        <br><br><br>
                         <h4 class="text-center">Belum ada informasi Berita.</h4>
                     </div>
-                </div>
+                @endforelse
             </div>
-        </section><!-- End About Section -->
-    @endforelse
+        </div>
+    </section>
 @endsection
 
 @section('script-fe')
