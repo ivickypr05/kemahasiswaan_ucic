@@ -47,7 +47,9 @@
         }
     </style>
 @endsection
-
+<div class="container d-flex justify-content-center" style="padding-top: 10%!important;">
+    <h1>Prestasi Tim Mahasiswa UCIC</h1>
+</div>
 @section('content-fe')
     @forelse ($pretim as $item)
         <section id="about" class="about mb-5">
@@ -56,7 +58,7 @@
                 <div class="row content">
                     <div class="col-lg-6">
                         <img style="width:100%"
-                        src="{{ asset('storage/' . ($item->gambar_1 ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }} "
+                            src="{{ asset('storage/' . ($item->gambar_1 ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }} "
                             alt="">
                     </div>
                     <div class="col-lg-6 pt-4 pt-lg-0" style="padding-top: 10%!important;">

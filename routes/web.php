@@ -15,6 +15,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PrestasiTimController;
 use App\Http\Controllers\StrukturBkmController;
 use App\Http\Controllers\PrestasiIndividuController;
+use App\Http\Controllers\ProfilHimaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,6 +53,14 @@ Route::get('struktur-bkm', [StrukturBkmController::class, 'frontStrukturBkm'])->
 
 Route::get('organisasi-hima', [HimaController::class, 'frontHima'])->name('organisasi-hima');
 Route::get('organisasi-hima/{id}', [HimaController::class, 'show'])->name('detail-hima');
+Route::get('profil-himatif', [ProfilHimaController::class, 'himatif'])->name('profil-himatif');
+Route::get('profil-himasi', [ProfilHimaController::class, 'himasi'])->name('profil-himasi');
+Route::get('profil-himadkv', [ProfilHimaController::class, 'himadkv'])->name('profil-himadkv');
+Route::get('profil-himaku', [ProfilHimaController::class, 'himaku'])->name('profil-himaku');
+Route::get('profil-himajemen', [ProfilHimaController::class, 'himajemen'])->name('profil-himajemen');
+Route::get('profil-himaka', [ProfilHimaController::class, 'himaka'])->name('profil-himaka');
+Route::get('profil-himami', [ProfilHimaController::class, 'himami'])->name('profil-himami');
+Route::get('profil-himabis', [ProfilHimaController::class, 'himabis'])->name('profil-himabis');
 
 Route::get('pkm', [PkmController::class, 'frontPkm'])->name('pkm');
 Route::get('pkm/{id}', [PkmController::class, 'show'])->name('detail-pkm');

@@ -47,6 +47,9 @@
         }
     </style>
 @endsection
+<div class="container d-flex justify-content-center" style="padding-top: 10%!important;">
+    <h1>Prestasi Individu Mahasiswa UCIC</h1>
+</div>
 
 @section('content-fe')
     @forelse ($preindividu as $item)

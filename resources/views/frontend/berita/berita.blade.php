@@ -47,7 +47,9 @@
         }
     </style>
 @endsection
-
+<div class="container d-flex justify-content-center" style="padding-top: 10%!important;">
+    <h1>Berita Universitas Catur Insan Cendekia</h1>
+</div>
 @section('content-fe')
     @forelse ($berita as $item)
         <section id="about" class="about mb-5">
@@ -55,7 +57,7 @@
 
                 <div class="row content">
                     <div class="col-lg-6">
-                    <div class="square-image">
+                        <div class="square-image">
                             <img src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
                                 alt="">
                         </div>
@@ -75,8 +77,8 @@
                         @endphp
                         <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
                         @if (strlen($item->content) > 200)
-                            <a href="{{ route('detail-berita', $item->id) }}"
-                                class="btn btn-primary" style="float:right">Read More</a>
+                            <a href="{{ route('detail-berita', $item->id) }}" class="btn btn-primary"
+                                style="float:right">Read More</a>
                         @endif
                     </div>
                 </div>
