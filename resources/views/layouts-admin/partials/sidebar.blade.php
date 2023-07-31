@@ -51,9 +51,9 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('bkm-list') }}" key="t-default">Organisasi BKM</a></li>
+                        <li><a href="{{ route('struktur-bkm-list') }}" key="t-default">Struktur BKM</a></li>
                         <li><a href="{{ route('ukm-list') }}" key="t-default">Organisasi UKM</a></li>
                         <li><a href="{{ route('hima-list') }}" key="t-default">Organisasi HIMA</a></li>
-                        <li><a href="{{ route('struktur-bkm-list') }}" key="t-default">Struktur BKM</a></li>
                         {{-- <li><a href="{{ route('struktur-ukm-list') }}" key="t-default">Struktur UKM</a></li>
                         <li><a href="{{ route('struktu-hima-list') }}" key="t-default">Struktur HIMA</a></li> --}}
                     </ul>
