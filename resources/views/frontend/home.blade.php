@@ -117,7 +117,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <center>
-                        <h5><b>Daftar Prestasi</b></h5>
+                        <h5><b>Prestasi Mahasiswa UCIC</b></h5>
                     </center>
                     <br><br>
                 </div>
@@ -186,7 +186,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <center>
-                        <h5><b>Daftar Organisasi Kemahasiswaan</b></h5>
+                        <h5><b>Kegiatan Organisasi Mahasiswa UCIC</b></h5>
                     </center>
                     <br><br>
                 </div>
@@ -282,7 +282,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <center>
-                        <h5><b>Daftar Kegiatan SIMBELMAWA</b></h5>
+                        <h5><b>Daftar Informasi SIMBELMAWA</b></h5>
                     </center>
                     <br><br>
                 </div>
@@ -352,7 +352,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <center>
-                        <h5><b>Daftar Berita</b></h5>
+                        <h5><b>Berita</b></h5>
                     </center>
                     <br><br>
                 </div>
