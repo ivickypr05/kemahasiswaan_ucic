@@ -53,21 +53,23 @@
         <h1>Himpunan Mahasiswa UCIC</h1>
     </div>
     <div class="container d-flex justify-content-center mb-5 mt-3 gap-4">
-        <a href="{{ route('profil-himatif') }}" class="btn btn-tranparent btn-outline-dark border rounded rounded-pill">
+        <a href="{{ route('profil-himatif') }}" class="btn btn-tranparent btn-outline-primary border-1 rounded rounded-pill">
             HIMATIF </a>
-        <a href="{{ route('profil-himasi') }}" class="btn btn-tranparent btn-outline-dark border rounded rounded-pill">
+        <a href="{{ route('profil-himasi') }}" class="btn btn-tranparent btn-outline-primary border-1 rounded rounded-pill">
             HIMASI </a>
-        <a href="{{ route('profil-himadkv') }}" class="btn btn-tranparent btn-outline-dark border rounded rounded-pill">
+        <a href="{{ route('profil-himadkv') }}" class="btn btn-tranparent btn-outline-primary border-1 rounded rounded-pill">
             HIMADKV </a>
-        <a href="{{ route('profil-himaku') }}" class="btn btn-tranparent btn-outline-dark border rounded rounded-pill">
+        <a href="{{ route('profil-himaku') }}" class="btn btn-tranparent btn-outline-primary border-1 rounded rounded-pill">
             HIMAKU </a>
-        <a href="{{ route('profil-himajemen') }}" class="btn btn-tranparent btn-outline-dark border rounded rounded-pill">
+        <a href="{{ route('profil-himajemen') }}"
+            class="btn btn-tranparent btn-outline-primary border-1 rounded rounded-pill">
             HIMAJEMEN </a>
-        <a href="{{ route('profil-himaka') }}" class="btn btn-tranparent btn-outline-dark border rounded rounded-pill">
+        <a href="{{ route('profil-himaka') }}" class="btn btn-tranparent btn-outline-primary border-1 rounded rounded-pill">
             HIMAKA </a>
-        <a href="{{ route('profil-himami') }}" class="btn btn-tranparent btn-outline-dark border rounded rounded-pill">
+        <a href="{{ route('profil-himami') }}" class="btn btn-tranparent btn-outline-primary border-1 rounded rounded-pill">
             HIMAMI </a>
-        <a href="{{ route('profil-himabis') }}" class="btn btn-tranparent btn-outline-dark border rounded rounded-pill">
+        <a href="{{ route('profil-himabis') }}"
+            class="btn btn-tranparent btn-outline-primary border-1 rounded rounded-pill">
             HIMABIS </a>
     </div>
 
@@ -110,14 +112,13 @@
             </div>
         </section><!-- End About Section -->
     @empty
-        <section id="about" class="about mb-5">
+        <section id="pricing" class="pricing mb-5">
             <div class="container">
                 <div class="row content">
                     <div class="col-lg-12">
                         <br></br>
                         <br></br>
-                        <br></br>
-                        <h4 class="text-center">Belum ada informasi HIMA.</h4>
+                        <h4 class="text-center text-primary">Belum ada informasi kegiatan HIMA.</h4>
                     </div>
                 </div>
             </div>

@@ -60,17 +60,13 @@
         }
     </style>
 @endsection
-
+<div class="container d-flex justify-content-center" style="padding-top: 10%!important;">
+    <h1>Berita Universitas Catur Insan Cendekia</h1>
+</div>
 @section('content-fe')
-    <section id="pricing" class="pricing">
+    <section id="about" class="about">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <center>
-                        <h5><b>Halaman Berita</b></h5>
-                    </center>
-                    <br><br>
-                </div>
                 @forelse ($berita as $item)
                     <div class="col-lg-4 col-md-6">
                         <div class="box">
@@ -95,10 +91,16 @@
                         </div>
                     </div>
                 @empty
-                    <div class="col-lg-12">
-                        <br><br><br>
-                        <h4 class="text-center">Belum ada informasi Berita.</h4>
-                    </div>
+                    <section id="pricing" class="pricing">
+                        <div class="container">
+                            <div class="row content">
+                                <div class="col-lg-12">
+                                    <br>
+                                    <h4 class="text-center text-primary">Belum ada informasi Berita</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </section><!-- End About Section -->
                 @endforelse
             </div>
         </div>

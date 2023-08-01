@@ -42,7 +42,7 @@
         }
 
         /* Tambahkan margin-top pada section#about */
-        section#pricing1 {
+        section#pricing {
             margin-top: 10px;
         }
     </style>
@@ -59,7 +59,8 @@
                         <div class="col-lg-6 col-md-6">
                             <div class="box" style="margin-top: 20px;">
                                 <div class="square-image">
-                                    <img src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}" alt="">
+                                    <img src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
+                                        alt="">
                                 </div>
                                 <br>
                                 <div class="beasiswa-info">
@@ -68,7 +69,9 @@
                                     </div>
                                     <div class="beasiswa-time">
                                         <i class="fa fa-calendar"></i>
-                                        <p>{{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }} - {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}</p>
+                                        <p>{{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }} -
+                                            {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}
+                                        </p>
                                     </div>
                                 </div>
                                 @php
@@ -77,21 +80,24 @@
                                 @endphp
                                 <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
                                 @if (strlen($item->content) > 200)
-                                    <a href="{{ route('detail-beasiswa', $item->id) }}" class="btn btn-primary">Read More</a>
+                                    <a href="{{ route('detail-beasiswa', $item->id) }}" class="btn btn-primary">Read
+                                        More</a>
                                 @endif
                             </div>
                         </div>
                     @endforeach
                 </div>
             @empty
-                <div class="row content">
-                    <div class="col-lg-12">
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                        <h4 class="text-center">Belum ada informasi beasiswa.</h4>
+                <section id="pricing" class="pricing mb-5">
+                    <div class="container">
+                        <div class="row content">
+                            <div class="col-lg-12">
+                                <br></br>
+                                <h4 class="text-center text-primary">Belum ada informasi Beasiswa.</h4>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </section><!-- End About Section -->
             @endforelse
         </div>
     </section><!-- End About Section -->

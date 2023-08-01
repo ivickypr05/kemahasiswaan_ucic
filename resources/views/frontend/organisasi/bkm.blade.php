@@ -42,7 +42,7 @@
         }
 
         /* Tambahkan margin-top pada section#about */
-        section#about {
+        section#pricing {
             margin-top: 100px;
         }
     </style>
@@ -55,7 +55,7 @@
 
     <div class="container d-flex justify-content-center mt-3 mb-5">
         <a href="{{ route('struktur-bkm') }}"
-            class="btn btn-transparent btn-outline-dark border-1 rounded rounded-pill">Profil
+            class="btn btn-transparent btn-outline-primary border-1 rounded rounded-pill">Profil
             dan Struktur BKM</a>
     </div>
     @forelse ($bkm as $item)
@@ -92,14 +92,12 @@
             </div>
         </section><!-- End About Section -->
     @empty
-        <section id="about" class="about mb-5">
+        <section id="pricing" class="pricing mb-5">
             <div class="container">
                 <div class="row content">
                     <div class="col-lg-12">
                         <br></br>
-                        <br></br>
-                        <br></br>
-                        <h4 class="text-center">Belum ada informasi mengenai Organisasi BKM.</h4>
+                        <h4 class="text-center text-primary">Belum ada informasi kegiatan BKM.</h4>
                     </div>
                 </div>
             </div>

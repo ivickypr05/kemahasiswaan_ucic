@@ -42,7 +42,7 @@
         }
 
         /* Tambahkan margin-top pada section#about */
-        section#about {
+        section#pricing {
             margin-top: 100px;
         }
     </style>
@@ -85,14 +85,13 @@
                 </div>
         </section><!-- End About Section -->
     @empty
-        <section id="about" class="about mb-5">
+        <section id="pricing" class="pricing mb-5">
             <div class="container">
                 <div class="row content">
                     <div class="col-lg-12">
                         <br></br>
                         <br></br>
-                        <br></br>
-                        <h4 class="text-center">Belum ada informasi PKK.</h4>
+                        <h4 class="text-center text-primary">Belum ada informasi PPK.</h4>
                     </div>
                 </div>
             </div>
