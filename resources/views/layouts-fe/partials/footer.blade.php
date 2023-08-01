@@ -26,11 +26,11 @@
           <div class="footer-links">
             <h4>Fitur</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Informasi Beasiswa</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ route('beasiswa') }}">Informasi Beasiswa</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Informasi Prestasi</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Informasi Kegiatan Organisasi</a></li>
               <li><i class="bx bx-chevron-right"></i> <a href="#">Informasi SIMBELMAWA</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Informasi Berita</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{{ route('berita') }}">Informasi Berita</a></li>
             </ul>
           </div>
         </div>
