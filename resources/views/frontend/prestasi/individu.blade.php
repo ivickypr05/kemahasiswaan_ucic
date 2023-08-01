@@ -1,5 +1,5 @@
 @extends('layouts-fe.template')
-
+@section('title', 'UCIC | Prestasi Individu')
 @section('style-fe')
     <style>
         .card-img-tip {

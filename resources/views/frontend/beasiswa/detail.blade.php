@@ -1,49 +1,53 @@
 @extends('layouts-fe.template')
-
+@section('title', 'UCIC | Detail Beasiswa')
 @section('style-fe')
     <style>
         #blog {
-        margin-top: 100px;
+            margin-top: 100px;
         }
     </style>
 @endsection
 
 @section('content-fe')
     <section id="blog" class="blog">
-      <div class="container" data-aos="fade-up">
+        <div class="container" data-aos="fade-up">
 
-        <div class="row">
+            <div class="row">
 
-          <div class="col-lg-12 entries">
+                <div class="col-lg-12 entries">
 
-            <article class="entry entry-single">
+                    <article class="entry entry-single">
 
-              <h2 class="entry-title">
-                <a href="#">{{ $beasiswa->title }}</a>
-              </h2>
+                        <h2 class="entry-title">
+                            <a href="#">{{ $beasiswa->title }}</a>
+                        </h2>
 
-              <div class="entry-meta">
-                <ul>
-                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time datetime="2020-01-01">{{ \Carbon\Carbon::parse($beasiswa->dari_tanggal)->translatedFormat('d F Y') }} -  {{ \Carbon\Carbon::parse($beasiswa->sampai_tanggal)->translatedFormat('d F Y') }}</time></a></li>
-                </ul>
-              </div>
+                        <div class="entry-meta">
+                            <ul>
+                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time
+                                            datetime="2020-01-01">{{ \Carbon\Carbon::parse($beasiswa->dari_tanggal)->translatedFormat('d F Y') }}
+                                            -
+                                            {{ \Carbon\Carbon::parse($beasiswa->sampai_tanggal)->translatedFormat('d F Y') }}</time></a>
+                                </li>
+                            </ul>
+                        </div>
 
-              <div class="entry-content">
-                {!! nl2br($beasiswa->content) !!}
-              </div>
+                        <div class="entry-content">
+                            {!! nl2br($beasiswa->content) !!}
+                        </div>
 
-            </article><!-- End blog entry -->
+                    </article><!-- End blog entry -->
 
-          </div><!-- End blog entries list -->
+                </div><!-- End blog entries list -->
+
+            </div>
 
         </div>
-
-      </div>
     </section><!-- End Blog Single Section -->
 @endsection
 
 @section('script-fe')
-<script>
-$('#example').dataTable();
-</script>
+    <script>
+        $('#example').dataTable();
+    </script>
 @endsection

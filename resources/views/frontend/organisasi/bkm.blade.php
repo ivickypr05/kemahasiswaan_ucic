@@ -1,5 +1,5 @@
 @extends('layouts-fe.template')
-
+@section('title', 'UCIC | Kegiatan Organisasi BKM')
 @section('style-fe')
     <style>
         .square-image {

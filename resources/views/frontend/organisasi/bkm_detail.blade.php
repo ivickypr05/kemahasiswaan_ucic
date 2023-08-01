@@ -1,5 +1,5 @@
 @extends('layouts-fe.template')
-
+@section('title', 'UCIC | Detail Kegiatan Organisasi BKM')
 @section('style-fe')
     <style>
         #blog {

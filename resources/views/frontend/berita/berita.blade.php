@@ -1,5 +1,5 @@
 @extends('layouts-fe.template')
-
+@section('title', 'UCIC | Berita')
 @section('style-fe')
     <style>
         .box {
