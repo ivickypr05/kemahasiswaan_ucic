@@ -42,8 +42,8 @@
         }
 
         /* Tambahkan margin-top pada section#about */
-        section#pricing {
-            margin-top: 100px;
+        section#pricing1 {
+            margin-top: 10px;
         }
     </style>
 @endsection
@@ -57,7 +57,7 @@
                 <div class="row content">
                     @foreach ($chunk as $item)
                         <div class="col-lg-6 col-md-6">
-                            <div class="box">
+                            <div class="box" style="margin-top: 20px;">
                                 <div class="square-image">
                                     <img src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}" alt="">
                                 </div>
