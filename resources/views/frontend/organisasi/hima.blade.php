@@ -49,22 +49,44 @@
 @endsection
 
 @section('content-fe')
-    @forelse ($hima as $item)
-    <section id="about" class="about mb-5">
-      <div class="container">
+    <div class="container d-flex justify-content-center" style="padding-top: 10%!important;">
+        <h1>Himpunan Mahasiswa UCIC</h1>
+    </div>
+    <div class="container d-flex justify-content-center mb-5 mt-3 gap-4">
+        <a href="{{ route('profil-himatif') }}" class="btn btn-tranparent btn-outline-dark border rounded rounded-pill">
+            HIMATIF </a>
+        <a href="{{ route('profil-himasi') }}" class="btn btn-tranparent btn-outline-dark border rounded rounded-pill">
+            HIMASI </a>
+        <a href="{{ route('profil-himadkv') }}" class="btn btn-tranparent btn-outline-dark border rounded rounded-pill">
+            HIMADKV </a>
+        <a href="{{ route('profil-himaku') }}" class="btn btn-tranparent btn-outline-dark border rounded rounded-pill">
+            HIMAKU </a>
+        <a href="{{ route('profil-himajemen') }}" class="btn btn-tranparent btn-outline-dark border rounded rounded-pill">
+            HIMAJEMEN </a>
+        <a href="{{ route('profil-himaka') }}" class="btn btn-tranparent btn-outline-dark border rounded rounded-pill">
+            HIMAKA </a>
+        <a href="{{ route('profil-himami') }}" class="btn btn-tranparent btn-outline-dark border rounded rounded-pill">
+            HIMAMI </a>
+        <a href="{{ route('profil-himabis') }}" class="btn btn-tranparent btn-outline-dark border rounded rounded-pill">
+            HIMABIS </a>
+    </div>
 
-        <div class="row content">
-          <div class="col-lg-6">
-          <div class="square-image">
+    @forelse ($hima as $item)
+        <section id="about" class="about mb-5">
+            <div class="container">
+
+                <div class="row content">
+                    <div class="col-lg-6">
+                        <div class="square-image">
                             <img src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
                                 alt="">
                         </div>
-          </div>
-          <div class="col-lg-6 pt-4 pt-lg-0" style="padding-top: 10%!important;">
-          <div class="beasiswa-info">
-                            
+                    </div>
+                    <div class="col-lg-6 pt-4 pt-lg-0" style="padding-top: 10%!important;">
+                        <div class="beasiswa-info">
+
                             <h4 class="beasiswa-title">{{ $item->nama_himpunan }}</h4>
-                            
+
                             <div class="beasiswa-time">
                                 <i class="bi bi-clock"></i>
                                 <p>{{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }}
@@ -79,13 +101,14 @@
                         <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
                         @if (strlen($item->deskripsi) > 200)
                             <a href="{{ route('detail-hima', $item->id) }}" class="btn btn-primary"
-                                style="float:right">Read More</a>
+                                style="float:right">Read
+                                More</a>
                         @endif
                     </div>
-        </div>
+                </div>
 
-      </div>
-    </section><!-- End About Section -->
+            </div>
+        </section><!-- End About Section -->
     @empty
         <section id="about" class="about mb-5">
             <div class="container">

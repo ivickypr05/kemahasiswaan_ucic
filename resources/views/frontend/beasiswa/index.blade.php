@@ -47,7 +47,9 @@
         }
     </style>
 @endsection
-
+<div class="container d-flex justify-content-center" style="padding-top: 10%!important;">
+    <h1>Beasiswa Universitas Catur Insan Cendekia</h1>
+</div>
 @section('content-fe')
     <section id="pricing" class="pricing">
         <div class="container">

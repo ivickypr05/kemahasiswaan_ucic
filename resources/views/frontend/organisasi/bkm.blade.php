@@ -49,17 +49,15 @@
 @endsection
 
 @section('content-fe')
-    <div class="container d-flex justify-content-center mb-5" style="padding-top: 10%!important;">
-        <div class="card">
-            <div class="row content mt-3 mb-3">
-                <h4 class="text-center mb-4">Struktur Organisasi BKM</h4>
-                <div class="d-flex justify-content-center">
-                    <a href="{{ route('struktur-bkm') }}" class="btn btn-dark">Lihat Disini</a>
-                </div>
-            </div>
-        </div>
+    <div class="container d-flex justify-content-center" style="padding-top: 10%!important;">
+        <h1>Badan Kegiatan Mahasiswa UCIC</h1>
     </div>
 
+    <div class="container d-flex justify-content-center mt-3 mb-5">
+        <a href="{{ route('struktur-bkm') }}"
+            class="btn btn-transparent btn-outline-dark border-1 rounded rounded-pill">Profil
+            dan Struktur BKM</a>
+    </div>
     @forelse ($bkm as $item)
         <section id="about" class="about mt-2">
             <div class="container">
