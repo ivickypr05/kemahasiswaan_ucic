@@ -56,7 +56,7 @@
 
         /* Tambahkan margin-top pada section#about */
         section#pricing {
-            margin-top: 100px;
+            margin-top: 50px;
         }
     </style>
 @endsection
@@ -64,7 +64,7 @@
     <h1>Berita Universitas Catur Insan Cendekia</h1>
 </div>
 @section('content-fe')
-    <section id="about" class="about">
+    <section id="pricing" class="pricing">
         <div class="container">
             <div class="row">
                 @forelse ($berita as $item)
