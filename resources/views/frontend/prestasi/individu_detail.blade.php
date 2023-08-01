@@ -33,12 +33,22 @@
                                     width="500px">
                             </div>
                             <div class="col-md-3">
-                                <img src="{{ asset('storage/' . $preindividu->gambar_2) }}" alt="Gambar 2" class="img-top"
-                                    width="500px">
+                                @if ($preindividu->gambar_2)
+                                    <img src="{{ asset('storage/' . $preindividu->gambar_2) }}" alt="Gambar 2"
+                                        class="img-top" width="500px">
+                                @else
+                                    <img src="{{ asset('storage/' . $preindividu->gambar_1) }}" alt="Gambar 1"
+                                        class="img-top" width="500px">
+                                @endif
                             </div>
                             <div class="col-md-3">
-                                <img src="{{ asset('storage/' . $preindividu->gambar_3) }}" alt="Gambar 3" class="img-top"
-                                    width="500px">
+                                @if ($preindividu->gambar_2)
+                                    <img src="{{ asset('storage/' . $preindividu->gambar_3) }}" alt="Gambar 2"
+                                        class="img-top" width="500px">
+                                @else
+                                    <img src="{{ asset('storage/' . $preindividu->gambar_1) }}" alt="Gambar 1"
+                                        class="img-top" width="500px">
+                                @endif
                             </div>
                         </div>
                         <h2 class="entry-title">
