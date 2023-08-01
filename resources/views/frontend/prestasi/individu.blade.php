@@ -104,8 +104,8 @@
                                 @endphp
                                 <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
                                 @if (strlen($item->deskripsi) > 100)
-                                    <a href="{{ route('detail-bkm', $item->id) }}" class="btn btn-primary"
-                                        style="float:right">Detail</a>
+                                    <a href="{{ route('detail-prestasi-individu', $item->id) }}" class="btn btn-primary"
+                                        style="float:right">Lihat Detail</a>
                                 @endif
 
                             </div>

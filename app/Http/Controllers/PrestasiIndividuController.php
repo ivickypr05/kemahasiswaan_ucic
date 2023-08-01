@@ -82,8 +82,8 @@ class PrestasiIndividuController extends Controller
      */
     public function show($id)
     {
-        $preindividu = Preindividu::find($id);
-        return view('frontend.prestasi.individu', compact('preindividu'));
+        $preindividu = Preindividu::with('categories')->find($id);
+        return view('frontend.prestasi.individu_detail', compact('preindividu'));
     }
 
     /**

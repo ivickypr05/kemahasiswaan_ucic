@@ -44,7 +44,7 @@ Route::get('prestasi-individu', [PrestasiIndividuController::class, 'frontPresta
 Route::get('prestasi-individu-detail/{id}', [PrestasiIndividuController::class, 'show'])->name('detail-prestasi-individu');
 
 Route::get('prestasi-tim', [PrestasiTimController::class, 'frontPrestasiTim'])->name('prestasi-tim');
-Route::get('prestasi-tim-detail', [PrestasiTimController::class, 'show'])->name('detail-prestasi-tim');
+Route::get('prestasi-tim-detail/{id}', [PrestasiTimController::class, 'show'])->name('detail-prestasi-tim');
 
 
 Route::get('organisasi-ukm', [UkmController::class, 'frontUkm'])->name('organisasi-ukm');
