@@ -63,17 +63,8 @@
                             <tr>
                                 <th>No</th>
                                 <th>Judul Prestasi</th>
-                                <th>Nama Peserta 1</th>
-                                <th>Nama Peserta 2</th>
-                                <th>Nama Peserta 3</th>
-                                <th>Nama Peserta 4</th>
-                                <th>Nama Peserta 5</th>
-                                <th>Nama Peserta 6</th>
-                                <th>Nama Peserta 7</th>
-                                <th>Nama Peserta 8</th>
-                                <th>Nama Peserta 9</th>
-                                <th>Nama Peserta 10</th>
-                                <th>Nama Peserta 11</th>
+                                <th>Nama Tim</th>
+                                <th>Nama Peserta</th>
                                 <th>Tingkat Kejuaraan</th>
                                 <th>Foto 1</th>
                                 <th>Foto 2</th>
@@ -88,17 +79,8 @@
                                 <tr>
                                     <th>{{ $loop->iteration }}</th>
                                     <th>{{ $item->title }}</th>
-                                    <th>{{ $item->nama_1 }}</th>
-                                    <th>{{ $item->nama_2 }}</th>
-                                    <th>{{ $item->nama_3 }}</th>
-                                    <th>{{ $item->nama_4 }}</th>
-                                    <th>{{ $item->nama_5 }}</th>
-                                    <th>{{ $item->nama_6 }}</th>
-                                    <th>{{ $item->nama_7 }}</th>
-                                    <th>{{ $item->nama_8 }}</th>
-                                    <th>{{ $item->nama_9 }}</th>
-                                    <th>{{ $item->nama_10 }}</th>
-                                    <th>{{ $item->nama_11 }}</th>
+                                    <th>{{ $item->nama_tim }}</th>
+                                    <th>{{ Str::limit($item->nama_peserta, 20) }}</th>
                                     <th>{{ $item->tingkat_kejuaraan }}</th>
                                     <th>
                                         <img src="{{ asset('storage/' . $item->gambar_1) }}" width="110px">

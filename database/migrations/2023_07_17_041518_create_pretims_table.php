@@ -16,17 +16,8 @@ return new class extends Migration
         Schema::create('pretims', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('nama_1');
-            $table->string('nama_2');
-            $table->string('nama_3')->nullable();
-            $table->string('nama_4')->nullable();
-            $table->string('nama_5')->nullable();
-            $table->string('nama_6')->nullable();
-            $table->string('nama_7')->nullable();
-            $table->string('nama_8')->nullable();
-            $table->string('nama_9')->nullable();
-            $table->string('nama_10')->nullable();
-            $table->string('nama_11')->nullable();
+            $table->string('nama_tim');
+            $table->text('nama_peserta');
             $table->string('tingkat_kejuaraan');
             $table->string('gambar_1');
             $table->string('gambar_2')->nullable();

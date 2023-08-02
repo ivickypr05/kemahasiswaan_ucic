@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Pretim;
 use App\Models\Category;
-use App\Models\PrestasiTim;
 use Illuminate\Http\Request;
-use App\Models\CategoryPrestasi;
 use Illuminate\Support\Facades\File;
 
 class PrestasiTimController extends Controller
@@ -43,17 +41,8 @@ class PrestasiTimController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|string|min:2|max:100',
-            'nama_1' => 'required|string|min:2|max:50',
-            'nama_2' => 'required|string|min:2|max:50',
-            'nama_3' => 'nullable|string|min:2|max:50',
-            'nama_4' => 'nullable|string|min:2|max:50',
-            'nama_5' => 'nullable|string|min:2|max:50',
-            'nama_6' => 'nullable|string|min:2|max:50',
-            'nama_7' => 'nullable|string|min:2|max:50',
-            'nama_8' => 'nullable|string|min:2|max:50',
-            'nama_9' => 'nullable|string|min:2|max:50',
-            'nama_10' => 'nullable|string|min:2|max:50',
-            'nama_11' => 'nullable|string|min:2|max:50',
+            'nama_tim' => 'required|string|min:6|max:50',
+            'nama_peserta' => 'required|min:2|max:50',
             'tingkat_kejuaraan' => 'required|string|min:2|max:50',
             'gambar_1' => 'required|mimes:jpeg,jpg,png,gif',
             'gambar_2' => 'nullable|mimes:jpeg,jpg,png,gif',
@@ -121,17 +110,8 @@ class PrestasiTimController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|string|min:2|max:100',
-            'nama_1' => 'required|string|min:2|max:50',
-            'nama_2' => 'required|string|min:2|max:50',
-            'nama_3' => 'nullable|string|min:2|max:50',
-            'nama_4' => 'nullable|string|min:2|max:50',
-            'nama_5' => 'nullable|string|min:2|max:50',
-            'nama_6' => 'nullable|string|min:2|max:50',
-            'nama_7' => 'nullable|string|min:2|max:50',
-            'nama_8' => 'nullable|string|min:2|max:50',
-            'nama_9' => 'nullable|string|min:2|max:50',
-            'nama_10' => 'nullable|string|min:2|max:50',
-            'nama_11' => 'nullable|string|min:2|max:50',
+            'nama_tim' => 'required|string|min:2|max:50',
+            'nama_peserta' => 'required|min:6|max:50',
             'tingkat_kejuaraan' => 'required|string|min:2|max:50',
             'gambar_1' => 'mimes:jpeg,jpg,png,gif',
             'gambar_2' => 'mimes:jpeg,jpg,png,gif',

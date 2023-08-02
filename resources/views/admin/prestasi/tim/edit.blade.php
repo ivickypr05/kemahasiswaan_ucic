@@ -54,126 +54,32 @@
                             @enderror
                         </div>
                         <div class="form-group mb-3">
-                            <label for="name">Nama Peserta 1 (Wajib)</label>
-                            <input type="text" class="form-control @error('nama_1') is-invalid @enderror" id="nama_1"
-                                name="nama_1" placeholder="Enter " value="{{ $pretim->nama_1 }}">
+                            <label for="name">Nama Tim / Kelompok / Grup</label>
+                            <input type="text" class="form-control @error('nama_tim') is-invalid @enderror"
+                                id="nama_tim" name="nama_tim" placeholder="Enter " value="{{ $pretim->nama_tim }}">
 
-                            @error('nama_1')
+                            @error('nama_tim')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
                         <div class="form-group mb-3">
-                            <label for="name">Nama Peserta 2 (Wajib)</label>
-                            <input type="text" class="form-control @error('nama_2') is-invalid @enderror" id="nama_2"
-                                name="nama_2" placeholder="Enter " value="{{ $pretim->nama_2 }}">
-
-                            @error('nama_2')
+                            <label for="name">Nama Peserta</label>
+                            <p class="text-primary">Contoh : <br>
+                                1. Iko Vicky Pratama <br>
+                                2. Ahmad Alif Fauzan <br>
+                                3. <br>
+                                dst..
+                            </p>
+                            <textarea class="form-control @error('nama_peserta') is-invalid @enderror" name="nama_peserta" rows="3"> {{ $pretim->nama_peserta }}</textarea>
+                            @error('nama_peserta')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
-                        <div class="form-group mb-3">
-                            <label for="name">Nama Peserta 3 (Opsional : Hapus apabila tidak ingin diisi)</label>
-                            <input type="text" class="form-control @error('nama_3') is-invalid @enderror" id="nama_3"
-                                name="nama_3" placeholder="Enter " value="{{ $pretim->nama_3 }}">
 
-                            @error('nama_3')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="name">Nama Peserta 4 (Opsional : Hapus apabila tidak ingin diisi)</label>
-                            <input type="text" class="form-control @error('nama_4') is-invalid @enderror" id="nama_4"
-                                name="nama_4" placeholder="Enter " value="{{ $pretim->nama_4 }}">
-
-                            @error('nama_4')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="name">Nama Peserta 5 (Opsional : Hapus apabila tidak ingin diisi) </label>
-                            <input type="text" class="form-control @error('nama_5') is-invalid @enderror" id="nama_5"
-                                name="nama_5" placeholder="Enter " value="{{ $pretim->nama_5 }}">
-
-                            @error('nama_5')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="name">Nama Peserta 6 (Opsional : Hapus apabila tidak ingin diisi)</label>
-                            <input type="text" class="form-control @error('nama_6') is-invalid @enderror" id="nama_6"
-                                name="nama_6" placeholder="Enter " value="{{ $pretim->nama_6 }}">
-
-                            @error('nama_6')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="name">Nama Peserta 7 (Opsional : Hapus apabila tidak ingin diisi)</label>
-                            <input type="text" class="form-control @error('nama_7') is-invalid @enderror" id="nama_7"
-                                name="nama_7" placeholder="Enter " value="{{ $pretim->nama_7 }}">
-
-                            @error('nama_7')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="name">Nama Peserta 8 (Opsional : Hapus apabila tidak ingin diisi)</label>
-                            <input type="text" class="form-control @error('nama_8') is-invalid @enderror"
-                                id="nama_8" name="nama_8" placeholder="Enter " value="{{ $pretim->nama_8 }}">
-
-                            @error('nama_8')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="name">Nama Peserta 9 (Opsional : Hapus apabila tidak ingin diisi)</label>
-                            <input type="text" class="form-control @error('nama_9') is-invalid @enderror"
-                                id="nama_9" name="nama_9" placeholder="Enter " value="{{ $pretim->nama_9 }}">
-
-                            @error('nama_9')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="name">Nama Peserta 10 (Opsional : Hapus apabila tidak ingin diisi)</label>
-                            <input type="text" class="form-control @error('nama_10') is-invalid @enderror"
-                                id="nama_10" name="nama_10" placeholder="Enter " value="{{ $pretim->nama_10 }}">
-
-                            @error('nama_10')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group mb-3">
-                            <label for="name">Nama Peserta 11 (Opsional : Hapus apabila tidak ingin diisi)</label>
-                            <input type="text" class="form-control @error('nama_11') is-invalid @enderror"
-                                id="nama_11" name="nama_11" placeholder="Enter " value="{{ $pretim->nama_11 }}">
-
-                            @error('nama_11')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
                         <div class="form-group mb-3">
                             <label for="name">Tingkat Kejuaraan (contoh : Kota/Provinsi/Nasional/Internasional)</label>
                             <input type="text" class="form-control @error('tingkat_kejuaraan') is-invalid @enderror"
@@ -186,7 +92,6 @@
                                 </span>
                             @enderror
                         </div>
-
 
                         <div class="form-group mb-3">
                             <label for="name">Foto 1 (Wajib)</label>
