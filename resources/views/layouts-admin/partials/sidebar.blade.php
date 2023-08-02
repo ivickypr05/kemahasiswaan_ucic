@@ -39,7 +39,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('category-list') }}" key="t-default">Kategori Prestasi</a></li>
-                        <li><a href="{{ route('prestasi-individu-list') }}" key="t-default">Prestasi Individu</a></li>
+                        <li><a href="{{ route('prestasi-akademik-list') }}" key="t-default">Prestasi Akademik</a></li>
                         <li><a href="{{ route('prestasi-tim-list') }}" key="t-default">Prestasi Tim</a></li>
                     </ul>
                 </li>

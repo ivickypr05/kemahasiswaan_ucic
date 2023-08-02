@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Models\Preindividu;
+use App\Models\Preakademik;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
-class PrestasiIndividuController extends Controller
+class PrestasiAkademikController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class PrestasiIndividuController extends Controller
      */
     public function index()
     {
-        $preindividu = Preindividu::with('categories')->get();
-        return view('admin.prestasi.individu.index', compact('preindividu'));
+        $preakademik = Preakademik::with('categories')->get();
+        return view('admin.prestasi.akademik.index', compact('preakademik'));
     }
 
     /**
@@ -28,7 +28,7 @@ class PrestasiIndividuController extends Controller
     public function create()
     {
         $data['categories'] = Category::get();
-        return view('admin.prestasi.individu.add', $data);
+        return view('admin.prestasi.akademik.add', $data);
     }
 
     /**
@@ -41,7 +41,7 @@ class PrestasiIndividuController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|string|min:2|max:100',
-            'nama' => 'required|string|min:2|max:50',
+            'nama' => 'required|min:2',
             'tingkat_kejuaraan' => 'required|string|min:2|max:50',
             'gambar_1' => 'required|mimes:jpeg,jpg,png,gif',
             'gambar_2' => 'nullable|mimes:jpeg,jpg,png,gif',
@@ -52,26 +52,26 @@ class PrestasiIndividuController extends Controller
         ]);
 
         // nyimpen path nya ke variabel gambar_1
-        $gambar_1 = $request->file('gambar_1')->store('gambar_prestasi_individu', 'public');
+        $gambar_1 = $request->file('gambar_1')->store('gambar_prestasi_akademik', 'public');
         $validatedData['gambar_1'] = $gambar_1;
 
         // cek apakah gambar 2 diisi
         if ($request->hasFile('gambar_2')) {
-            $gambar_2 = $request->file('gambar_2')->store('gambar_prestasi_individu', 'public');
+            $gambar_2 = $request->file('gambar_2')->store('gambar_prestasi_akademik', 'public');
             $validatedData['gambar_2'] = $gambar_2;
         }
 
         // cek apakah gambar 3 diisi
         if ($request->hasFile('gambar_3')) {
-            $gambar_3 = $request->file('gambar_3')->store('gambar_prestasi_individu', 'public');
+            $gambar_3 = $request->file('gambar_3')->store('gambar_prestasi_akademik', 'public');
             $validatedData['gambar_3'] = $gambar_3;
         }
 
         // nyimpen ke database
-        Preindividu::create($validatedData);
+        Preakademik::create($validatedData);
 
         // redirect ke halaman yang sama dengan pesan sukses
-        return redirect('/prestasi-individu-list')->with('toast_success', 'Prestasi individu berhasil ditambah');
+        return redirect('/prestasi-akademik-list')->with('toast_success', 'Prestasi akademik berhasil ditambah');
     }
 
     /**
@@ -82,8 +82,8 @@ class PrestasiIndividuController extends Controller
      */
     public function show($id)
     {
-        $preindividu = Preindividu::with('categories')->find($id);
-        return view('frontend.prestasi.individu_detail', compact('preindividu'));
+        $preakademik = Preakademik::with('categories')->find($id);
+        return view('frontend.prestasi.akademik_detail', compact('preakademik'));
     }
 
     /**
@@ -95,8 +95,8 @@ class PrestasiIndividuController extends Controller
     public function edit($id)
     {
         $data['categories'] = Category::get();
-        $data['preindividu'] = Preindividu::find($id);
-        return view('admin.prestasi.individu.edit', $data);
+        $data['preakademik'] = Preakademik::find($id);
+        return view('admin.prestasi.akademik.edit', $data);
     }
 
     /**
@@ -110,7 +110,7 @@ class PrestasiIndividuController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|string|min:2|max:100',
-            'nama' => 'required|string|min:2|max:50',
+            'nama' => 'required|min:2',
             'tingkat_kejuaraan' => 'required|string|min:2|max:50',
             'gambar_1' => 'mimes:jpeg,jpg,png,gif',
             'gambar_2' => 'mimes:jpeg,jpg,png,gif',
@@ -120,38 +120,38 @@ class PrestasiIndividuController extends Controller
             'category_id' => 'required|integer|exists:categories,id',
         ]);
 
-        $preindividu = Preindividu::find($id);
+        $preakademik = Preakademik::find($id);
 
         if ($request->file('gambar_1')) {
-            $gambar_1 = $request->file('gambar_1')->store('gambar_prestasi_individu', 'public');
-            File::delete('storage/' . $preindividu->gambar_1);
+            $gambar_1 = $request->file('gambar_1')->store('gambar_prestasi_akademik', 'public');
+            File::delete('storage/' . $preakademik->gambar_1);
             $validatedData['gambar_1'] = $gambar_1;
         }
 
         if ($request->file('gambar_2')) {
-            $gambar_2 = $request->file('gambar_2')->store('gambar_prestasi_individu', 'public');
-            if ($preindividu->gambar_2) {
-                File::delete('storage/' . $preindividu->gambar_2);
+            $gambar_2 = $request->file('gambar_2')->store('gambar_prestasi_akademik', 'public');
+            if ($preakademik->gambar_2) {
+                File::delete('storage/' . $preakademik->gambar_2);
             }
             $validatedData['gambar_2'] = $gambar_2;
-        } elseif ($preindividu->gambar_2) {
-            File::delete('storage/' . $preindividu->gambar_2);
+        } elseif ($preakademik->gambar_2) {
+            File::delete('storage/' . $preakademik->gambar_2);
             $validatedData['gambar_2'] = null;
         }
 
         if ($request->file('gambar_3')) {
-            $gambar_3 = $request->file('gambar_3')->store('gambar_prestasi_individu', 'public');
-            if ($preindividu->gambar_3) {
-                File::delete('storage/' . $preindividu->gambar_3);
+            $gambar_3 = $request->file('gambar_3')->store('gambar_prestasi_akademik', 'public');
+            if ($preakademik->gambar_3) {
+                File::delete('storage/' . $preakademik->gambar_3);
             }
             $validatedData['gambar_3'] = $gambar_3;
-        } elseif ($preindividu->gambar_3) {
-            File::delete('storage/' . $preindividu->gambar_3);
+        } elseif ($preakademik->gambar_3) {
+            File::delete('storage/' . $preakademik->gambar_3);
             $validatedData['gambar_3'] = null;
         }
 
-        $preindividu->update($validatedData);
-        return redirect('/prestasi-individu-list')->with('toast_success', 'Prestasi Individu berhasil diedit');
+        $preakademik->update($validatedData);
+        return redirect('/prestasi-akademik-list')->with('toast_success', 'Prestasi akademik berhasil diedit');
     }
 
     /**
@@ -162,17 +162,17 @@ class PrestasiIndividuController extends Controller
      */
     public function destroy($id)
     {
-        $preindividu = Preindividu::findOrFail($id);
-        File::delete('storage/' .  $preindividu->gambar_1);
-        File::delete('storage/' .  $preindividu->gambar_2);
-        File::delete('storage/' .  $preindividu->gambar_3);
-        $preindividu->delete();
-        return redirect('/prestasi-individu-list')->with('toast_success', 'Prestasi Individu berhasil dihapus');
+        $preakademik = Preakademik::findOrFail($id);
+        File::delete('storage/' .  $preakademik->gambar_1);
+        File::delete('storage/' .  $preakademik->gambar_2);
+        File::delete('storage/' .  $preakademik->gambar_3);
+        $preakademik->delete();
+        return redirect('/prestasi-akademik-list')->with('toast_success', 'Prestasi akademik berhasil dihapus');
     }
 
-    public function frontPrestasiIndividu()
+    public function frontPrestasiakademik()
     {
-        $preindividu = Preindividu::with('categories')->get();
-        return view('frontend.prestasi.individu', compact('preindividu'));
+        $preakademik = Preakademik::with('categories')->get();
+        return view('frontend.prestasi.akademik', compact('preakademik'));
     }
 }

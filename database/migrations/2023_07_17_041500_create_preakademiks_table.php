@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('preindividus', function (Blueprint $table) {
+        Schema::create('preakademiks', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('nama');
+            $table->text('nama');
             $table->string('tingkat_kejuaraan');
             $table->string('gambar_1');
             $table->string('gambar_2')->nullable();
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('preindividus');
+        Schema::dropIfExists('preakademiks');
     }
 };

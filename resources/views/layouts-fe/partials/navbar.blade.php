@@ -8,9 +8,9 @@
                         class="{{ request()->routeIs('beasiswa') ? 'active' : '' }}"><span>Beasiswa</span></a></li>
                 <li class="dropdown"><a href="#"><span>Prestasi</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
-                        <li><a href="{{ route('prestasi-individu') }}"
-                                class="{{ request()->routeIs('prestasi-individu') ? 'active' : '' }}">Prestasi
-                                Individu</a></li>
+                        <li><a href="{{ route('prestasi-akademik') }}"
+                                class="{{ request()->routeIs('prestasi-akademik') ? 'active' : '' }}">Prestasi
+                                Akademik</a></li>
                         <li><a href="{{ route('prestasi-tim') }}"
                                 class="{{ request()->routeIs('prestasi-tim') ? 'active' : '' }}">Prestasi Tim</a></li>
                     </ul>

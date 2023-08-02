@@ -1,5 +1,5 @@
 @extends('layouts-fe.template')
-@section('title', 'UCIC | Detail Prestasi Individu')
+@section('title', 'UCIC | Detail Prestasi Akademik')
 @section('style-fe')
     <style>
         #blog {
@@ -29,51 +29,53 @@
                         {{-- Add images above the title --}}
                         <div class="row mb-3 d-flex justify-content-center">
                             <div class="col-md-3">
-                                <img src="{{ asset('storage/' . $preindividu->gambar_1) }}" alt="Gambar 1" class="img-top"
+                                <img src="{{ asset('storage/' . $preakademik->gambar_1) }}" alt="Gambar 1" class="img-top"
                                     width="500px">
                             </div>
                             <div class="col-md-3">
-                                @if ($preindividu->gambar_2)
-                                    <img src="{{ asset('storage/' . $preindividu->gambar_2) }}" alt="Gambar 2"
+                                @if ($preakademik->gambar_2)
+                                    <img src="{{ asset('storage/' . $preakademik->gambar_2) }}" alt="Gambar 2"
                                         class="img-top" width="500px">
                                 @else
-                                    <img src="{{ asset('storage/' . $preindividu->gambar_1) }}" alt="Gambar 1"
+                                    <img src="{{ asset('storage/' . $preakademik->gambar_1) }}" alt="Gambar 1"
                                         class="img-top" width="500px">
                                 @endif
                             </div>
                             <div class="col-md-3">
-                                @if ($preindividu->gambar_2)
-                                    <img src="{{ asset('storage/' . $preindividu->gambar_3) }}" alt="Gambar 2"
+                                @if ($preakademik->gambar_2)
+                                    <img src="{{ asset('storage/' . $preakademik->gambar_3) }}" alt="Gambar 2"
                                         class="img-top" width="500px">
                                 @else
-                                    <img src="{{ asset('storage/' . $preindividu->gambar_1) }}" alt="Gambar 1"
+                                    <img src="{{ asset('storage/' . $preakademik->gambar_1) }}" alt="Gambar 1"
                                         class="img-top" width="500px">
                                 @endif
                             </div>
                         </div>
                         <h2 class="entry-title">
-                            <a href="{{ route('prestasi-individu') }}">{{ $preindividu->title }}</a>
+                            <a href="{{ route('prestasi-akademik') }}">{{ $preakademik->title }}</a>
                         </h2>
                         <div class="entry-meta">
                             <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time
-                                        datetime="2020-01-01">{{ \Carbon\Carbon::parse($preindividu->tanggal)->translatedFormat('d F Y') }}
+                                        datetime="2020-01-01">{{ \Carbon\Carbon::parse($preakademik->tanggal)->translatedFormat('d F Y') }}
                             </li>
 
                         </div>
-                        <h6 class="text-dark"> Tingkat :
-                            {{ $preindividu->tingkat_kejuaraan }} </h6>
-                        @if ($preindividu->categories == null)
+                        <h6 class="text-dark">Tingkat :
+                            {{ $preakademik->tingkat_kejuaraan }} </h6>
+                        @if ($preakademik->categories == null)
                             <h6 class="text-dark">tidak ada
                                 kategori</h6>
                         @else
                             <h6 class="text-dark">Kategori :
-                                {{ $preindividu->categories->nama }}
+                                {{ $preakademik->categories->nama }}
                             </h6>
                         @endif
                         <hr>
-                        <h6 class="text-dark"><strong>Nama Peserta : {{ $preindividu->nama }} </strong></h6>
-                        <div class="entry-content text-dark">
-                            {!! nl2br($preindividu->deskripsi) !!}
+                        <h6 class="text-dark"><strong>Nama Peserta : </strong><br>
+                            {{ $preakademik->nama }} </h6>
+                        <br>
+                        <div class="entry-content text-dark"><strong> Deskripsi : </strong> <br>
+                            {!! nl2br($preakademik->deskripsi) !!}
                         </div>
 
                     </article><!-- End blog entry -->

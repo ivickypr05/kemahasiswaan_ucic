@@ -1,5 +1,5 @@
 @extends('layouts-admin.app')
-@section('title', 'UCIC | List Prestasi Individu')
+@section('title', 'UCIC | List Prestasi Akademik')
 @section('style')
 
 @endsection
@@ -16,9 +16,9 @@
                         <li class="breadcrumb-item">/</li>
                         <li class="breadcrumb-item">Prestasi</li>
                         <li class="breadcrumb-item">/</li>
-                        <li class="breadcrumb-item">Prestasi Individu</li>
+                        <li class="breadcrumb-item">Prestasi Akademik</li>
                         <li class="breadcrumb-item">/</li>
-                        <li class="breadcrumb-item">List Prestasi Individu</li>
+                        <li class="breadcrumb-item">List Prestasi Akademik</li>
 
                     </ol>
                 </div>
@@ -37,12 +37,12 @@
                         <div class="col-6 mt-1">
                             <span class="tx-bold text-lg text-white" style="font-size:1.2rem;">
                                 <i class="far fa-user text-lg"></i>
-                                List Prestasi Individu
+                                List Prestasi Akademik
                             </span>
                         </div>
 
                         <div class="col-6 d-flex justify-content-end">
-                            <a href="{{ route('prestasi-individu-create') }}" class="btn btn-md btn-info">
+                            <a href="{{ route('prestasi-akademik-create') }}" class="btn btn-md btn-info">
                                 <i class="fa fa-plus"></i>
                                 Add New
                             </a>
@@ -62,7 +62,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Judul Prestasi</th>
+                                <th>Judul Prestasi Akademik</th>
                                 <th>Nama Peserta</th>
                                 <th>Tingkat Kejuaraan</th>
                                 <th>Foto 1</th>
@@ -70,11 +70,12 @@
                                 <th>Foto 3</th>
                                 <th>Deskripsi</th>
                                 <th>Tanggal</th>
+                                <th>Kategori Prestasi</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($preindividu as $item)
+                            @foreach ($preakademik as $item)
                                 <tr>
                                     <th>{{ $loop->iteration }}</th>
                                     <th>{{ $item->title }}</th>
@@ -91,14 +92,15 @@
                                     </th>
                                     <th>{{ Str::limit($item->deskripsi, 100) }}</th>
                                     <th>{{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }}
+                                    <th>{{ $item->categories->nama }}</th>
                                     <th>
                                         <div class="btn-group">
-                                            <a href="{{ route('prestasi-individu-edit', $item->id) }}"
+                                            <a href="{{ route('prestasi-akademik-edit', $item->id) }}"
                                                 class="btn btn-warning text-white">
                                                 <i class="far fa-edit"></i>
                                                 Edit
                                             </a>
-                                            <a href="{{ route('prestasi-individu-destroy', $item->id) }}"
+                                            <a href="{{ route('prestasi-akademik-destroy', $item->id) }}"
                                                 class="btn btn-danger f-12">
                                                 <i class="far fa-trash-alt"></i>
                                                 Delete

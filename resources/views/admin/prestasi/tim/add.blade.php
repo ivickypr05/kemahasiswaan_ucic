@@ -64,7 +64,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="name">Nama Peserta</label>
-                            <p class="text-primary">Contoh : <br>
+                            <p class="text-primary">Contoh untuk kategori tim: <br>
                                 1. Iko Vicky Pratama <br>
                                 2. Ahmad Alif Fauzan <br>
                                 3. <br>
