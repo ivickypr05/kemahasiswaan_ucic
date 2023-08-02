@@ -3,43 +3,54 @@
         <a href="/" class="logo me-auto"><img src="{{ asset('img/cic.png') }}" alt="" class="img-fluid"></a>
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a href="{{ route('home') }}" class="{{ request()->routeIs('home') ? 'active' : '' }}">Home</a></li>
+                <li><a href="{{ route('home') }}"
+                        class="{{ request()->routeIs('home') ? 'active' : '' }}"><strong>Home</strong></a></li>
                 <li><a href="{{ route('beasiswa') }}"
-                        class="{{ request()->routeIs('beasiswa') ? 'active' : '' }}"><span>Beasiswa</span></a></li>
-                <li class="dropdown"><a href="#"><span>Prestasi</span> <i class="bi bi-chevron-down"></i></a>
+                        class="{{ request()->routeIs('beasiswa') ? 'active' : '' }}"><span><strong>Beasiswa</strong></span></a>
+                </li>
+                <li class="dropdown"><a href="#"><span> <strong>Prestasi</strong></span> <i
+                            class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a href="{{ route('prestasi-akademik') }}"
-                                class="{{ request()->routeIs('prestasi-akademik') ? 'active' : '' }}">Prestasi
-                                Akademik</a></li>
+                                class="{{ request()->routeIs('prestasi-akademik') ? 'active' : '' }}"><strong>Prestasi
+                                    Akademik</strong></a></li>
                         <li><a href="{{ route('prestasi-nonakademik') }}"
-                                class="{{ request()->routeIs('prestasi-nonakademik') ? 'active' : '' }}">Prestasi Non
-                                Akademik</a></li>
+                                class="{{ request()->routeIs('prestasi-nonakademik') ? 'active' : '' }}"><strong>Prestasi
+                                    Non
+                                    Akademik</strong></a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#"><span>Organisasi Kemahasiswaan</span> <i class="bi bi-chevron-down"></i></a>
+                    <a href="#"><span><strong>Organisasi Kemahasiswaan</strong></span> <i
+                            class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a href="{{ route('organisasi-bkm') }}"
-                                class="{{ request()->routeIs('organisasi-bkm') ? 'active' : '' }}">BKM</a></li>
+                                class="{{ request()->routeIs('organisasi-bkm') ? 'active' : '' }}"><strong>BKM</strong></a>
+                        </li>
                         <li><a href="{{ route('organisasi-ukm') }}"
-                                class="{{ request()->routeIs('organisasi-ukm') ? 'active' : '' }}">UKM</a></li>
+                                class="{{ request()->routeIs('organisasi-ukm') ? 'active' : '' }}"><strong>UKM
+                                </strong></a></li>
                         <li><a href="{{ route('organisasi-hima') }}"
-                                class="{{ request()->routeIs('organisasi-hima') ? 'active' : '' }}">HIMA</a></li>
+                                class="{{ request()->routeIs('organisasi-hima') ? 'active' : '' }}"><strong>HIMA</strong></a>
+                        </li>
                     </ul>
                 </li>
 
-                <li class="dropdown"><a href="#"><span>SIMBELMAWA</span> <i class="bi bi-chevron-down"></i></a>
+                <li class="dropdown"><a href="#"><span><strong>SIMBELMAWA</strong></span> <i
+                            class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a href="{{ route('pkm') }}"
-                                class="{{ request()->routeIs('pkm') ? 'active' : '' }}">PKM</a></li>
-                        <li><a href="{{ route('pkk') }}" class="{{ request()->routeIs('pkk') ? 'active' : '' }}">PPK
-                                Ormawa</a></li>
+                                class="{{ request()->routeIs('pkm') ? 'active' : '' }}"><strong>PKM
+                                    8 Bidang</strong></a></li>
+                        <li><a href="{{ route('pkk') }}"
+                                class="{{ request()->routeIs('pkk') ? 'active' : '' }}"><strong>PPK
+                                    Ormawa</strong></a></li>
                     </ul>
                 </li>
                 <li><a href="{{ route('berita') }}"
-                        class="{{ request()->routeIs('berita') ? 'active' : '' }}">Berita</a></li>
+                        class="{{ request()->routeIs('berita') ? 'active' : '' }}"><strong>Berita </strong></a></li>
                 <li><a href="{{ route('contact') }}"
-                        class="{{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a></li>
+                        class="{{ request()->routeIs('contact') ? 'active' : '' }}"><strong>Contact</strong></a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->

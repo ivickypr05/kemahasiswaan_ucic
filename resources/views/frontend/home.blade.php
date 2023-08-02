@@ -42,13 +42,23 @@
         <div class="container">
             <div class="row content">
                 <div class="col-lg-6">
+
                     <h4><b>Tentang Kemahasiswaan UCIC</b></h4>
-                    <p>Selamat datang di Kemahasiswaan UCIC - Portal Informasi dan Layanan Mahasiswa yang dirancang khusus untuk memberikan informasi yang relevan dan layanan yang dibutuhkan oleh para mahasiswa. Di sini, Anda akan menemukan berbagai fitur dan konten yang akan membantu Anda dalam menjalani kehidupan kampus yang sukses dan memuaskan.</p>
-                    <p>Melalui portal ini, Anda dapat mengakses pengumuman penting, Layanan Kemahasiswaan, serta informasi akademik dan non-akademik lainnya dengan mudah. Kami juga menyediakan layanan beasiswa untuk mendukung keuangan Anda selama studi di UCIC. Informasi terkait berbagai kesempatan beasiswa dan prosedur aplikasi dapat ditemukan di halaman Beasiswa kami.</p>
-                    <p>Selain itu, kami juga memperhatikan peran organisasi kemahasiswaan dalam pengembangan diri mahasiswa. Kami memiliki Unit Kegiatan Mahasiswa (UKM) dan Badan Eksekutif Mahasiswa (BEM) yang merupakan wadah bagi Anda untuk mengekspresikan minat dan bakat serta berpartisipasi dalam pengembangan kampus. Kami mendorong Anda untuk bergabung dengan UKM sesuai minat Anda dan aktif dalam kegiatan BEM untuk memperoleh pengalaman berharga di luar lingkungan akademik.</p>
+                    <p class="right-aligned-paragraph">Selamat datang di Web Portal - Kemahasiswaan UCIC. Informasi dan
+                        Layanan Mahasiswa yang dirancang
+                        khusus
+                        untuk memberikan informasi yang relevan dan layanan yang dibutuhkan oleh para mahasiswa.
+                        Portal Kemahasisaan UCIC ini dapat mengakses pengumuman penting, Layanan Kemahasiswaan, serta
+                        informasi akademik dan non-akademik lainnya dengan mudah.
+                        Selain itu, kami juga memperhatikan peran organisasi kemahasiswaan dalam pengembangan diri
+                        mahasiswa
+                        yang didalamnya terdapat organisasi BKM (Badan Kegiatan Mahasiswa), UKM (Unit Kegiatan
+                        Mahasiswa)
+                        dan HIMA (Himpunan Mahasiswa).</p>
+
                 </div>
                 <div class="col-lg-6">
-                    <img style="width:100%" src="https://assets.pikiran-rakyat.com/crop/0x0:0x0/x/photo/2023/02/24/1272804305.jpg" alt="">
+                    <img style="width:100%" src="{{ asset('img/cic.png') }}" alt="">
                 </div>
             </div>
         </div>
@@ -69,10 +79,13 @@
                             <div class="box">
                                 <div>
                                     <h5 class="card-title"><b>{{ $item->title }}</b></h5>
-                                    <p>{{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }} - {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}</p>
+                                    <p>{{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }} -
+                                        {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}</p>
                                 </div>
                                 <div class="square-image">
-                                    <img class="small-square-img" src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}" alt="">
+                                    <img class="small-square-img"
+                                        src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
+                                        alt="">
                                 </div>
                                 @php
                                     $limitedContent = Str::limit($item->content, 300);
@@ -80,7 +93,8 @@
                                 @endphp
                                 <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
                                 @if (strlen($item->content) > 200)
-                                    <a href="{{ route('detail-beasiswa', $item->id) }}" class="btn btn-primary">Read More</a>
+                                    <a href="{{ route('detail-beasiswa', $item->id) }}" class="btn btn-primary">Read
+                                        More</a>
                                 @endif
                             </div>
                         </div>
@@ -101,55 +115,55 @@
                         <br><br>
                     </div>
                     @foreach ($preakademik->take(1) as $item)
-                    <div class="col-lg-4 col-md-6">
-                        <div class="box">
-                            <div>
-                                <h5 class="card-title"><b>{{ $item->title }}</b></h5>
-                                <p>{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</p>
-                            </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="box">
+                                <div>
+                                    <h5 class="card-title"><b>{{ $item->title }}</b></h5>
+                                    <p>{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</p>
+                                </div>
 
-                            <div class="square-image">
-                                <img class="small-square-img"
-                                    src="{{ asset('storage/' . ($item->gambar_1 ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
-                                    alt="">
-                            </div>
+                                <div class="square-image">
+                                    <img class="small-square-img"
+                                        src="{{ asset('storage/' . ($item->gambar_1 ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
+                                        alt="">
+                                </div>
 
-                            @php
-                                $limitedContent = Str::limit($item->deskripsi, 300);
-                                $formattedContent = nl2br($limitedContent);
-                            @endphp
-                            <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
-                            @if (strlen($item->deskripsi) > 200)
-                                <p class="btn btn-primary">Read More</p>
-                            @endif
+                                @php
+                                    $limitedContent = Str::limit($item->deskripsi, 300);
+                                    $formattedContent = nl2br($limitedContent);
+                                @endphp
+                                <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
+                                @if (strlen($item->deskripsi) > 200)
+                                    <p class="btn btn-primary">Read More</p>
+                                @endif
+                            </div>
                         </div>
-                    </div>
                     @endforeach
 
                     @foreach ($prenonakademik->take(2) as $item)
-                    <div class="col-lg-4 col-md-6">
-                        <div class="box">
-                            <div>
-                                <h5 class="card-title"><b>{{ $item->title }}</b></h5>
-                                <p>{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</p>
-                            </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="box">
+                                <div>
+                                    <h5 class="card-title"><b>{{ $item->title }}</b></h5>
+                                    <p>{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</p>
+                                </div>
 
-                            <div class="square-image">
-                                <img class="small-square-img"
-                                    src="{{ asset('storage/' . ($item->gambar_1 ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
-                                    alt="">
-                            </div>
+                                <div class="square-image">
+                                    <img class="small-square-img"
+                                        src="{{ asset('storage/' . ($item->gambar_1 ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
+                                        alt="">
+                                </div>
 
-                            @php
-                                $limitedContent = Str::limit($item->deskripsi, 300);
-                                $formattedContent = nl2br($limitedContent);
-                            @endphp
-                            <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
-                            @if (strlen($item->deskripsi) > 200)
-                                <p class="btn btn-primary">Read More</p>
-                            @endif
+                                @php
+                                    $limitedContent = Str::limit($item->deskripsi, 300);
+                                    $formattedContent = nl2br($limitedContent);
+                                @endphp
+                                <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
+                                @if (strlen($item->deskripsi) > 200)
+                                    <p class="btn btn-primary">Read More</p>
+                                @endif
+                            </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
@@ -167,81 +181,84 @@
                         <br><br>
                     </div>
                     @foreach ($bkm->take(1) as $item)
-                    <div class="col-lg-4 col-md-6">
-                        <div class="box">
-                            <div>
-                                <h5 class="card-title"><b>{{ $item->nama_kegiatan }}</b></h5>
-                                <p>{{ \Carbon\Carbon::parse($item->mulai_tanggal)->translatedFormat('d F Y') }} - {{ \Carbon\Carbon::parse($item->akhir_tanggal)->translatedFormat('d F Y') }}</p>
-                            </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="box">
+                                <div>
+                                    <h5 class="card-title"><b>{{ $item->nama_kegiatan }}</b></h5>
+                                    <p>{{ \Carbon\Carbon::parse($item->mulai_tanggal)->translatedFormat('d F Y') }} -
+                                        {{ \Carbon\Carbon::parse($item->akhir_tanggal)->translatedFormat('d F Y') }}</p>
+                                </div>
 
-                            <div class="square-image">
-                                <img class="small-square-img"
-                                    src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
-                                    alt="">
-                            </div>
+                                <div class="square-image">
+                                    <img class="small-square-img"
+                                        src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
+                                        alt="">
+                                </div>
 
-                            @php
-                                $limitedContent = Str::limit($item->deskripsi, 300);
-                                $formattedContent = nl2br($limitedContent);
-                            @endphp
-                            <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
-                            @if (strlen($item->deskripsi) > 200)
-                                <a href="{{ route('detail-bkm', $item->id) }}" class="btn btn-primary">Read More</a>
-                            @endif
+                                @php
+                                    $limitedContent = Str::limit($item->deskripsi, 300);
+                                    $formattedContent = nl2br($limitedContent);
+                                @endphp
+                                <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
+                                @if (strlen($item->deskripsi) > 200)
+                                    <a href="{{ route('detail-bkm', $item->id) }}" class="btn btn-primary">Read More</a>
+                                @endif
+                            </div>
                         </div>
-                    </div>
                     @endforeach
 
                     @foreach ($ukm->take(1) as $item)
-                    <div class="col-lg-4 col-md-6">
-                        <div class="box">
-                            <div>
-                                <h5 class="card-title"><b>{{ $item->nama_ukm }}</b></h5>
-                                <p>{{ \Carbon\Carbon::parse($item->mulai_tanggal)->translatedFormat('d F Y') }} - {{ \Carbon\Carbon::parse($item->akhir_tanggal)->translatedFormat('d F Y') }}</p>
-                            </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="box">
+                                <div>
+                                    <h5 class="card-title"><b>{{ $item->nama_ukm }}</b></h5>
+                                    <p>{{ \Carbon\Carbon::parse($item->mulai_tanggal)->translatedFormat('d F Y') }} -
+                                        {{ \Carbon\Carbon::parse($item->akhir_tanggal)->translatedFormat('d F Y') }}</p>
+                                </div>
 
-                            <div class="square-image">
-                                <img class="small-square-img"
-                                    src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
-                                    alt="">
-                            </div>
+                                <div class="square-image">
+                                    <img class="small-square-img"
+                                        src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
+                                        alt="">
+                                </div>
 
-                            @php
-                                $limitedContent = Str::limit($item->deskripsi, 300);
-                                $formattedContent = nl2br($limitedContent);
-                            @endphp
-                            <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
-                            @if (strlen($item->deskripsi) > 200)
-                                <a href="{{ route('detail-ukm', $item->id) }}" class="btn btn-primary">Read More</a>
-                            @endif
+                                @php
+                                    $limitedContent = Str::limit($item->deskripsi, 300);
+                                    $formattedContent = nl2br($limitedContent);
+                                @endphp
+                                <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
+                                @if (strlen($item->deskripsi) > 200)
+                                    <a href="{{ route('detail-ukm', $item->id) }}" class="btn btn-primary">Read More</a>
+                                @endif
+                            </div>
                         </div>
-                    </div>
                     @endforeach
 
                     @foreach ($hima->take(1) as $item)
-                    <div class="col-lg-4 col-md-6">
-                        <div class="box">
-                            <div>
-                                <h5 class="card-title"><b>{{ $item->nama_himpunan }}</b></h5>
-                                <p>{{ \Carbon\Carbon::parse($item->mulai_tanggal)->translatedFormat('d F Y') }} - {{ \Carbon\Carbon::parse($item->akhir_tanggal)->translatedFormat('d F Y') }}</p>
-                            </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="box">
+                                <div>
+                                    <h5 class="card-title"><b>{{ $item->nama_himpunan }}</b></h5>
+                                    <p>{{ \Carbon\Carbon::parse($item->mulai_tanggal)->translatedFormat('d F Y') }} -
+                                        {{ \Carbon\Carbon::parse($item->akhir_tanggal)->translatedFormat('d F Y') }}</p>
+                                </div>
 
-                            <div class="square-image">
-                                <img class="small-square-img"
-                                    src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
-                                    alt="">
-                            </div>
+                                <div class="square-image">
+                                    <img class="small-square-img"
+                                        src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
+                                        alt="">
+                                </div>
 
-                            @php
-                                $limitedContent = Str::limit($item->deskripsi, 300);
-                                $formattedContent = nl2br($limitedContent);
-                            @endphp
-                            <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
-                            @if (strlen($item->deskripsi) > 200)
-                                <a href="{{ route('detail-hima', $item->id) }}" class="btn btn-primary">Read More</a>
-                            @endif
+                                @php
+                                    $limitedContent = Str::limit($item->deskripsi, 300);
+                                    $formattedContent = nl2br($limitedContent);
+                                @endphp
+                                <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
+                                @if (strlen($item->deskripsi) > 200)
+                                    <a href="{{ route('detail-hima', $item->id) }}" class="btn btn-primary">Read More</a>
+                                @endif
+                            </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
@@ -259,55 +276,57 @@
                         <br><br>
                     </div>
                     @foreach ($pkm->take(1) as $item)
-                    <div class="col-lg-4 col-md-6">
-                        <div class="box">
-                            <div>
-                                <h5 class="card-title"><b>{{ $item->judul }}</b></h5>
-                                <p>{{ \Carbon\Carbon::parse($item->mulai_tanggal)->translatedFormat('d F Y') }} - {{ \Carbon\Carbon::parse($item->akhir_tanggal)->translatedFormat('d F Y') }}</p>
-                            </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="box">
+                                <div>
+                                    <h5 class="card-title"><b>{{ $item->judul }}</b></h5>
+                                    <p>{{ \Carbon\Carbon::parse($item->mulai_tanggal)->translatedFormat('d F Y') }} -
+                                        {{ \Carbon\Carbon::parse($item->akhir_tanggal)->translatedFormat('d F Y') }}</p>
+                                </div>
 
-                            <div class="square-image">
-                                <img class="small-square-img"
-                                    src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
-                                    alt="">
-                            </div>
+                                <div class="square-image">
+                                    <img class="small-square-img"
+                                        src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
+                                        alt="">
+                                </div>
 
-                            @php
-                                $limitedContent = Str::limit($item->deskripsi, 300);
-                                $formattedContent = nl2br($limitedContent);
-                            @endphp
-                            <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
-                            @if (strlen($item->deskripsi) > 200)
-                                <a href="{{ route('detail-pkm', $item->id) }}" class="btn btn-primary">Read More</a>
-                            @endif
+                                @php
+                                    $limitedContent = Str::limit($item->deskripsi, 300);
+                                    $formattedContent = nl2br($limitedContent);
+                                @endphp
+                                <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
+                                @if (strlen($item->deskripsi) > 200)
+                                    <a href="{{ route('detail-pkm', $item->id) }}" class="btn btn-primary">Read More</a>
+                                @endif
+                            </div>
                         </div>
-                    </div>
                     @endforeach
 
                     @foreach ($pkk->take(2) as $item)
-                    <div class="col-lg-4 col-md-6">
-                        <div class="box">
-                            <div>
-                                <h5 class="card-title"><b>{{ $item->judul }}</b></h5>
-                                <p>{{ \Carbon\Carbon::parse($item->mulai_tanggal)->translatedFormat('d F Y') }} - {{ \Carbon\Carbon::parse($item->akhir_tanggal)->translatedFormat('d F Y') }}</p>
-                            </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="box">
+                                <div>
+                                    <h5 class="card-title"><b>{{ $item->judul }}</b></h5>
+                                    <p>{{ \Carbon\Carbon::parse($item->mulai_tanggal)->translatedFormat('d F Y') }} -
+                                        {{ \Carbon\Carbon::parse($item->akhir_tanggal)->translatedFormat('d F Y') }}</p>
+                                </div>
 
-                            <div class="square-image">
-                                <img class="small-square-img"
-                                    src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
-                                    alt="">
-                            </div>
+                                <div class="square-image">
+                                    <img class="small-square-img"
+                                        src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
+                                        alt="">
+                                </div>
 
-                            @php
-                                $limitedContent = Str::limit($item->deskripsi, 300);
-                                $formattedContent = nl2br($limitedContent);
-                            @endphp
-                            <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
-                            @if (strlen($item->deskripsi) > 200)
-                                <a href="{{ route('detail-pkk', $item->id) }}" class="btn btn-primary">Read More</a>
-                            @endif
+                                @php
+                                    $limitedContent = Str::limit($item->deskripsi, 300);
+                                    $formattedContent = nl2br($limitedContent);
+                                @endphp
+                                <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
+                                @if (strlen($item->deskripsi) > 200)
+                                    <a href="{{ route('detail-pkk', $item->id) }}" class="btn btn-primary">Read More</a>
+                                @endif
+                            </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
@@ -329,10 +348,13 @@
                             <div class="box">
                                 <div>
                                     <h5 class="card-title"><b>{{ $item->title }}</b></h5>
-                                    <p>{{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }} - {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}</p>
+                                    <p>{{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }} -
+                                        {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}</p>
                                 </div>
                                 <div class="square-image">
-                                    <img class="small-square-img" src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}" alt="">
+                                    <img class="small-square-img"
+                                        src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
+                                        alt="">
                                 </div>
                                 @php
                                     $limitedContent = Str::limit($item->content, 300);
@@ -340,7 +362,8 @@
                                 @endphp
                                 <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
                                 @if (strlen($item->content) > 200)
-                                    <a href="{{ route('detail-berita', $item->id) }}" class="btn btn-primary">Read More</a>
+                                    <a href="{{ route('detail-berita', $item->id) }}" class="btn btn-primary">Read
+                                        More</a>
                                 @endif
                             </div>
                         </div>
