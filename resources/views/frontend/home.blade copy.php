@@ -171,7 +171,7 @@
                         <div class="box">
                             <div>
                                 <h5 class="card-title"><b>{{ $item->nama_kegiatan }}</b></h5>
-                                <p>{{ \Carbon\Carbon::parse($item->mulai_tanggal)->translatedFormat('d F Y') }} - {{ \Carbon\Carbon::parse($item->akhir_tanggal)->translatedFormat('d F Y') }}</p>
+                                <p>{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</p>
                             </div>
 
                             <div class="square-image">
@@ -197,7 +197,7 @@
                         <div class="box">
                             <div>
                                 <h5 class="card-title"><b>{{ $item->nama_ukm }}</b></h5>
-                                <p>{{ \Carbon\Carbon::parse($item->mulai_tanggal)->translatedFormat('d F Y') }} - {{ \Carbon\Carbon::parse($item->akhir_tanggal)->translatedFormat('d F Y') }}</p>
+                                <p>{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</p>
                             </div>
 
                             <div class="square-image">
@@ -223,7 +223,7 @@
                         <div class="box">
                             <div>
                                 <h5 class="card-title"><b>{{ $item->nama_himpunan }}</b></h5>
-                                <p>{{ \Carbon\Carbon::parse($item->mulai_tanggal)->translatedFormat('d F Y') }} - {{ \Carbon\Carbon::parse($item->akhir_tanggal)->translatedFormat('d F Y') }}</p>
+                                <p>{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</p>
                             </div>
 
                             <div class="square-image">
@@ -263,7 +263,7 @@
                         <div class="box">
                             <div>
                                 <h5 class="card-title"><b>{{ $item->judul }}</b></h5>
-                                <p>{{ \Carbon\Carbon::parse($item->mulai_tanggal)->translatedFormat('d F Y') }} - {{ \Carbon\Carbon::parse($item->akhir_tanggal)->translatedFormat('d F Y') }}</p>
+                                <p>{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</p>
                             </div>
 
                             <div class="square-image">
@@ -289,7 +289,7 @@
                         <div class="box">
                             <div>
                                 <h5 class="card-title"><b>{{ $item->judul }}</b></h5>
-                                <p>{{ \Carbon\Carbon::parse($item->mulai_tanggal)->translatedFormat('d F Y') }} - {{ \Carbon\Carbon::parse($item->akhir_tanggal)->translatedFormat('d F Y') }}</p>
+                                <p>{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</p>
                             </div>
 
                             <div class="square-image">
