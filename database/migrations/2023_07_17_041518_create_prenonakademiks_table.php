@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('pretims', function (Blueprint $table) {
+        Schema::create('prenonakademiks', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('nama_tim');
-            $table->text('nama_peserta');
+            $table->text('nama');
             $table->string('tingkat_kejuaraan');
             $table->string('gambar_1');
             $table->string('gambar_2')->nullable();

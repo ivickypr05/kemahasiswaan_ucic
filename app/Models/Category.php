@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\Pretim;
-use App\Models\Preindividu;
+
+use App\Models\Preakademik;
+use App\Models\Prenonakademik;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -14,12 +15,12 @@ class Category extends Model
     protected $fillable = [
         'nama'
     ];
-    public function preindividu(): HasMany
+    public function preakademik(): HasMany
     {
-        return $this->hasMany(Preindividu::class, 'category_id', 'id');
+        return $this->hasMany(Preakademik::class, 'category_id', 'id');
     }
-    public function pretim(): HasMany
+    public function prenonakademik(): HasMany
     {
-        return $this->hasMany(Pretim::class, 'category_id', 'id');
+        return $this->hasMany(Prenonakademik::class, 'category_id', 'id');
     }
 }

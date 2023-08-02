@@ -7,13 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Pretim extends Model
+class Prenonakademik extends Model
 {
     use HasFactory;
     protected $fillable = [
         'title',
-        'nama_tim',
-        'nama_peserta',
+        'nama',
         'tingkat_kejuaraan',
         'gambar_1',
         'gambar_2',

@@ -1,5 +1,5 @@
 @extends('layouts-admin.app')
-@section('title', 'UCIC | Tambah Prestasi Tim')
+@section('title', 'UCIC | Edit Prestasi Non Akademik')
 @section('style')
 
 @endsection
@@ -16,9 +16,10 @@
                         <li class="breadcrumb-item">/</li>
                         <li class="breadcrumb-item">Prestasi</li>
                         <li class="breadcrumb-item">/</li>
-                        <li class="breadcrumb-item">Prestasi Tim</li>
+                        <li class="breadcrumb-item">Prestasi Non Akademik</li>
                         <li class="breadcrumb-item">/</li>
-                        <li class="breadcrumb-item">Add Prestasi Tim</li>
+                        <li class="breadcrumb-item">Edit Prestasi Non Akademik</li>
+
                     </ol>
                 </div>
 
@@ -32,18 +33,20 @@
         <div class="col-md-6">
             <div class="card card-primary">
                 <div class="card-header text-center" style="border-radius:10px 10px 0px 0px; background-color: #1C3F94;">
-                    <h3 class="card-title text-white">Add Prestasi Tim</h3>
+                    <h3 class="card-title text-white">Edit Prestasi Non Akademik</h3>
                 </div>
-
-                <form action="{{ route('prestasi-tim-store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('prestasi-nonakademik-update', $prenonakademik->id) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
-                    @include('components.form-message')
 
                     <div class="card-body">
+
+                        @include('components.form-message')
+
                         <div class="form-group mb-3">
-                            <label for="name">Judul Prestasi</label>
+                            <label for="name">Judul Prestasi Non Akademik</label>
                             <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
-                                name="title" value="{{ old('title') }}" placeholder="Enter ">
+                                name="title" placeholder="Enter " value="{{ $prenonakademik->title }}">
 
                             @error('title')
                                 <span class="invalid-feedback" role="alert">
@@ -52,38 +55,27 @@
                             @enderror
                         </div>
                         <div class="form-group mb-3">
-                            <label for="name">Nama Tim / Kelompok / Grup</label>
-                            <input type="text" class="form-control @error('nama_tim') is-invalid @enderror"
-                                id="nama_tim" name="nama_tim" value="{{ old('nama_tim') }}" placeholder="Enter ">
-
-                            @error('nama_tim')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group mb-3">
                             <label for="name">Nama Peserta</label>
-                            <p class="text-primary">Contoh untuk kategori tim: <br>
+                            <p class="text-primary">Contoh : <br>
                                 1. Iko Vicky Pratama <br>
                                 2. Ahmad Alif Fauzan <br>
                                 3. <br>
                                 dst..
                             </p>
-                            <textarea class="form-control @error('nama_peserta') is-invalid @enderror" value="{{ old('nama_peserta') }}"
-                                name="nama_peserta" rows="3"></textarea>
-
-                            @error('nama_peserta')
+                            <p class="text-primary">Jika kategori individu langsung diisi saja!</p>
+                            <textarea class="form-control @error('nama') is-invalid @enderror" name="nama" rows="3"> {{ $prenonakademik->nama }}</textarea>
+                            @error('nama')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
                         </div>
+
                         <div class="form-group mb-3">
                             <label for="name">Tingkat Kejuaraan (contoh : Kota/Provinsi/Nasional/Internasional)</label>
                             <input type="text" class="form-control @error('tingkat_kejuaraan') is-invalid @enderror"
-                                id="tingkat_kejuaraan" name="tingkat_kejuaraan" value="{{ old('tingkat_kejuaraan') }}"
-                                placeholder="Enter ">
+                                id="tingkat_kejuaraan" name="tingkat_kejuaraan" placeholder="Enter "
+                                value="{{ $prenonakademik->tingkat_kejuaraan }}">
 
                             @error('tingkat_kejuaraan')
                                 <span class="invalid-feedback" role="alert">
@@ -94,8 +86,15 @@
 
                         <div class="form-group mb-3">
                             <label for="name">Foto 1 (Wajib)</label>
+                            @if ($prenonakademik->gambar_1)
+                                <div class="mb-3">
+                                    <img id="gambar_prestasi-nonakademik"
+                                        src="{{ url('storage/' . $prenonakademik->gambar_1) }}" width="110px"
+                                        alt="">
+                                </div>
+                            @endif
                             <input type="file" class="form-control @error('gambar_1') is-invalid @enderror"
-                                id="gambar_1" name="gambar_1" value="{{ old('gambar_1') }}" placeholder="Enter ">
+                                id="gambar_1" name="gambar_1" value="" placeholder="Enter ">
 
                             @error('gambar_1')
                                 <span class="invalid-feedback" role="alert">
@@ -105,8 +104,15 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="name">Foto 2 (Opsional)</label>
+                            @if ($prenonakademik->gambar_2)
+                                <div class="mb-3">
+                                    <img id="gambar_prestasi-nonakademik"
+                                        src="{{ url('storage/' . $prenonakademik->gambar_2) }}" width="110px"
+                                        alt="">
+                                </div>
+                            @endif
                             <input type="file" class="form-control @error('gambar_2') is-invalid @enderror"
-                                id="gambar_2" name="gambar_2" value="{{ old('gambar_2') }}" placeholder="Enter ">
+                                id="gambar_2" name="gambar_2" value="" placeholder="Enter ">
 
                             @error('gambar_2')
                                 <span class="invalid-feedback" role="alert">
@@ -116,9 +122,15 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="name">Foto 3 (Opsional)</label>
+                            @if ($prenonakademik->gambar_3)
+                                <div class="mb-3">
+                                    <img id="gambar_prestasi-nonakademik"
+                                        src="{{ url('storage/' . $prenonakademik->gambar_3) }}" width="110px"
+                                        alt="">
+                                </div>
+                            @endif
                             <input type="file" class="form-control @error('gambar_3') is-invalid @enderror"
-                                id="gambar_3" name="gambar_3" value="{{ old('gambar_3') }}" placeholder="Enter ">
-
+                                id="gambar_3" name="gambar_3" value="" placeholder="Enter ">
 
                             @error('gambar_3')
                                 <span class="invalid-feedback" role="alert">
@@ -130,8 +142,8 @@
 
                         <div class="form-group mb-3">
                             <label for="name">Deskripsi</label>
-                            <textarea class="form-control @error('deskripsi') is-invalid @enderror" value="{{ old('deskripsi') }}" name="deskripsi"
-                                rows="4" cols="50"></textarea>
+                            <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" rows="4"
+                                cols="50">{{ $prenonakademik->deskripsi }}</textarea>
 
                             @error('deskripsi')
                                 <span class="invalid-feedback" role="alert">
@@ -141,9 +153,10 @@
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="name">Tanggal</label>
+                            <label for="name">Tanggal Juara</label>
                             <input type="date" class="form-control @error('tanggal') is-invalid @enderror"
-                                id="tanggal" name="tanggal" value="{{ old('tanggal') }}" placeholder="Enter ">
+                                id="tanggal" name="tanggal" value="{{ $prenonakademik->tanggal }}"
+                                placeholder="Enter ">
 
                             @error('tanggal')
                                 <span class="invalid-feedback" role="alert">
@@ -152,14 +165,14 @@
                             @enderror
                         </div>
 
-                        <div class="form-group mb-3">
-                            <label for="select" class="form-label">
-                                Pilih Kategori untuk Prestasi</label>
+                        <div>
+                            <label for="select" class="form-label">Pilih Kategori Untuk Prestasi</label>
                             <select class="form-select @error('category_id') is-invalid @enderror"
                                 aria-label="Default select example" name="category_id">
-                                <option selected>Kategori Prestasi</option>
                                 @foreach ($categories as $item)
-                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                    <option value="{{ $item->id }}"
+                                        {{ $prenonakademik->category_id == $item->id ? 'selected' : '' }}>
+                                        {{ $item->nama }}</option>
                                 @endforeach
                             </select>
                             @error('category_id')
@@ -167,18 +180,21 @@
                                     {{ $message }}
                                 </div>
                             @enderror
-                        </div>
 
+                        </div>
                     </div>
                     <!-- /.card-body -->
 
                     <div class="card-footer" style="border-radius:0px 0px 10px 10px; background-color: #1C3F94;">
-                        <button type="submit" class="btn btn-success btn-footer">Add</button>
-                        <a href="{{ route('prestasi-tim-list') }}" class="btn btn-secondary btn-footer">Back</a>
+                        <button type="submit" class="btn btn-success btn-footer">Save</button>
+                        <a href="javascript:void(0);" onclick="history.back();"
+                            class="btn btn-secondary btn-footer">Back</a>
                     </div>
                 </form>
             </div>
         </div>
+
+
     </div>
 @endsection
 

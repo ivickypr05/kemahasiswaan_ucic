@@ -1,5 +1,5 @@
 @extends('layouts-admin.app')
-@section('title', 'UCIC | List Prestasi Tim')
+@section('title', 'UCIC | List Prestasi Non Akademik')
 @section('style')
 
 @endsection
@@ -16,9 +16,9 @@
                         <li class="breadcrumb-item">/</li>
                         <li class="breadcrumb-item">Prestasi</li>
                         <li class="breadcrumb-item">/</li>
-                        <li class="breadcrumb-item">Prestasi Tim</li>
+                        <li class="breadcrumb-item">Prestasi Non Akademik</li>
                         <li class="breadcrumb-item">/</li>
-                        <li class="breadcrumb-item">List Prestasi Tim</li>
+                        <li class="breadcrumb-item">List Prestasi Non Akademik</li>
 
                     </ol>
                 </div>
@@ -37,12 +37,12 @@
                         <div class="col-6 mt-1">
                             <span class="tx-bold text-lg text-white" style="font-size:1.2rem;">
                                 <i class="far fa-user text-lg"></i>
-                                List Prestasi Tim
+                                List Prestasi Non Akademik
                             </span>
                         </div>
 
                         <div class="col-6 d-flex justify-content-end">
-                            <a href="{{ route('prestasi-tim-create') }}" class="btn btn-md btn-info">
+                            <a href="{{ route('prestasi-nonakademik-create') }}" class="btn btn-md btn-info">
                                 <i class="fa fa-plus"></i>
                                 Add New
                             </a>
@@ -62,8 +62,7 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Judul Prestasi</th>
-                                <th>Nama Tim</th>
+                                <th>Judul Prestasi Non Akademik</th>
                                 <th>Nama Peserta</th>
                                 <th>Tingkat Kejuaraan</th>
                                 <th>Foto 1</th>
@@ -71,16 +70,16 @@
                                 <th>Foto 3</th>
                                 <th>Deskripsi</th>
                                 <th>Tanggal</th>
+                                <th>Kategori Prestasi</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($pretim as $item)
+                            @foreach ($prenonakademik as $item)
                                 <tr>
                                     <th>{{ $loop->iteration }}</th>
                                     <th>{{ $item->title }}</th>
-                                    <th>{{ $item->nama_tim }}</th>
-                                    <th>{{ Str::limit($item->nama_peserta, 20) }}</th>
+                                    <th>{{ Str::limit($item->nama, 20) }}</th>
                                     <th>{{ $item->tingkat_kejuaraan }}</th>
                                     <th>
                                         <img src="{{ asset('storage/' . $item->gambar_1) }}" width="110px">
@@ -93,14 +92,15 @@
                                     </th>
                                     <th>{{ Str::limit($item->deskripsi, 100) }}</th>
                                     <th>{{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }}
+                                    <th>{{ $item->categories->nama }}</th>
                                     <th>
                                         <div class="btn-group">
-                                            <a href="{{ route('prestasi-tim-edit', $item->id) }}"
+                                            <a href="{{ route('prestasi-nonakademik-edit', $item->id) }}"
                                                 class="btn btn-warning text-white">
                                                 <i class="far fa-edit"></i>
                                                 Edit
                                             </a>
-                                            <a href="{{ route('prestasi-tim-destroy', $item->id) }}"
+                                            <a href="{{ route('prestasi-nonakademik-destroy', $item->id) }}"
                                                 class="btn btn-danger f-12">
                                                 <i class="far fa-trash-alt"></i>
                                                 Delete

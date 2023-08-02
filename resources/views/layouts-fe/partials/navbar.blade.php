@@ -11,8 +11,9 @@
                         <li><a href="{{ route('prestasi-akademik') }}"
                                 class="{{ request()->routeIs('prestasi-akademik') ? 'active' : '' }}">Prestasi
                                 Akademik</a></li>
-                        <li><a href="{{ route('prestasi-tim') }}"
-                                class="{{ request()->routeIs('prestasi-tim') ? 'active' : '' }}">Prestasi Tim</a></li>
+                        <li><a href="{{ route('prestasi-nonakademik') }}"
+                                class="{{ request()->routeIs('prestasi-nonakademik') ? 'active' : '' }}">Prestasi Non
+                                Akademik</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

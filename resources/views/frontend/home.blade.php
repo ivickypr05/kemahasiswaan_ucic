@@ -123,7 +123,7 @@
                 </div>
 
                 {{-- Mengambil 1 data dari tabel preindividu --}}
-                @foreach ($preindividu->take(1) as $item)
+                @foreach ($preakademik->take(1) as $item)
                     <div class="col-lg-4 col-md-6">
                         <div class="box">
                             <div>
@@ -150,7 +150,7 @@
                 @endforeach
 
                 {{-- Mengambil 2 data dari tabel pretim --}}
-                @foreach ($pretim->take(2) as $item)
+                @foreach ($prenonakademik->take(2) as $item)
                     <div class="col-lg-4 col-md-6">
                         <div class="box">
                             <div>

@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Beasiswa;
-use App\Models\Preindividu;
-use App\Models\Pretim;
+use App\Models\Preakademik;
+use App\Models\Prenonakademik;
 use App\Models\Bkm;
 use App\Models\Ukm;
 use App\Models\Hima;
@@ -23,8 +23,8 @@ class HomeController extends Controller
     public function index()
     {
         $beasiswa = Beasiswa::all();
-        $preindividu = Preindividu::with('categories')->get();
-        $pretim = Pretim::with('categories')->get();
+        $preakademik = Preakademik::with('categories')->get();
+        $prenonakademik = Prenonakademik::with('categories')->get();
         $bkm = Bkm::all();
         $ukm = Ukm::all();
         $hima = Hima::all();
@@ -32,7 +32,7 @@ class HomeController extends Controller
         $pkk = Pkk::all();
         $berita = Berita::all();
 
-        return view('frontend.home', compact('beasiswa', 'preindividu', 'pretim', 'bkm', 'ukm', 'hima', 'pkm', 'pkk', 'berita'));
+        return view('frontend.home', compact('beasiswa', 'preakademik', 'prenonakademik', 'bkm', 'ukm', 'hima', 'pkm', 'pkk', 'berita'));
     }
 
     /**

@@ -13,7 +13,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\BeasiswaController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\PrestasiTimController;
+use App\Http\Controllers\PrestasiNonAkademikController;
 use App\Http\Controllers\StrukturBkmController;
 use App\Http\Controllers\PrestasiAkademikController;
 use App\Http\Controllers\ProfilHimaController;
@@ -43,8 +43,8 @@ Route::get('beasiswa/{id}', [BeasiswaController::class, 'show'])->name('detail-b
 Route::get('prestasi-akademik', [PrestasiAkademikController::class, 'frontPrestasiakademik'])->name('prestasi-akademik');
 Route::get('prestasi-akademik-detail/{id}', [PrestasiAkademikController::class, 'show'])->name('detail-prestasi-akademik');
 
-Route::get('prestasi-tim', [PrestasiTimController::class, 'frontPrestasiTim'])->name('prestasi-tim');
-Route::get('prestasi-tim-detail/{id}', [PrestasiTimController::class, 'show'])->name('detail-prestasi-tim');
+Route::get('prestasi-nonakademik', [PrestasiNonAkademikController::class, 'frontPrestasinonakademik'])->name('prestasi-nonakademik');
+Route::get('prestasi-nonakademik-detail/{id}', [PrestasiNonAkademikController::class, 'show'])->name('detail-prestasi-nonakademik');
 
 
 Route::get('organisasi-ukm', [UkmController::class, 'frontUkm'])->name('organisasi-ukm');
@@ -121,16 +121,13 @@ Route::middleware('auth:web')->group(function () {
     Route::post('prestasi-akademik-update/{id}', [PrestasiAkademikController::class, 'update'])->name('prestasi-akademik-update');
     Route::get('prestasi-akademik-destroy/{id}', [PrestasiAkademikController::class, 'destroy'])->name('prestasi-akademik-destroy');
 
-    // Prestasi Tim Manajemen
-    Route::get('prestasi-tim-list', [PrestasiTimController::class, 'index'])->name('prestasi-tim-list');
-    Route::get('prestasi-tim-create', [PrestasiTimController::class, 'create'])->name('prestasi-tim-create');
-    Route::post('prestasi-tim-store', [PrestasiTimController::class, 'store'])->name('prestasi-tim-store');
-    Route::get('prestasi-tim-edit/{id}', [PrestasiTimController::class, 'edit'])->name('prestasi-tim-edit');
-    Route::post('prestasi-tim-update/{id}', [PrestasiTimController::class, 'update'])->name('prestasi-tim-update');
-    Route::get('prestasi-tim-destroy/{id}', [PrestasiTimController::class, 'destroy'])->name('prestasi-tim-destroy');
-
-    //UKM Manajemen
-    Route::get('prestasi-list', [RekapPrestasiController::class, 'index'])->name('prestasi-list');
+    // Prestasi Non Akademik Manajemen
+    Route::get('prestasi-nonakademik-list', [PrestasiNonAkademikController::class, 'index'])->name('prestasi-nonakademik-list');
+    Route::get('prestasi-nonakademik-create', [PrestasiNonAkademikController::class, 'create'])->name('prestasi-nonakademik-create');
+    Route::post('prestasi-nonakademik-store', [PrestasiNonAkademikController::class, 'store'])->name('prestasi-nonakademik-store');
+    Route::get('prestasi-nonakademik-edit/{id}', [PrestasiNonAkademikController::class, 'edit'])->name('prestasi-nonakademik-edit');
+    Route::post('prestasi-nonakademik-update/{id}', [PrestasiNonAkademikController::class, 'update'])->name('prestasi-nonakademik-update');
+    Route::get('prestasi-nonakademik-destroy/{id}', [PrestasiNonAkademikController::class, 'destroy'])->name('prestasi-nonakademik-destroy');
 
 
     // Organisasi UKM Manajemen
