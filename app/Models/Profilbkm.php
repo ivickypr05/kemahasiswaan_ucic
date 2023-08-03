@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Strukturbkm extends Model
+class Profilbkm extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'struktur_bkm'
+        'logo',
+        'struktur_bkm',
+        'deskripsi'
     ];
 }

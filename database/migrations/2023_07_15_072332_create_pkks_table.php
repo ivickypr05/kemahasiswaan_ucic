@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->string('gambar');
+            $table->string('pedoman');
             $table->text('deskripsi');
             $table->string('mulai_tanggal');
             $table->string('akhir_tanggal');

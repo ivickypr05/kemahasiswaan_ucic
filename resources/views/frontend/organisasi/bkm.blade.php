@@ -54,9 +54,8 @@
     </div>
 
     <div class="container d-flex justify-content-center mt-3 mb-5">
-        <a href="{{ route('struktur-bkm') }}"
-            class="btn btn-transparent btn-outline-primary border-1 rounded rounded-pill">Profil
-            dan Struktur BKM</a>
+        <a href="{{ route('profil-bkm') }}"
+            class="btn btn-transparent btn-outline-primary border-1 rounded rounded-pill">Profil BKM</a>
     </div>
     @forelse ($bkm as $item)
         <section id="about" class="about mt-2">

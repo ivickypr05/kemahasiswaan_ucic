@@ -1,5 +1,5 @@
 @extends('layouts-admin.app')
-@section('title', 'UCIC | Tambah Struktur BKM')
+@section('title', 'UCIC | Tambah Profil BKM')
 @section('style')
 
 @endsection
@@ -18,7 +18,7 @@
                         <li class="breadcrumb-item">/</li>
                         <li class="breadcrumb-item">BKM</li>
                         <li class="breadcrumb-item">/</li>
-                        <li class="breadcrumb-item">Add Struktur BKM</li>
+                        <li class="breadcrumb-item">Add Profil BKM</li>
                     </ol>
                 </div>
 
@@ -32,14 +32,25 @@
         <div class="col-md-6">
             <div class="card card-primary">
                 <div class="card-header text-center" style="border-radius:10px 10px 0px 0px; background-color: #1C3F94;">
-                    <h3 class="card-title text-white">Add Struktur BKM</h3>
+                    <h3 class="card-title text-white">Add Profil BKM</h3>
                 </div>
 
-                <form action="{{ route('struktur-bkm-store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('profil-bkm-store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @include('components.form-message')
-
                     <div class="card-body">
+                        <div class="form-group mb-3">
+                            <label for="name">Logo BKM (JPEG, PNG, JPG)</label>
+                            <input type="file" class="form-control @error('logo') is-invalid @enderror" id="logo"
+                                name="logo" value="{{ old('logo') }}" placeholder="Masukkan logo">
+
+                            @error('logo')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
                         <div class="form-group mb-3">
                             <label for="name">Gambar Struktur BKM (JPEG, PNG, JPG)</label>
                             <input type="file" class="form-control @error('struktur_bkm') is-invalid @enderror"
@@ -52,12 +63,23 @@
                                 </span>
                             @enderror
                         </div>
+                        <div class="form-group mb-3">
+                            <label for="name">Deskripsi</label>
+                            <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" rows="4" cols="50">{{ old('deskripsi') }}</textarea>
+
+                            @error('deskripsi')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+
                     </div>
                     <!-- /.card-body -->
 
                     <div class="card-footer" style="border-radius:0px 0px 10px 10px; background-color: #1C3F94;">
                         <button type="submit" class="btn btn-success btn-footer">Add</button>
-                        <a href="{{ route('struktur-bkm-list') }}" class="btn btn-secondary btn-footer">Back</a>
+                        <a href="{{ route('profil-bkm-list') }}" class="btn btn-secondary btn-footer">Back</a>
                     </div>
                 </form>
             </div>

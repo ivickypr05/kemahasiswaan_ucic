@@ -17,7 +17,6 @@ class PkmController extends Controller
     public function index()
     {
         $data['pkm'] = Pkm::orderby('id', 'asc')->get();
-
         return view('admin.simbelmawa.pkm.index', $data);
     }
 
@@ -42,14 +41,18 @@ class PkmController extends Controller
     {
         $validatedData = $request->validate([
             'judul'   => 'required|string|min:3',
-            'deskripsi'   => 'required|min:3',
             'gambar'   => 'required|mimes:jpeg,jpg,png,gif',
+            'pedoman'   => 'required|mimes:pdf,docx,doc,ppt,pptx,xls,xlsx',
+            'deskripsi'   => 'required|string|min:3',
             'mulai_tanggal'   => 'required',
             'akhir_tanggal'   => 'required',
         ]);
 
         $gambar = $request->file('gambar')->store('gambar_pkm', 'public');
+        $pedoman = $request->file('pedoman')->store('pedoman_pkm', 'public');
+
         $validatedData['gambar'] = $gambar;
+        $validatedData['pedoman'] = $pedoman;
 
         Pkm::create($validatedData);
         return redirect('/pkm-list')->with('toast_success', 'PKM berhasil ditambah');
@@ -90,20 +93,30 @@ class PkmController extends Controller
     {
         $validatedData = $request->validate([
             'judul'   => 'required|string|min:3',
-            'deskripsi'   => 'required|min:3',
             'gambar'   => 'mimes:jpeg,jpg,png,gif',
+            'pedoman'   => 'mimes:pdf,docx,doc,ppt,pptx,xls,xlsx',
+            'deskripsi'   => 'required|string|min:3',
             'mulai_tanggal'   => 'required',
             'akhir_tanggal'   => 'required',
         ]);
 
         $pkm = Pkm::find($id);
-        if ($request->file('gambar')) {
+
+        // Jika ada file gambar yang diupload, simpan dan update kolom gambar
+        if ($request->hasFile('gambar')) {
             $gambar = $request->file('gambar')->store('gambar_pkm', 'public');
             File::delete('storage/' .  $pkm->gambar);
             $validatedData['gambar'] = $gambar;
         }
-        $pkm->update($validatedData);
 
+        // Jika ada file pedoman yang diupload, simpan dan update kolom pedoman
+        if ($request->hasFile('pedoman')) {
+            $pedoman = $request->file('pedoman')->store('pedoman_pkm', 'public');
+            File::delete('storage/' .  $pkm->pedoman);
+            $validatedData['pedoman'] = $pedoman;
+        }
+
+        $pkm->update($validatedData);
 
         return redirect()->route('pkm-list')->with('toast success', 'PKM berhasil diubah');
     }
@@ -118,6 +131,7 @@ class PkmController extends Controller
     {
         $pkm = Pkm::find($id);
         File::delete('storage/' . $pkm->gambar);
+        File::delete('storage/' . $pkm->pedoman);
         $pkm->delete();
 
         return redirect()->route('pkm-list')->with('toast success', 'PKM berhasil dihapus');

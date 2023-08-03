@@ -14,7 +14,7 @@ use App\Http\Controllers\BeasiswaController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PrestasiNonAkademikController;
-use App\Http\Controllers\StrukturBkmController;
+use App\Http\Controllers\ProfilBkmController;
 use App\Http\Controllers\PrestasiAkademikController;
 use App\Http\Controllers\ProfilHimaController;
 
@@ -52,7 +52,7 @@ Route::get('organisasi-ukm/{id}', [UkmController::class, 'show'])->name('detail-
 
 Route::get('organisasi-bkm', [BkmController::class, 'frontBkm'])->name('organisasi-bkm');
 Route::get('organisasi-bkm/{id}', [BkmController::class, 'show'])->name('detail-bkm');
-Route::get('struktur-bkm', [StrukturBkmController::class, 'frontStrukturBkm'])->name('struktur-bkm');
+Route::get('profil-bkm', [ProfilBkmController::class, 'frontProfilBkm'])->name('profil-bkm');
 
 Route::get('organisasi-hima', [HimaController::class, 'frontHima'])->name('organisasi-hima');
 Route::get('organisasi-hima/{id}', [HimaController::class, 'show'])->name('detail-hima');
@@ -146,12 +146,12 @@ Route::middleware('auth:web')->group(function () {
     Route::post('bkm-update/{id}', [BkmController::class, 'update'])->name('bkm-update');
     Route::get('bkm-destroy/{id}', [BkmController::class, 'destroy'])->name('bkm-destroy');
     //Sturktur Organisasi BKM Manajemen
-    Route::get('struktur-bkm-list', [StrukturBkmController::class, 'index'])->name('struktur-bkm-list');
-    Route::get('struktur-bkm-create', [StrukturBkmController::class, 'create'])->name('struktur-bkm-create');
-    Route::post('struktur-bkm-store', [StrukturBkmController::class, 'store'])->name('struktur-bkm-store');
-    Route::get('struktur-bkm-edit/{id}', [StrukturBkmController::class, 'edit'])->name('struktur-bkm-edit');
-    Route::post('struktur-bkm-update/{id}', [StrukturBkmController::class, 'update'])->name('struktur-bkm-update');
-    Route::get('struktur-bkm-destroy/{id}', [StrukturBkmController::class, 'destroy'])->name('struktur-bkm-destroy');
+    Route::get('profil-bkm-list', [ProfilBkmController::class, 'index'])->name('profil-bkm-list');
+    Route::get('profil-bkm-create', [ProfilBkmController::class, 'create'])->name('profil-bkm-create');
+    Route::post('profil-bkm-store', [ProfilBkmController::class, 'store'])->name('profil-bkm-store');
+    Route::get('profil-bkm-edit/{id}', [ProfilBkmController::class, 'edit'])->name('profil-bkm-edit');
+    Route::post('profil-bkm-update/{id}', [ProfilBkmController::class, 'update'])->name('profil-bkm-update');
+    Route::get('profil-bkm-destroy/{id}', [ProfilBkmController::class, 'destroy'])->name('profil-bkm-destroy');
 
     Route::get('berita-list', [BeritaController::class, 'index'])->name('berita-list');
     Route::get('berita-create', [BeritaController::class, 'create'])->name('berita-create');

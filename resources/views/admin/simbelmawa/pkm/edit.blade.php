@@ -70,7 +70,25 @@
                                 </span>
                             @enderror
                         </div>
+                        <div class="form-group mb-3">
+                            <label for="name">Pedoman</label>
+                            <p class="text-primary">berikut merupakan pedoman yang belum diubah</p>
+                            @if ($pkm->pedoman)
+                                <div class="mb-3">
+                                    <a href="{{ asset('storage/' . $pkm->pedoman) }}" class="btn btn-primary"
+                                        target="_blank">Buka
+                                        Pedoman</a>
+                                </div>
+                            @endif
+                            <input type="file" class="form-control @error('pedoman') is-invalid @enderror" id="pedoman"
+                                name="pedoman" value="" placeholder="Enter ">
 
+                            @error('pedoman')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                         <div class="form-group mb-3">
                             <label for="name">Deskripsi</label>
                             <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" rows="4" cols="50">{{ $pkm->deskripsi }}</textarea>

@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profilbkm;
 use App\Models\Strukturbkm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
-class StrukturBkmController extends Controller
+class ProfilBkmController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,8 @@ class StrukturBkmController extends Controller
      */
     public function index()
     {
-        $data['strukturbkm'] = Strukturbkm::get();
-        return view('admin.organisasi.bkm.struktur.index', $data);
+        $data['profilbkm'] = Profilbkm::get();
+        return view('admin.organisasi.bkm.profil.index', $data);
     }
 
     /**
@@ -26,7 +27,7 @@ class StrukturBkmController extends Controller
      */
     public function create()
     {
-        return view('admin.organisasi.bkm.struktur.add');
+        return view('admin.organisasi.bkm.profil.add');
     }
 
     /**
@@ -38,13 +39,19 @@ class StrukturBkmController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'struktur_bkm' => 'required|mimes:jpeg,jpg,png,gif'
+            'logo' => 'required|mimes:jpeg,jpg,png,gif',
+            'struktur_bkm' => 'required|mimes:jpeg,jpg,png,gif',
+            'deskripsi' => 'required|min:10'
         ]);
+
+        $logo = $request->file('logo')->store('gambar_logobkm', 'public');
         $gambar = $request->file('struktur_bkm')->store('gambar_strukturbkm', 'public');
+
+        $validatedData['logo'] = $logo;
         $validatedData['struktur_bkm'] = $gambar;
 
-        Strukturbkm::create($validatedData);
-        return redirect('/struktur-bkm-list')->with('toast success', 'Struktur BKM berhasil ditambah');
+        Profilbkm::create($validatedData);
+        return redirect('/profil-bkm-list')->with('toast success', 'Profil BKM berhasil ditambah');
     }
 
     /**
@@ -66,8 +73,8 @@ class StrukturBkmController extends Controller
      */
     public function edit($id)
     {
-        $strukturbkm = Strukturbkm::find($id);
-        return view('admin.organisasi.bkm.struktur.edit', compact('strukturbkm'));
+        $profilbkm = Profilbkm::find($id);
+        return view('admin.organisasi.bkm.profil.edit', compact('profilbkm'));
     }
 
     /**
@@ -80,18 +87,27 @@ class StrukturBkmController extends Controller
     public function update(Request $request, $id)
     {
         $validatedData = $request->validate([
-            'struktur_bkm' => 'mimes:jpeg,jpg,png,gif'
+            'logo' => 'mimes:jpeg,jpg,png,gif',
+            'struktur_bkm' => 'mimes:jpeg,jpg,png,gif',
+            'deskripsi' => 'required|min:10'
         ]);
 
-        $strukturbkm = Strukturbkm::find($id);
+        $profilbkm = Profilbkm::find($id);
+        if ($request->file('logo')) {
+            $logo = $request->file('logo')->store('gambar_logobkm', 'public');
+            File::delete('storage/' . $profilbkm->logo);
+            $validatedData['logo'] = $logo;
+        }
         if ($request->file('struktur_bkm')) {
             $gambar = $request->file('struktur_bkm')->store('gambar_strukturbkm', 'public');
-            File::delete('storage/' . $strukturbkm->struktur_bkm);
+            File::delete('storage/' . $profilbkm->struktur_bkm);
             $validatedData['struktur_bkm'] = $gambar;
         }
-        $strukturbkm->update($validatedData);
 
-        return redirect('/struktur-bkm-list')->with('toast success', 'Struktur BKM berhasil diubah');
+
+        $profilbkm->update($validatedData);
+
+        return redirect('/profil-bkm-list')->with('toast success', 'Profil BKM berhasil diubah');
     }
 
     /**
@@ -102,15 +118,16 @@ class StrukturBkmController extends Controller
      */
     public function destroy($id)
     {
-        $strukturbkm = Strukturbkm::find($id);
-        File::delete('storage/' . $strukturbkm->struktur_bkm);
-        $strukturbkm->delete();
-        return redirect('/struktur-bkm-list')->with('toast success', 'Struktur BKM berhasil dihapus');
+        $profilbkm = Profilbkm::find($id);
+        File::delete('storage/' . $profilbkm->logo);
+        File::delete('storage/' . $profilbkm->struktur_bkm);
+        $profilbkm->delete();
+        return redirect('/profil-bkm-list')->with('toast success', 'Profil BKM berhasil dihapus');
     }
 
-    public function frontStrukturBkm()
+    public function frontProfilBkm()
     {
-        $data['strukturbkm'] = Strukturbkm::get();
-        return view('frontend.organisasi.struktur_bkm', $data);
+        $data['profilbkm'] = Profilbkm::get();
+        return view('frontend.organisasi.profil_bkm', $data);
     }
 }

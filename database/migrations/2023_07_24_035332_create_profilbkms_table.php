@@ -13,9 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('strukturbkms', function (Blueprint $table) {
+        Schema::create('profilbkms', function (Blueprint $table) {
             $table->id();
+            $table->string('logo');
             $table->string('struktur_bkm');
+            $table->text('deskripsi');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('strukturbkms');
+        Schema::dropIfExists('profilbkms');
     }
 };

@@ -1,5 +1,5 @@
 @extends('layouts-fe.template')
-@section('title', 'UCIC | Profil dan Struktur Organisasi BKM')
+@section('title', 'UCIC | Profil Organisasi BKM')
 @section('style-fe')
     <style>
         .square-image {
@@ -12,13 +12,11 @@
 
         .square-image img {
             position: absolute;
-            /* top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%); */
+            /* top: 50%;                                                                                           transform: translate(-50%, -50%); */
             width: 100%;
             height: 100%;
             /* object-fit: cover;
-                object-position: center center; */
+                                                                                                                                                    object-position: center center; */
         }
 
         .content {
@@ -31,24 +29,30 @@
             text-align: center;
         }
 
-        section#about {
-            margin-top: 100px;
+
+        .img-top {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
         }
     </style>
 @endsection
 
 @section('content-fe')
-    @forelse ($strukturbkm as $item)
+    <div class="container d-flex justify-content-center" style="padding-top: 10%!important;">
+        <h1>Profil Organisasi BKM</h1>
+    </div>
+    @forelse ($profilbkm->take(1) as $item)
         <section id="about" class="about mb-5">
             <div class="container">
-                <div class="row content">
-                    <div class="col-lg-6">
-                        <div class="square-image">
-                            <h3 class="text-center">Struktur Organisasi BKM</h3>
-                            <br><br>
-                            <img src="{{ asset('storage/' . $item->struktur_bkm) }}" alt="">
-                        </div>
-                    </div>
+                <img src="{{ asset('storage/' . $item->logo) }}" class="img-top" width="250px">
+                <hr>
+                <h5 class="right-aligned-paragraph">{!! nl2br($item->deskripsi) !!}</h5>
+                <div class="square-image">
+                    <h4 class="text-center mt-4"><strong>Struktur Organisasi BKM</strong></h4>
+                    <br><br>
+                    <img src="{{ asset('storage/' . $item->struktur_bkm) }}" alt="">
                 </div>
             </div>
         </section><!-- End About Section -->
@@ -60,7 +64,7 @@
                         <br></br>
                         <br></br>
                         <br></br>
-                        <h4 class="text-center">Belum ada Struktur Organisasi BKM.</h4>
+                        <h4 class="text-center">Belum ada Profil Organisasi BKM.</h4>
                     </div>
                 </div>
             </div>

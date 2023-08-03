@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Pkk;
 use Illuminate\Http\Request;
-use DB;
-use File;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class PkkController extends Controller
 {
@@ -16,8 +16,6 @@ class PkkController extends Controller
      */
     public function index()
     {
-        $data['page_title'] = 'PKK';
-        $data['breadcumb'] = 'PKK';
         $data['pkk'] = Pkk::orderby('id', 'asc')->get();
 
         return view('admin.simbelmawa.pkk.index', $data);
@@ -30,10 +28,8 @@ class PkkController extends Controller
      */
     public function create()
     {
-        $data['page_title'] = 'PKK';
-        $data['breadcumb'] = 'PKK';
 
-        return view('admin.simbelmawa.pkk.add', $data);
+        return view('admin.simbelmawa.pkk.add');
     }
 
     /**
@@ -42,21 +38,25 @@ class PkkController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-     public function store(Request $request)
+    public function store(Request $request)
     {
         $validatedData = $request->validate([
             'judul'   => 'required|string|min:3',
+            'gambar'   => 'required|mimes:jpeg,jpg,png,gif',
+            'pedoman'   => 'required|mimes:pdf,docx,doc,ppt,pptx,xls,xlsx',
             'deskripsi'   => 'required|string|min:3',
-            'gambar'   => 'required',
             'mulai_tanggal'   => 'required',
             'akhir_tanggal'   => 'required',
         ]);
 
         $gambar = $request->file('gambar')->store('gambar_pkk', 'public');
+        $pedoman = $request->file('pedoman')->store('pedoman_pkk', 'public');
+
         $validatedData['gambar'] = $gambar;
+        $validatedData['pedoman'] = $pedoman;
 
         Pkk::create($validatedData);
-        return redirect('/pkk-list')->with('toast_success', 'PKK berhasil ditambah');
+        return redirect('/pkk-list')->with('toast_success', 'Dtata PPK berhasil ditambah');
     }
 
     /**
@@ -79,10 +79,7 @@ class PkkController extends Controller
      */
     public function edit($id)
     {
-        $data['page_title'] = 'PKK';
-        $data['breadcumb'] = 'PKK';
         $data['pkk'] = Pkk::find($id);
-
         return view('admin.simbelmawa.pkk.edit', $data);
     }
 
@@ -97,22 +94,33 @@ class PkkController extends Controller
     {
         $validatedData = $request->validate([
             'judul'   => 'required|string|min:3',
+            'gambar'   => 'mimes:jpeg,jpg,png,gif',
+            'pedoman'   => 'mimes:pdf,docx,doc,ppt,pptx,xls,xlsx',
             'deskripsi'   => 'required|string|min:3',
-            'gambar'   => 'required|mimes:jpeg,jpg,png,gif',
             'mulai_tanggal'   => 'required',
             'akhir_tanggal'   => 'required',
         ]);
 
-        $pkk = Pkk::find($id);
-        if ($request->file('gambar')) {
-            $gambar = $request->file('gambar')->store('pkk_gambar', 'public');
+
+        $pkk = Pkk::findOrFail($id);
+
+        // Jika ada file gambar yang diupload, simpan dan update kolom gambar
+        if ($request->hasFile('gambar')) {
+            $gambar = $request->file('gambar')->store('gambar_pkk', 'public');
             File::delete('storage/' .  $pkk->gambar);
             $validatedData['gambar'] = $gambar;
         }
+
+        // Jika ada file pedoman yang diupload, simpan dan update kolom pedoman
+        if ($request->hasFile('pedoman')) {
+            $pedoman = $request->file('pedoman')->store('pedoman_pkk', 'public');
+            File::delete('storage/' .  $pkk->pedoman);
+            $validatedData['pedoman'] = $pedoman;
+        }
+
         $pkk->update($validatedData);
 
-
-        return redirect()->route('pkk-list')->with(['success' => ' successfully!']);
+        return redirect()->route('pkk-list')->with('toast_success', 'Data PPK berhasil diubah');
     }
 
     /**
@@ -123,26 +131,19 @@ class PkkController extends Controller
      */
     public function destroy($id)
     {
-        DB::transaction(function () use ($id) {
-            $pkk = Pkk::findOrFail($id);
-            if ($pkk->avatar) {
-                $image_path = public_path('img/pkk/'.$pkk->avatar); // Value is not URL but directory file path
-                if (File::exists($image_path)) {
-                    File::delete($image_path);
-                }
-            }
+        $pkk = Pkk::find($id);
+        File::delete('storage/' . $pkk->gambar);
+        File::delete('storage/' . $pkk->pedoman);
 
-            $pkk->delete();
-        });
-        
-        return redirect()->route('pkk-list')->with(['success' => ' successfully!']);
+        $pkk->delete();
+
+
+        return redirect()->route('pkk-list')->with('toast_success', 'Data PPK berhasil dihapus');
     }
 
-    public function frontPkk(){
-        $data['page_title'] = 'PKK';
-        $data['breadcumb'] = 'PKK';
+    public function frontPkk()
+    {
         $data['pkk'] = Pkk::get();
-
         return view('frontend.simbelmawa.pkk', $data);
     }
 }

@@ -43,7 +43,7 @@
                     <div class="card-body">
 
                         <div class="form-group mb-3">
-                            <label for="name">Judul PKM</label>
+                            <label for="name">Judul</label>
                             <input type="text" class="form-control @error('judul') is-invalid @enderror" id="judul"
                                 name="judul" value="{{ old('judul') }}" placeholder="enter">
 
@@ -56,10 +56,23 @@
 
                         <div class="form-group mb-3">
                             <label for="name">Gambar</label>
+                            <p class="text-primary">Format gambar harus : jpeg/jpg/png/gif</p>
                             <input type="file" class="form-control @error('gambar') is-invalid @enderror" id="gambar"
                                 name="gambar" value="{{ old('gambar') }}" placeholder="Masukkan gambar">
 
                             @error('gambar')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="name">Pedoman</label>
+                            <p class="text-primary">Format pedoman harus : pdf/doc/ppt/xls</p>
+                            <input type="file" class="form-control @error('pedoman') is-invalid @enderror" id="pedoman"
+                                name="pedoman" value="{{ old('pedoman') }}" placeholder="Masukkan pedoman">
+
+                            @error('pedoman')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

@@ -51,10 +51,10 @@
                         <span key="t-dashboards">Organisasi</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('bkm-list') }}" key="t-default">Organisasi BKM</a></li>
-                        <li><a href="{{ route('struktur-bkm-list') }}" key="t-default">Struktur BKM</a></li>
-                        <li><a href="{{ route('ukm-list') }}" key="t-default">Organisasi UKM</a></li>
-                        <li><a href="{{ route('hima-list') }}" key="t-default">Organisasi HIMA</a></li>
+                        <li><a href="{{ route('bkm-list') }}" key="t-default">Kegiatan BKM</a></li>
+                        <li><a href="{{ route('profil-bkm-list') }}" key="t-default">Profil BKM</a></li>
+                        <li><a href="{{ route('ukm-list') }}" key="t-default">Kegiatan UKM</a></li>
+                        <li><a href="{{ route('hima-list') }}" key="t-default">Kegiatan HIMA</a></li>
                         {{-- <li><a href="{{ route('struktur-ukm-list') }}" key="t-default">Struktur UKM</a></li>
                         <li><a href="{{ route('struktu-hima-list') }}" key="t-default">Struktur HIMA</a></li> --}}
                     </ul>
@@ -67,7 +67,7 @@
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('pkm-list') }}" key="t-default">PKM</a></li>
-                        <li><a href="{{ route('pkk-list') }}" key="t-default">PPK Ormawa</a></li>
+                        <li><a href="{{ route('pkk-list') }}" key="t-default">PPK</a></li>
                     </ul>
                 </li>
                 <li>

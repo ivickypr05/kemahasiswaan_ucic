@@ -11,6 +11,7 @@ class Pkm extends Model
     protected $fillable = [
         'judul',
         'gambar',
+        'pedoman',
         'deskripsi',
         'mulai_tanggal',
         'akhir_tanggal'

@@ -1,5 +1,5 @@
 @extends('layouts-admin.app')
-@section('title', 'UCIC | Struktur BKM')
+@section('title', 'UCIC | Profil BKM')
 @section('style')
 @endsection
 
@@ -17,7 +17,7 @@
                         <li class="breadcrumb-item">/</li>
                         <li class="breadcrumb-item">BKM</li>
                         <li class="breadcrumb-item">/</li>
-                        <li class="breadcrumb-item">Struktur BKM</li>
+                        <li class="breadcrumb-item">Profil BKM</li>
 
                     </ol>
                 </div>
@@ -36,16 +36,18 @@
                         <div class="col-6 mt-1">
                             <span class="tx-bold text-lg text-white" style="font-size:1.2rem;">
                                 <i class="far fa-user text-lg"></i>
-                                Struktur Organisasi BKM
+                                Profil Organisasi BKM
                             </span>
                         </div>
-
-                        <div class="col-6 d-flex justify-content-end">
-                            <a href="{{ route('struktur-bkm-create') }}" class="btn btn-md btn-info">
-                                <i class="fa fa-plus"></i>
-                                Add New
-                            </a>
-                        </div>
+                        @unless (!$profilbkm->isEmpty())
+                            <div class="col-6 d-flex justify-content-end">
+                                <a href="{{ route('profil-bkm-create') }}" class="btn btn-md btn-info">
+                                    <i class="fa fa-plus"></i>
+                                    Add New
+                                </a>
+                            </div>
+                        @else
+                        @endunless
                     </div>
 
                     <div class="row">
@@ -60,25 +62,31 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Logo BKM</th>
                                 <th>Gambar Struktur BKM</th>
+                                <th>Deskripsi</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($strukturbkm as $item)
+                            @foreach ($profilbkm->take(1) as $item)
                                 <tr>
                                     <th>{{ $loop->iteration }}</th>
                                     <th>
-                                        <img src="{{ asset('storage/' . $item->struktur_bkm) }}" width="110px">
+                                        <img src="{{ asset('storage/' . $item->logo) }}" width="110px">
                                     </th>
                                     <th>
+                                        <img src="{{ asset('storage/' . $item->struktur_bkm) }}" width="110px">
+                                    </th>
+                                    <th>{{ Str::limit($item->deskripsi, 100) }}</th>
+                                    <th>
                                         <div class="btn-group">
-                                            <a href="{{ route('struktur-bkm-edit', $item->id) }}"
+                                            <a href="{{ route('profil-bkm-edit', $item->id) }}"
                                                 class="btn btn-warning text-white">
                                                 <i class="far fa-edit"></i>
                                                 Edit
                                             </a>
-                                            <a href="{{ route('struktur-bkm-destroy', $item->id) }}"
+                                            <a href="{{ route('profil-bkm-destroy', $item->id) }}"
                                                 class="btn btn-danger f-12">
                                                 <i class="far fa-trash-alt"></i>
                                                 Delete

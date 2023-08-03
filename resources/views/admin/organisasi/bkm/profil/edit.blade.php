@@ -1,5 +1,5 @@
 @extends('layouts-admin.app')
-@section('title', 'UCIC | Edit Struktur BKM')
+@section('title', 'UCIC | Edit Profil BKM')
 @section('style')
 
 @endsection
@@ -33,9 +33,9 @@
         <div class="col-md-6">
             <div class="card card-primary">
                 <div class="card-header text-center" style="border-radius:10px 10px 0px 0px; background-color: #1C3F94;">
-                    <h3 class="card-title text-white">Edit Struktur BKM</h3>
+                    <h3 class="card-title text-white">Edit Profil BKM</h3>
                 </div>
-                <form action="{{ route('struktur-bkm-update', $strukturbkm->id) }}" method="POST"
+                <form action="{{ route('profil-bkm-update', $profilbkm->id) }}" method="POST"
                     enctype="multipart/form-data">
                     @csrf
 
@@ -43,10 +43,27 @@
 
                         @include('components.form-message')
                         <div class="form-group mb-3">
-                            <label for="name">Gambar Struktur BKM (JPEG, PNG, JPG)</label>
-                            @if ($strukturbkm->struktur_bkm)
+                            <label for="name">Logo BKM (JPEG, PNG, JPG)</label>
+                            @if ($profilbkm->logo)
                                 <div class="mb-3">
-                                    <img id="gambar_struktur_bkm" src="{{ url('storage/' . $strukturbkm->struktur_bkm) }}"
+                                    <img id="gambar_logo" src="{{ url('storage/' . $profilbkm->logo) }}" width="110px"
+                                        alt="">
+                                </div>
+                            @endif
+                            <input type="file" class="form-control @error('logo') is-invalid @enderror" id="logo"
+                                name="logo" value="" placeholder="Enter ">
+
+                            @error('logo')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="name">Gambar Struktur BKM (JPEG, PNG, JPG)</label>
+                            @if ($profilbkm->struktur_bkm)
+                                <div class="mb-3">
+                                    <img id="gambar_struktur_bkm" src="{{ url('storage/' . $profilbkm->struktur_bkm) }}"
                                         width="110px" alt="">
                                 </div>
                             @endif
@@ -54,6 +71,16 @@
                                 id="struktur_bkm" name="struktur_bkm" value="" placeholder="Enter ">
 
                             @error('struktur_bkm')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="name">Deskripsi</label>
+                            <textarea class="form-control @error('deskripsi') is-invalid @enderror" name="deskripsi" rows="4" cols="50">{{ $profilbkm->deskripsi }}</textarea>
+
+                            @error('deskripsi')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

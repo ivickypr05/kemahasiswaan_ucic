@@ -60,8 +60,9 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Judul PKM</th>
+                                <th>Judul</th>
                                 <th>Gambar</th>
+                                <th>Pedoman</th>
                                 <th>Deskripsi</th>
                                 <th>Tanggal</th>
                                 <th>Action</th>
@@ -74,6 +75,11 @@
                                     <th>{{ $item->judul }}</th>
                                     <th>
                                         <img src="{{ asset('storage/' . $item->gambar) }}" width="110px">
+                                    </th>
+                                    <th>
+                                        <a href="{{ asset('storage/' . $item->pedoman) }}" class="btn btn-primary"
+                                            target="_blank">Buka
+                                            Pedoman</a>
                                     </th>
                                     <th>{{ Str::limit($item->deskripsi, 100) }}</th>
                                     <th>{{ \Carbon\Carbon::parse($item->mulai_tanggal)->translatedFormat('d F Y') }} -
