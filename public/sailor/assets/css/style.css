@@ -19,7 +19,7 @@ a {
 }
 
 a:hover {
-    color: #e24d55;
+    color: #e2d84d;
     text-decoration: none;
 }
 
@@ -1796,6 +1796,24 @@ section {
 --------------------------------------------------------------*/
 .right-aligned-paragraph {
     text-align: justify;
+}
+/*--------------------------------------------------------------
+# Card
+--------------------------------------------------------------*/
+.card {
+    font-family: "Familjen Grotesk", sans-serif;
+
+    &:hover,
+    &:focus-within {
+        transform: scale(1.08);
+        box-shadow: 0 0.4rem 0.4rem rgb(0, 0, 0);
+        transition: 0.2s ease-in-out;
+        transform: translateY(-1rem);
+        backdrop-filter: blur(0.5rem);
+    }
+    &:not(:focus-within) {
+        transition: 0.2s ease-in-out;
+    }
 }
 /*--------------------------------------------------------------
 # Footer

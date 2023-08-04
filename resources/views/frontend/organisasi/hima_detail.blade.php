@@ -19,21 +19,24 @@
                     <article class="entry entry-single">
 
                         <h2 class="entry-title">
-                            <a href="#">{{ $hima->nama_himpunan }}</a> - <a
-                                href="#">{{ $hima->nama_kegiatan }}</a>
+                            <a href="{{ route('organisasi-hima') }}">{{ $hima->nama_himpunan }} -
+                                {{ $hima->nama_kegiatan }}</a>
                         </h2>
-
+                        <div class="col-md-3 mb-3 mt-3">
+                            <img src="{{ asset('storage/' . $hima->gambar) }}" alt="" class="img-top"
+                                width="300px">
+                        </div>
                         <div class="entry-meta">
                             <ul>
                                 <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time
-                                            datetime="2020-01-01">{{ \Carbon\Carbon::parse($hima->mulai_tanggal)->translatedFormat('d F Y') }}
+                                            datetime="2020-01-01">{{ \Carbon\Carbon::parse($hima->dari_tanggal)->translatedFormat('d F Y') }}
                                             -
-                                            {{ \Carbon\Carbon::parse($hima->akhir_tanggal)->translatedFormat('d F Y') }}</time></a>
+                                            {{ \Carbon\Carbon::parse($hima->sampai_tanggal)->translatedFormat('d F Y') }}</time></a>
                                 </li>
                             </ul>
                         </div>
 
-                        <div class="entry-content">
+                        <div class="entry-content right-aligned-paragraph">
                             {!! nl2br($hima->deskripsi) !!}
                         </div>
 

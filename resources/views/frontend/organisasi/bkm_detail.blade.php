@@ -17,11 +17,13 @@
                 <div class="col-lg-12 entries">
 
                     <article class="entry entry-single">
-
                         <h2 class="entry-title">
                             <a href="{{ route('organisasi-bkm') }}">{{ $bkm->nama_kegiatan }}</a>
                         </h2>
 
+                        <div class="col-md-3 mb-3 mt-3">
+                            <img src="{{ asset('storage/' . $bkm->gambar) }}" alt="" class="img-top" width="300px">
+                        </div>
                         <div class="entry-meta">
                             <ul>
                                 <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time
@@ -32,7 +34,7 @@
                             </ul>
                         </div>
 
-                        <div class="entry-content">
+                        <div class="entry-content right-aligned-paragraph">
                             {!! nl2br($bkm->deskripsi) !!}
                         </div>
 

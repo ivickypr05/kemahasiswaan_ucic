@@ -2,23 +2,9 @@
 @section('title', 'UCIC | Program PKM 8 Bidang')
 @section('style-fe')
     <style>
-        .square-image {
-            width: 100%;
-            height: 0;
-            padding-bottom: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-
         .square-image img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: auto;
-            height: 100%;
-            object-fit: cover;
-            object-position: center center;
+            max-width: 90%;
+            max-height: 90%;
         }
 
         .pkm-info {
@@ -30,6 +16,7 @@
 
         .pkm-title {
             font-weight: bold;
+            overflow: hidden;
         }
 
         .pkm-time {
@@ -45,20 +32,6 @@
         section#pricing {
             margin-top: 100px;
         }
-
-        .card {
-            font-family: 'Familjen Grotesk', sans-serif;
-
-
-            &:hover,
-            &:focus-within {
-                transform: scale(1.08);
-                box-shadow: 0 1rem 1rem rgb(0, 0, 0);
-                transform: translateY(-1rem);
-                backdrop-filter: blur(0.5rem);
-            }
-
-        }
     </style>
 @endsection
 <div class="container d-flex justify-content-center mb-5" style="padding-top: 10%!important;">
@@ -67,36 +40,34 @@
 @section('content-fe')
     @forelse ($pkm as $item)
         <section id="about" class="about">
-            <div class="container card card-body border-primary">
+            <div class="container">
                 <div class="row content">
                     <div class="col-lg-4 mt-3">
-                        <div class="">
+                        <div class="square-image d-flex justify-content-center">
                             <img src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
-                                class="img-top" width="350px" height="250" alt="">
+                                alt="">
                         </div>
                     </div>
                     <div class="col-lg-8 pt-4 pt-lg-0 mt-3">
-                        <div class="pkm-info">
-                            <h4 class="pkm-title">{{ $item->judul }}</h4>
+                        <h4 class="pkm-title right-aligned-paragraph">
+                            <a href="{{ route('detail-pkm', $item->id) }}">{{ $item->judul }}</a>
+                        </h4>
+                        <div class="pkm-info mb-3">
                             <div class="pkm-time">
-                                <i class="bi bi-clock">
-                                    {{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }}
-                                    - {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}
-                                </i>
+                                <i class="bi bi-clock"></i>
+                                <p>{{ \Carbon\Carbon::parse($item->mulai_tanggal)->translatedFormat('d F Y') }}
+                                    - {{ \Carbon\Carbon::parse($item->akhir_tanggal)->translatedFormat('d F Y') }}</p>
                             </div>
                         </div>
+
                         @php
-                            $limitedContent = Str::limit($item->deskripsi, 500);
+                            $limitedContent = Str::limit($item->deskripsi, 700);
                             $formattedContent = nl2br($limitedContent);
                         @endphp
                         <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
-                        @if (strlen($item->deskripsi) > 2)
-                            <a href="{{ route('detail-pkm', $item->id) }}" class="btn btn-primary"
-                                style="float:right">Selengkapnya</a>
-                        @endif
                     </div>
                 </div>
-
+                <hr>
             </div>
         </section><!-- End About Section -->
     @empty

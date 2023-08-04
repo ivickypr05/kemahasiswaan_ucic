@@ -2,48 +2,34 @@
 @section('title', 'UCIC | Kegiatan Organisasi HIMA')
 @section('style-fe')
     <style>
-        .square-image {
-            width: 100%;
-            height: 0;
-            padding-bottom: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-
         .square-image img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: auto;
-            height: 100%;
-            object-fit: cover;
-            object-position: center center;
+            max-width: 80%;
+            max-height: 80%;
         }
 
-        .beasiswa-info {
+        .hima-info {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 10px;
         }
 
-        .beasiswa-title {
+        .hima-title {
             font-weight: bold;
+            overflow: hidden;
         }
 
-        .beasiswa-time {
+        .hima-time {
             display: flex;
-            align-items: center;
         }
 
-        .beasiswa-time i {
+        .hima-time i {
             margin-right: 5px;
         }
 
         /* Tambahkan margin-top pada section#about */
         section#about {
-            margin-top: 100px;
+            margin-top: 50px;
         }
     </style>
 @endsection
@@ -52,7 +38,7 @@
     <div class="container d-flex justify-content-center" style="padding-top: 10%!important;">
         <h1>Himpunan Mahasiswa UCIC</h1>
     </div>
-    <div class="container d-flex justify-content-center mb-5 mt-3 gap-4">
+    <div class="container d-flex justify-content-center mt-3 gap-4">
         <a href="{{ route('profil-himatif') }}" class="btn btn-tranparent btn-outline-primary border-1 rounded rounded-pill">
             HIMATIF </a>
         <a href="{{ route('profil-himasi') }}" class="btn btn-tranparent btn-outline-primary border-1 rounded rounded-pill">
@@ -74,37 +60,34 @@
     </div>
 
     @forelse ($hima as $item)
-        <section id="about" class="about mb-5">
-            <div class="container">
-
+        <section id="about" class="about">
+            <div class="container card card-body border-primary">
                 <div class="row content">
-                    <div class="col-lg-6">
-                        <div class="square-image">
+                    <div class="col-lg-4 mt-1">
+                        <div class="square-image d-flex justify-content-center">
                             <img src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
                                 alt="">
                         </div>
                     </div>
-                    <div class="col-lg-6 pt-4 pt-lg-0" style="padding-top: 10%!important;">
-                        <div class="beasiswa-info">
+                    <div class="col-lg-8 pt-4 pt-lg-0 mt-1">
+                        <h4 class="hima-title right-aligned-paragraph mb-3">{{ $item->nama_kegiatan }}</h4>
 
-                            <h4 class="beasiswa-title">{{ $item->nama_himpunan }}</h4>
-
-                            <div class="beasiswa-time">
+                        <div class="hima-info">
+                            <h6><strong>Yang Mengadakan Kegiatan : {{ $item->nama_himpunan }}</strong></h6>
+                            <div class="hima-time">
                                 <i class="bi bi-clock"></i>
-                                <p>{{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }}
-                                    - {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}</p>
+                                {{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }}
+                                - {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}
                             </div>
                         </div>
-                        <h4 class="beasiswa-title">{{ $item->nama_kegiatan }}</h4>
                         @php
-                            $limitedContent = Str::limit($item->deskripsi, 950);
+                            $limitedContent = Str::limit($item->deskripsi, 500);
                             $formattedContent = nl2br($limitedContent);
                         @endphp
                         <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
-                        @if (strlen($item->deskripsi) > 200)
+                        @if (strlen($item->deskripsi) > 2)
                             <a href="{{ route('detail-hima', $item->id) }}" class="btn btn-primary"
-                                style="float:right">Read
-                                More</a>
+                                style="float:right">Selengkapnya</a>
                         @endif
                     </div>
                 </div>
