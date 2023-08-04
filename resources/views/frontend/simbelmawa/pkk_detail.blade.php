@@ -17,9 +17,11 @@
                 <div class="col-lg-12 entries">
 
                     <article class="entry entry-single">
-
+                        <div class="col-md-3 mb-3">
+                            <img src="{{ asset('storage/' . $pkk->gambar) }}" alt="" class="img-top" width="300px">
+                        </div>
                         <h2 class="entry-title">
-                            <a href="#">{{ $pkk->judul }}</a>
+                            <a href="{{ route('pkk') }}">{{ $pkk->judul }}</a>
                         </h2>
 
                         <div class="entry-meta">
@@ -32,10 +34,17 @@
                             </ul>
                         </div>
 
-                        <div class="entry-content">
+                        <div class="entry-content right-aligned-paragraph">
                             {!! nl2br($pkk->deskripsi) !!}
                         </div>
+                        <div class="entry-content mt-4">
+                            <p><strong> Klik dibawah untuk melihat Pedoman PPK! </strong></p>
 
+                            <a href="{{ asset('storage/' . $pkk->pedoman) }}" target="_blank"
+                                class="btn btn-transparent btn-outline-primary border-3 rounded rounded-pill">Pedoman
+                                {{ $pkk->judul }}</a>
+
+                        </div>
                     </article><!-- End blog entry -->
 
                 </div><!-- End blog entries list -->

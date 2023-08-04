@@ -691,7 +691,13 @@ section {
         max-width: 40%;
     }
 }
-
+.img-top {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    /* untuk mengatur gambar menjadi tengah */
+}
 /*--------------------------------------------------------------
 # Services
 --------------------------------------------------------------*/

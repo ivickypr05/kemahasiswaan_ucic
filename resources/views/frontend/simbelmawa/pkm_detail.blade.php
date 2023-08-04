@@ -17,9 +17,11 @@
                 <div class="col-lg-12 entries">
 
                     <article class="entry entry-single">
-
+                        <div class="col-md-3 mb-3">
+                            <img src="{{ asset('storage/' . $pkm->gambar) }}" alt="" class="img-top" width="300px">
+                        </div>
                         <h2 class="entry-title">
-                            <a href="#">{{ $pkm->judul }}</a>
+                            <a href="{{ route('pkm') }}">{{ $pkm->judul }}</a>
                         </h2>
 
                         <div class="entry-meta">
@@ -32,10 +34,17 @@
                             </ul>
                         </div>
 
-                        <div class="entry-content">
+                        <div class="entry-content right-aligned-paragraph">
                             {!! nl2br($pkm->deskripsi) !!}
                         </div>
+                        <div class="entry-content mt-4">
+                            <p><strong> Klik dibawah untuk melihat Pedoman PKM! </strong></p>
 
+                            <a href="{{ asset('storage/' . $pkm->pedoman) }}" target="_blank"
+                                class="btn btn-transparent btn-outline-primary border-3 rounded rounded-pill">Pedoman
+                                {{ $pkm->judul }}</a>
+
+                        </div>
                     </article><!-- End blog entry -->
 
                 </div><!-- End blog entries list -->

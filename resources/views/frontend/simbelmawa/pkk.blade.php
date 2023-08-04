@@ -21,23 +21,23 @@
             object-position: center center;
         }
 
-        .beasiswa-info {
+        .pkk-info {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 10px;
         }
 
-        .beasiswa-title {
+        .pkk-title {
             font-weight: bold;
         }
 
-        .beasiswa-time {
+        .pkk-time {
             display: flex;
             align-items: center;
         }
 
-        .beasiswa-time i {
+        .pkk-time i {
             margin-right: 5px;
         }
 
@@ -45,44 +45,59 @@
         section#pricing {
             margin-top: 100px;
         }
+
+        .card {
+            font-family: 'Familjen Grotesk', sans-serif;
+
+
+            &:hover,
+            &:focus-within {
+                transform: scale(1.08);
+                box-shadow: 0 1rem 1rem rgb(0, 0, 0);
+                transform: translateY(-1rem);
+                backdrop-filter: blur(0.5rem);
+            }
+
+        }
     </style>
 @endsection
-<div class="container d-flex justify-content-center" style="padding-top: 10%!important;">
-    <h1>Pengumuman PPK Ormawa</h1>
+<div class="container d-flex justify-content-center mb-5" style="padding-top: 10%!important;">
+    <h1><strong>Pengumuman PPK Ormawa</strong></h1>
 </div>
 @section('content-fe')
     @forelse ($pkk as $item)
-        <section id="about" class="about mb-5">
-            <div class="container">
-
+        <section id="about" class="about">
+            <div class="container card card-body border-primary">
                 <div class="row content">
-                    <div class="col-lg-6">
-                        <div class="square-image">
+                    <div class="col-lg-4 mt-3">
+                        <div class="">
                             <img src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
-                                alt="">
+                                width="350px" height="250" alt="">
                         </div>
                     </div>
-                    <div class="col-lg-6 pt-4 pt-lg-0" style="padding-top: 10%!important;">
-                        <div class="beasiswa-info">
-                            <h4 class="beasiswa-title">{{ $item->judul }}</h4>
-                            <div class="beasiswa-time">
-                                <i class="bi bi-clock"></i>
-                                <p>{{ \Carbon\Carbon::parse($item->mulai_tanggal)->translatedFormat('d F Y') }}
-                                    - {{ \Carbon\Carbon::parse($item->akhir_tanggal)->translatedFormat('d F Y') }}</p>
+                    <div class="col-lg-8 pt-4 pt-lg-0 mt-3">
+                        <div class="pkk-info">
+                            <h4 class="pkk-title">{{ $item->judul }}</h4>
+                            <div class="pkk-time">
+                                <i class="bi bi-clock">
+                                    {{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }}
+                                    - {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}
+                                </i>
                             </div>
                         </div>
                         @php
-                            $limitedContent = Str::limit($item->deskripsi, 950);
+                            $limitedContent = Str::limit($item->deskripsi, 500);
                             $formattedContent = nl2br($limitedContent);
                         @endphp
                         <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
-                        @if (strlen($item->deskripsi) > 200)
-                            <a href="{{ route('detail-pkk', $item->id) }}" class="btn btn-primary" style="float:right">Read
-                                More</a>
+                        @if (strlen($item->deskripsi) > 2)
+                            <a href="{{ route('detail-pkk', $item->id) }}" class="btn btn-primary"
+                                style="float:right">Selengkapnya</a>
                         @endif
                     </div>
-
                 </div>
+
+            </div>
         </section><!-- End About Section -->
     @empty
         <section id="pricing" class="pricing mb-5">
