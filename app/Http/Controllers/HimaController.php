@@ -128,8 +128,8 @@ class HimaController extends Controller
 
     public function frontHima()
     {
-        $data['hima'] = Hima::get();
+        $hima = Hima::paginate(8);
 
-        return view('frontend.organisasi.hima', $data);
+        return view('frontend.organisasi.hima', compact('hima'));
     }
 }

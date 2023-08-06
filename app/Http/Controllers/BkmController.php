@@ -125,7 +125,7 @@ class BkmController extends Controller
 
     public function frontBkm()
     {
-        $data['bkm'] = Bkm::get();
-        return view('frontend.organisasi.bkm', $data);
+        $bkm = Bkm::paginate(8);
+        return view('frontend.organisasi.bkm', compact('bkm'));
     }
 }

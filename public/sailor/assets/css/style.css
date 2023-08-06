@@ -1801,27 +1801,12 @@ section {
 # Card
 --------------------------------------------------------------*/
 
-.card {
-    width: 360px;
-    height: 600px;
-    border: 1px solid #0267ff;
-    border-radius: 8px;
-    background-color: #ffffff;
-    padding: 10px;
-    margin: 8px;
-    font-family: "Familjen Grotesk", sans-serif;
-
-    &:hover,
-    &:focus-within {
-        transform: scale(1.08);
-        box-shadow: 0 0.4rem 0.4rem rgb(0, 0, 0);
-        transition: 0.2s ease-in-out;
-        transform: translateY(-1rem);
-        backdrop-filter: blur(0.5rem);
-    }
-    &:not(:focus-within) {
-        transition: 0.2s ease-in-out;
-    }
+.responsive-img {
+    max-width: 100%;
+    height: 100%;
+    margin: auto;
+    overflow: hidden;
+    /* untuk mengatur gambar menjadi tengah */
 }
 /*--------------------------------------------------------------
 # Footer

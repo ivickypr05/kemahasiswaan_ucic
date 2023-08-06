@@ -143,7 +143,7 @@ class PkkController extends Controller
 
     public function frontPkk()
     {
-        $data['pkk'] = Pkk::get();
+        $data['pkk'] = Pkk::paginate(5);
         return view('frontend.simbelmawa.pkk', $data);
     }
 }

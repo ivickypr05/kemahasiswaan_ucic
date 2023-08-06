@@ -122,7 +122,7 @@ class UkmController extends Controller
 
     public function frontUkm()
     {
-        $data['ukm'] = Ukm::get();
-        return view('frontend.organisasi.ukm', $data);
+        $ukm = Ukm::paginate(8);
+        return view('frontend.organisasi.ukm', compact('ukm'));
     }
 }

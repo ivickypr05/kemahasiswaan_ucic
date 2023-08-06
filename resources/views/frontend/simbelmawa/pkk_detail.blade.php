@@ -17,22 +17,21 @@
                 <div class="col-lg-12 entries">
 
                     <article class="entry entry-single">
-                        <div class="col-md-3 mb-3">
+                        <div class="d-flex justify-content-center">
                             <img src="{{ asset('storage/' . $pkk->gambar) }}" alt="" class="img-top" width="300px">
                         </div>
                         <h2 class="entry-title">
                             <a href="{{ route('pkk') }}">{{ $pkk->judul }}</a>
                         </h2>
-
                         <div class="entry-meta">
-                            <ul>
-                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time
-                                            datetime="2020-01-01">{{ \Carbon\Carbon::parse($pkk->dari_tanggal)->translatedFormat('d F Y') }}
-                                            -
-                                            {{ \Carbon\Carbon::parse($pkk->sampai_tanggal)->translatedFormat('d F Y') }}</time></a>
-                                </li>
-                            </ul>
+                            <li class="d-flex align-items-center"><i class="bi bi-clock"></i><time
+                                    datetime="2020-01-01">{{ \Carbon\Carbon::parse($pkk->dari_tanggal)->translatedFormat('d F Y') }}
+                                    -
+                                    {{ \Carbon\Carbon::parse($pkk->sampai_tanggal)->translatedFormat('d F Y') }}</time></a>
+                            </li>
+
                         </div>
+
 
                         <div class="entry-content right-aligned-paragraph">
                             {!! nl2br($pkk->deskripsi) !!}
