@@ -174,7 +174,7 @@ class PrestasiNonAkademikController extends Controller
 
     public function frontPrestasinonakademik()
     {
-        $prenonakademik = Prenonakademik::with('categories')->get();
+        $prenonakademik = Prenonakademik::with('categories')->paginate(9);
         return view('frontend.prestasi.nonakademik', compact('prenonakademik'));
     }
 }

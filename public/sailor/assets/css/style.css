@@ -1320,7 +1320,7 @@ section {
 
 .blog .entry .entry-meta {
     margin-bottom: 15px;
-    color: #c1c8d0;
+    color: #999ca3;
 }
 
 .blog .entry .entry-meta ul {
@@ -1800,7 +1800,15 @@ section {
 /*--------------------------------------------------------------
 # Card
 --------------------------------------------------------------*/
+
 .card {
+    width: 360px;
+    height: 600px;
+    border: 1px solid #0267ff;
+    border-radius: 8px;
+    background-color: #ffffff;
+    padding: 10px;
+    margin: 8px;
     font-family: "Familjen Grotesk", sans-serif;
 
     &:hover,

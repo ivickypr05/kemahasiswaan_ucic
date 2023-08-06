@@ -172,7 +172,7 @@ class PrestasiAkademikController extends Controller
 
     public function frontPrestasiakademik()
     {
-        $preakademik = Preakademik::with('categories')->get();
+        $preakademik = Preakademik::with('categories')->paginate(9);
         return view('frontend.prestasi.akademik', compact('preakademik'));
     }
 }

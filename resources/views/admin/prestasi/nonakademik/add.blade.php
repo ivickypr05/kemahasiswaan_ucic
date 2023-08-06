@@ -51,7 +51,22 @@
                                 </span>
                             @enderror
                         </div>
-
+                        <div class="form-group mb-3">
+                            <label for="select" class="form-label">
+                                Pilih Kategori untuk Prestasi</label>
+                            <select class="form-select @error('category_id') is-invalid @enderror"
+                                aria-label="Default select example" name="category_id">
+                                <option selected>Kategori Prestasi</option>
+                                @foreach ($categories as $item)
+                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
                         <div class="form-group mb-3">
                             <label for="name">Nama Peserta</label>
                             <p class="text-primary">Contoh untuk kategori tim: <br>
@@ -133,8 +148,8 @@
 
                         <div class="form-group mb-3">
                             <label for="name">Tanggal</label>
-                            <input type="date" class="form-control @error('tanggal') is-invalid @enderror" id="tanggal"
-                                name="tanggal" value="{{ old('tanggal') }}" placeholder="Enter ">
+                            <input type="date" class="form-control @error('tanggal') is-invalid @enderror"
+                                id="tanggal" name="tanggal" value="{{ old('tanggal') }}" placeholder="Enter ">
 
                             @error('tanggal')
                                 <span class="invalid-feedback" role="alert">
@@ -143,22 +158,7 @@
                             @enderror
                         </div>
 
-                        <div class="form-group mb-3">
-                            <label for="select" class="form-label">
-                                Pilih Kategori untuk Prestasi</label>
-                            <select class="form-select @error('category_id') is-invalid @enderror"
-                                aria-label="Default select example" name="category_id">
-                                <option selected>Kategori Prestasi</option>
-                                @foreach ($categories as $item)
-                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
-                                @endforeach
-                            </select>
-                            @error('category_id')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
+
 
                     </div>
                     <!-- /.card-body -->

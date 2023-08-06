@@ -8,14 +8,14 @@
 
         .img-top {
             max-width: 100%;
-            height: auto;
+            height: 100%;
             display: block;
             margin: 0 auto;
+            display: block;
             /* untuk mengatur gambar menjadi tengah */
 
         }
     </style>
-@endsection
 
 @section('content-fe')
     <section id="blog" class="blog">
@@ -26,38 +26,37 @@
                 <div class="col-lg-12 entries">
 
                     <article class="entry entry-single">
-                        {{-- Add images above the title --}}
-                        <div class="row mb-3 d-flex justify-content-center">
-                            <div class="col-md-3">
-                                <img src="{{ asset('storage/' . $prenonakademik->gambar_1) }}" alt="Gambar 1" class="img-top"
-                                    width="500px">
-                            </div>
-                            <div class="col-md-3">
-                                @if ($prenonakademik->gambar_2)
-                                    <img src="{{ asset('storage/' . $prenonakademik->gambar_2) }}" alt="Gambar 2"
-                                        class="img-top" width="500px">
-                                @else
-                                    <img src="{{ asset('storage/' . $prenonakademik->gambar_1) }}" alt="Gambar 1"
-                                        class="img-top" width="500px">
-                                @endif
-                            </div>
-                            <div class="col-md-3">
-                                @if ($prenonakademik->gambar_2)
-                                    <img src="{{ asset('storage/' . $prenonakademik->gambar_3) }}" alt="Gambar 2"
-                                        class="img-top" width="500px">
-                                @else
-                                    <img src="{{ asset('storage/' . $prenonakademik->gambar_1) }}" alt="Gambar 1"
-                                        class="img-top" width="500px">
-                                @endif
-                            </div>
-                        </div>
                         <h2 class="entry-title">
-                            <a href="{{ route('prestasi-akademik') }}">{{ $prenonakademik->title }}</a>
+                            <a href="{{ route('prestasi-nonakademik') }}">Non Akademik - {{ $prenonakademik->title }}</a>
                         </h2>
                         <div class="entry-meta">
-                            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time
-                                        datetime="2020-01-01">{{ \Carbon\Carbon::parse($prenonakademik->tanggal)->translatedFormat('d F Y') }}
+                            <li class="d-flex align-items-center"><i class="bi bi-clock"></i><time
+                                    datetime="2020-01-01">{{ \Carbon\Carbon::parse($prenonakademik->tanggal)->translatedFormat('d F Y') }}
                             </li>
+                            <div class="row mb-3 d-flex justify-content-center">
+                                <div class="col-md-3">
+                                    @if ($prenonakademik->gambar_2)
+                                        <img src="{{ asset('storage/' . $prenonakademik->gambar_2) }}" alt="Gambar 2"
+                                            class="img-top">
+                                    @else
+                                        <img src="https://png.pngtree.com/png-vector/20190820/ourmid/pngtree-no-image-vector-illustration-isolated-png-image_1694547.jpg"
+                                            alt="Gambar 1" class="img-top">
+                                    @endif
+                                </div>
+                                <div class="col-md-3">
+                                    <img src="{{ asset('storage/' . $prenonakademik->gambar_1) }}" alt="Gambar 1"
+                                        class="img-top">
+                                </div>
+                                <div class="col-md-3">
+                                    @if ($prenonakademik->gambar_3)
+                                        <img src="{{ asset('storage/' . $prenonakademik->gambar_3) }}" alt="Gambar 2"
+                                            class="img-top">
+                                    @else
+                                        <img src="https://png.pngtree.com/png-vector/20190820/ourmid/pngtree-no-image-vector-illustration-isolated-png-image_1694547.jpg"
+                                            alt="Gambar 1" class="img-top">
+                                    @endif
+                                </div>
+                            </div>
 
                         </div>
                         <h6 class="text-dark">Tingkat :
@@ -71,8 +70,9 @@
                             </h6>
                         @endif
                         <hr>
-                        <h6 class="text-dark"><strong>Nama Peserta : </strong><br>
-                            {{ $prenonakademik->nama }} </h6>
+                        <div class="entry-content text-dark"><strong> Nama Peserta : </strong> <br>
+                            {!! nl2br($prenonakademik->nama) !!}
+                        </div>
                         <br>
                         <div class="entry-content text-dark"><strong> Deskripsi : </strong> <br>
                             {!! nl2br($prenonakademik->deskripsi) !!}
@@ -85,8 +85,11 @@
             </div>
 
         </div>
+
     </section><!-- End Blog Single Section -->
 @endsection
+
+
 
 @section('script-fe')
     <script>

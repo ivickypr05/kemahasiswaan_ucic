@@ -55,6 +55,23 @@
                             @enderror
                         </div>
                         <div class="form-group mb-3">
+                            <label for="select" class="form-label">Pilih Kategori Untuk Prestasi</label>
+                            <select class="form-select @error('category_id') is-invalid @enderror"
+                                aria-label="Default select example" name="category_id">
+                                @foreach ($categories as $item)
+                                    <option value="{{ $item->id }}"
+                                        {{ $preakademik->category_id == $item->id ? 'selected' : '' }}>
+                                        {{ $item->nama }}</option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+
+                        </div>
+                        <div class="form-group mb-3">
                             <label for="name">Nama Peserta</label>
                             <p class="text-primary">Contoh : <br>
                                 1. Iko Vicky Pratama <br>
@@ -161,23 +178,7 @@
                             @enderror
                         </div>
 
-                        <div>
-                            <label for="select" class="form-label">Pilih Kategori Untuk Prestasi</label>
-                            <select class="form-select @error('category_id') is-invalid @enderror"
-                                aria-label="Default select example" name="category_id">
-                                @foreach ($categories as $item)
-                                    <option value="{{ $item->id }}"
-                                        {{ $preakademik->category_id == $item->id ? 'selected' : '' }}>
-                                        {{ $item->nama }}</option>
-                                @endforeach
-                            </select>
-                            @error('category_id')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
 
-                        </div>
                     </div>
                     <!-- /.card-body -->
 
