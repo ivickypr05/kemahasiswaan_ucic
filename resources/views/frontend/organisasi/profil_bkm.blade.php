@@ -16,7 +16,7 @@
             width: 100%;
             height: 100%;
             /* object-fit: cover;
-                                                                                                                                                    object-position: center center; */
+                                                                                                                                                                                                                                                object-position: center center; */
         }
 
         .content {
@@ -46,15 +46,22 @@
     @forelse ($profilbkm->take(1) as $item)
         <section id="about" class="about mb-5">
             <div class="container">
-                <img src="{{ asset('storage/' . $item->logo) }}" class="img-top" width="250px">
+                <img src="{{ asset('storage/' . $item->logo) }}" class="img-top" width="300px">
                 <hr>
                 <h5 class="right-aligned-paragraph">{!! nl2br($item->deskripsi) !!}</h5>
+                <div class="mt-5">
+                    <h6><strong>Contact me</strong></h6>
+                    <a href="https://www.instagram.com/bkmucic/" class="btn btn-light border"><i class="bx bxl-instagram"
+                            style="border-radius: 8px" style="color: rgb(0, 0, 0)"></i></a>
+                </div>
                 <div class="square-image">
                     <h4 class="text-center mt-4"><strong>Struktur Organisasi BKM</strong></h4>
                     <br><br>
                     <img src="{{ asset('storage/' . $item->struktur_bkm) }}" alt="">
                 </div>
+
             </div>
+
         </section><!-- End About Section -->
     @empty
         <section id="about" class="about mb-5">

@@ -66,7 +66,7 @@
                         <h4 class="ukm-title right-aligned-paragraph mb-3">{{ $item->nama_kegiatan }}</h4>
 
                         <div class="ukm-info">
-                            <h6><strong>Yang Mengadakan Kegiatan : {{ $item->nama_himpunan }}</strong></h6>
+                            <h6><strong>Yang Mengadakan Kegiatan : {{ $item->nama_ukm }}</strong></h6>
                             <div class="ukm-time">
                                 <i class="bi bi-clock"></i>
                                 {{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }}
