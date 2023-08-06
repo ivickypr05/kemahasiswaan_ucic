@@ -127,8 +127,8 @@ class BeasiswaController extends Controller
     public function frontBeasiswa()
     {
 
-        $data['beasiswa'] = Beasiswa::get();
+        $beasiswa = Beasiswa::paginate(5);
 
-        return view('frontend.beasiswa.index', $data);
+        return view('frontend.beasiswa.index', compact('beasiswa'));
     }
 }

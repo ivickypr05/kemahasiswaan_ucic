@@ -1,24 +1,11 @@
 @extends('layouts-fe.template')
-@section('title', 'UCIC | Beasiswa')
+@section('title', 'UCIC | Pengumuman Beasiswa')
 @section('style-fe')
     <style>
-        .square-image {
-            width: 100%;
-            height: 0;
-            padding-bottom: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-
         .square-image img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: auto;
-            height: 100%;
-            object-fit: cover;
-            object-position: center center;
+            max-width: 90%;
+            max-height: 90%;
+            overflow: hidden;
         }
 
         .beasiswa-info {
@@ -30,6 +17,7 @@
 
         .beasiswa-title {
             font-weight: bold;
+            overflow: hidden;
         }
 
         .beasiswa-time {
@@ -42,61 +30,61 @@
         }
 
         /* Tambahkan margin-top pada section#about */
-        section#pricing {
-            margin-top: 100px;
-        }
     </style>
 @endsection
-<div class="container d-flex justify-content-center" style="padding-top: 10%!important;">
-    <h1>Beasiswa Universitas Catur Insan Cendekia</h1>
+<div class="container mb-5" style="padding-top: 10%!important;">
+    <div class="d-flex justify-content-center">
+        <h1><strong>Pengumuman Beasiswa</strong></h1>
+    </div>
 </div>
+<br>
+<br>
 @section('content-fe')
     @forelse ($beasiswa as $item)
-        <section id="about" class="about mb-3">
-            <div class="container">
-
-                <div class="row content">
-                    <div class="col-lg-6">
-                        <div class="square-image">
-                            <img src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
-                                alt="">
-                        </div>
+        <div class="container">
+            <div class="row content mb-4 mt-4">
+                <div class="col-lg-4 mt-4">
+                    <div class="square-image d-flex justify-content-center">
+                        <img src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
+                            alt="">
                     </div>
-                    <div class="col-lg-6 pt-4 pt-lg-0" style="padding-top: 10%!important;">
-                        <div class="beasiswa-info">
-                            <h4 class="beasiswa-title">{{ $item->title }}</h4>
-                            <div class="beasiswa-time">
-                                <i class="bi bi-clock"></i>
-                                <p>{{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }}
-                                    - {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}</p>
-                            </div>
-                        </div>
-                        @php
-                            $limitedContent = Str::limit($item->content, 950);
-                            $formattedContent = nl2br($limitedContent);
-                        @endphp
-                        <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
-                        @if (strlen($item->content) > 200)
-                            <a href="{{ route('detail-beasiswa', $item->id) }}" class="btn btn-primary" style="float:right">Read
-                                More</a>
-                        @endif
-                    </div>
-
                 </div>
-        </section><!-- End About Section -->
+                <div class="col-lg-8 pt-4 pt-lg-0 mt-3">
+                    <h4 class="beasiswa-title right-aligned-paragraph">
+                        <a href="{{ route('detail-beasiswa', $item->id) }}">{{ $item->title }}</a>
+                    </h4>
+                    <div class="beasiswa-info">
+                        <div class="beasiswa-time">
+                            <i class="mb-3 bi bi-clock"></i>
+                            <p class="">{{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }}
+                                - {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}</p>
+                        </div>
+                    </div>
+                    @php
+                        $limitedContent = Str::limit($item->content, 500);
+                        $formattedContent = nl2br($limitedContent);
+                    @endphp
+                    <p class="mt-1" style="text-align: justify;">{!! $formattedContent !!}</p>
+                </div>
+            </div>
+            <hr>
+        </div>
     @empty
         <section id="pricing" class="pricing mb-5">
             <div class="container">
                 <div class="row content">
                     <div class="col-lg-12">
-                        <br></br>
-                        <br></br>
-                        <h4 class="text-center text-primary">Belum ada informasi PKM.</h4>
+                        <br>
+                        <br>
+                        <h4 class="text-center text-primary">Belum ada informasi PPK.</h4>
                     </div>
                 </div>
             </div>
         </section><!-- End About Section -->
     @endforelse
+    <div class="container">
+        {{ $beasiswa->links() }}
+    </div>
 @endsection
 
 @section('script-fe')

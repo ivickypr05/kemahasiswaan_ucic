@@ -41,10 +41,10 @@
         }
     </style>
 @endsection
-<div class="container d-flex justify-content-center" style="padding-top: 10%!important;">
-    <h1>Prestasi Akademik Mahasiswa UCIC</h1>
-</div>
 @section('content-fe')
+    <div class="container d-flex justify-content-center" style="padding-top: 10%!important;">
+        <h1>Prestasi Akademik Mahasiswa UCIC</h1>
+    </div>
     <section id="about" class="about">
         <div class="container">
             <div class="row content d-flex justify-content-center">

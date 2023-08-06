@@ -20,7 +20,7 @@
                         <div class="d-flex justify-content-center">
                             <img src="{{ asset('storage/' . $pkk->gambar) }}" alt="" class="img-top" width="300px">
                         </div>
-                        <h2 class="entry-title">
+                        <h2 class="mt-3 entry-title">
                             <a href="{{ route('pkk') }}">{{ $pkk->judul }}</a>
                         </h2>
                         <div class="entry-meta">

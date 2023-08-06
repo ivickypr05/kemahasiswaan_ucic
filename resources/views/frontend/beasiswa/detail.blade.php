@@ -19,20 +19,20 @@
                     <article class="entry entry-single">
 
                         <h2 class="entry-title">
-                            <a href="#">{{ $beasiswa->title }}</a>
+                            <a href="{{ route('beasiswa') }}">{{ $beasiswa->title }}</a>
                         </h2>
 
                         <div class="entry-meta">
-                            <ul>
-                                <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="#"><time
-                                            datetime="2020-01-01">{{ \Carbon\Carbon::parse($beasiswa->dari_tanggal)->translatedFormat('d F Y') }}
-                                            -
-                                            {{ \Carbon\Carbon::parse($beasiswa->sampai_tanggal)->translatedFormat('d F Y') }}</time></a>
-                                </li>
-                            </ul>
+
+                            <li class="d-flex align-items-center"><i class="bi bi-clock"></i><time
+                                    datetime="2020-01-01">{{ \Carbon\Carbon::parse($beasiswa->dari_tanggal)->translatedFormat('d F Y') }}
+                                    -
+                                    {{ \Carbon\Carbon::parse($beasiswa->sampai_tanggal)->translatedFormat('d F Y') }}</time></a>
+                            </li>
+
                         </div>
 
-                        <div class="entry-content">
+                        <div class="entry-content right-aligned-paragraph">
                             {!! nl2br($beasiswa->content) !!}
                         </div>
 

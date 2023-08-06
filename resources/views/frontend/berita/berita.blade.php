@@ -2,109 +2,101 @@
 @section('title', 'UCIC | Berita')
 @section('style-fe')
     <style>
-        .box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .card {
+            width: 268px;
+            height: 500px;
+            padding: 10px;
+            font-family: "Times New Roman", sans-serif;
+
+            &:hover,
+            &:focus-within {
+                transform: scale(1.08);
+                box-shadow: 0 0.4rem 0.4rem rgb(0, 0, 0);
+                transition: 0.2s ease-in-out;
+                transform: translateY(-1rem);
+                backdrop-filter: blur(0.5rem);
+            }
+
+            &:not(:focus-within) {
+                transition: 0.2s ease-in-out;
+            }
         }
 
-        .box>div {
-            width: 100%;
+        .card-title {
+            font-family: "Helvetica", sans-serif;
         }
 
-        .box>div:last-child {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .card-text {
+            font-family: "Times New Roman", sans-serif;
+            font-size: 13px;
         }
 
-        .square-image {
-            width: 150px;
-            height: 150px;
+        .responsive-img {
+            max-width: 100%;
+            max-height: 100%;
+            margin: auto;
             overflow: hidden;
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
 
-        .small-square-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
 
-        .beasiswa-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .beasiswa-title {
-            font-weight: bold;
-        }
-
-        .beasiswa-time {
-            display: flex;
-            align-items: center;
-        }
-
-        .beasiswa-time i {
-            margin-right: 5px;
         }
 
         /* Tambahkan margin-top pada section#about */
         section#pricing {
-            margin-top: 50px;
+            margin-top: 100px;
         }
     </style>
 @endsection
-<div class="container d-flex justify-content-center" style="padding-top: 10%!important;">
-    <h1>Berita Universitas Catur Insan Cendekia</h1>
-</div>
 @section('content-fe')
-    <section id="pricing" class="pricing">
+    <div class="container d-flex justify-content-center" style="padding-top: 10%!important;">
+        <h1>Berita Universitas Catur Insan Cendekia</h1>
+    </div>
+    <section id="about" class="about">
         <div class="container">
-            <div class="row">
+            <div class="row content d-flex justify-content-center">
                 @forelse ($berita as $item)
-                    <div class="col-lg-4 col-md-6">
-                        <div class="box">
-                            <div>
-                                <h5 class="card-title"><b>{{ $item->title }}</b></h5>
-                                <p>{{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }} -
-                                    {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}</p>
-                            </div>
-                            <div class="square-image">
-                                <img class="small-square-img"
-                                    src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
-                                    alt="">
-                            </div>
+                    <div class="mt-1 mb-5 col-md-3">
+                        {{-- card --}}
+                        <div class="card card-deck">
+                            <h4 class="card-title text-center"><strong>{{ $item->title }}</strong></h4>
+                            <hr>
+                            <h6 class="card-text text-center"><i class="bi bi-clock"></i>
+                                {{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }} - <i
+                                    class="bi bi-clock"></i>
+                                {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}</h6>
+                            <img src="{{ asset('storage/' . $item->gambar) }}" class="responsive-img" width="100%">
                             @php
-                                $limitedContent = Str::limit($item->content, 300);
+                                $limitedContent = Str::limit($item->content, 150);
                                 $formattedContent = nl2br($limitedContent);
                             @endphp
-                            <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
-                            @if (strlen($item->content) > 200)
-                                <a href="{{ route('detail-berita', $item->id) }}" class="btn btn-primary">Read More</a>
+                            <p class="mt-1" style="text-align: justify;">{!! $formattedContent !!}</p>
+                            @if (strlen($item->content) > 1)
+                                <div class="d-flex justify-content-center">
+                                    <a href="{{ route('detail-berita', $item->id) }}"
+                                        class="btn btn-primary rounded">Selengkapnya</a>
+                                </div>
                             @endif
+
+
                         </div>
+
                     </div>
                 @empty
-                    <section id="pricing" class="pricing">
+                    <section id="pricing" class="pricing mb-5">
                         <div class="container">
                             <div class="row content">
                                 <div class="col-lg-12">
                                     <br>
-                                    <h4 class="text-center text-primary">Belum ada informasi Berita</h4>
+                                    <br>
+                                    <h4 class="text-center text-primary">Belum ada Berita</h4>
                                 </div>
                             </div>
                         </div>
                     </section><!-- End About Section -->
-                @endforelse
             </div>
         </div>
-    </section>
+    </section><!-- End About Section -->
+    @endforelse
+    {{ $berita->links() }}
 @endsection
 
 @section('script-fe')

@@ -128,7 +128,7 @@ class BeritaController extends Controller
     public function frontBerita()
     {
 
-        $data['berita'] = Berita::get();
-        return view('frontend.berita.berita', $data);
+        $berita = Berita::paginate(12);
+        return view('frontend.berita.berita', compact('berita'));
     }
 }
