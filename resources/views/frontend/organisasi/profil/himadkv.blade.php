@@ -18,7 +18,7 @@
         <div class="container">
             <div class="d-flex justify-content-center">
                 <div class="square-image">
-                    <img src="{{ asset('img/himatif.jpg') }}" width="300px">
+                    <img src="{{ asset('img/himadkv.png') }}" width="300px">
                 </div>
             </div>
             <hr>

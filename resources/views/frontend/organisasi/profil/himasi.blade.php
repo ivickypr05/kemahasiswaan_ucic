@@ -31,7 +31,7 @@
                 seperti perusahaan atau industri yang berkaitan dengan bidang Sistem Informasi.</h5>
             <div class="mt-5">
                 <h6><strong>about me</strong></h6>
-                <a href="https://www.instagram.com/bkmucic/" class="btn btn-light border border-2"><i
+                <a href="https://www.instagram.com/himasi_ucic/" class="btn btn-light border border-2"><i
                         class="bx bxl-instagram" style="border-radius: 8px" style="color: rgb(0, 0, 0)"></i></a>
             </div>
         </div>
