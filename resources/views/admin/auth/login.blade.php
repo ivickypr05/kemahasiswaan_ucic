@@ -245,6 +245,12 @@
         .bg-perpus {
             background: aqua;
         }
+
+        .icon-center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     </style>
 
 </head>
@@ -252,9 +258,13 @@
 <body data-topbar="dark">
 
     <!-- <body data-layout="horizontal"> -->
-
     <div class="d-lg-flex half">
-        <div class="bg order-1 bg-perpus order-md-2" style="background-color: #1C3F94;"></div>
+        <div class="bg order-1 bg-perpus order-md-2" style="background-color: #ffffff;">
+            <br><br><br><br><br><br><br>
+            <div class="d-flex justify-content-center">
+                <img src="{{ asset('img/cic.png') }}" alt="" width="700px">
+            </div>
+        </div>
         <div class="contents">
 
             <div class="container">
@@ -264,9 +274,10 @@
                             <a href="index.html" class="d-block auth-logo">
                                 <img src="{{ asset('img/cic.png') }}" alt="" height="100">
                             </a>
-                            <div class="text-center">
-                                <h5 class="mb-0 font-telkom">Selamat Datang</h5>
-                                <p class="text-muted mt-2">Silahkan Masuk.</p>
+                            <div class="text-center mt-3">
+                                <h5 class="mb-0 font-telkom">Selamat Datang Kemahasiswaan UCIC
+                                </h5>
+                                <p class="text-muted mt-2">Silahkan Login</p>
                             </div>
                             <form class="mt-2 pt-2" method="POST" action="{{ route('loginPost2') }}">
                                 @csrf
@@ -286,11 +297,6 @@
                                     <input id="password-input" type="password"
                                         class="form-control pe-5 @error('password') is-invalid @enderror"
                                         name="password" required placeholder="Enter Password">
-
-                                    <button type="button" class="btn btn-link position-absolute h-100 end-0 top-0"
-                                        id="password-addon">
-                                        <i class="mdi mdi-eye-outline font-size-18 text-muted"></i>
-                                    </button>
                                     <label for="input-password">Password</label>
                                     <div class="form-floating-icon">
                                         <i data-feather="lock"></i>
@@ -300,7 +306,7 @@
 
                                 <div class="mb-3">
                                     <button class="btn bg-perpus w-100" style="background-color: #1C3F94; color: white;"
-                                        type="submit">Masuk</button>
+                                        type="submit">Login</button>
                                 </div>
                             </form>
                         </div>

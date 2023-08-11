@@ -54,9 +54,8 @@
 
 @section('content-fe')
     <div class="container d-flex justify-content-center" style="padding-top: 10%!important;">
-        <h1>Badan Koordinasi Mahasiswa UCIC</h1>
+        <h1><strong>Badan Koordinasi Mahasiswa UCIC</strong></h1>
     </div>
-
     <div class="container d-flex justify-content-center mt-3 mb-5">
         <a href="{{ route('profil-bkm') }}"
             class="btn btn-transparent btn-outline-primary border-1 rounded rounded-pill">Profil BKM (Badan Koordinasi

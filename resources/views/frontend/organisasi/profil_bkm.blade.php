@@ -16,7 +16,7 @@
             width: 100%;
             height: 100%;
             /* object-fit: cover;
-                                                                                                                                                                                                                                                object-position: center center; */
+                                                                                                                                                                                                                                                                                                                                        object-position: center center; */
         }
 
         .content {
@@ -40,8 +40,19 @@
 @endsection
 
 @section('content-fe')
-    <div class="container d-flex justify-content-center" style="padding-top: 10%!important;">
-        <h1>Profil Organisasi BKM</h1>
+    <div class="container" style="padding-top: 10%!important;">
+        <div class="d-flex justify-content-end mb-5">
+            <p class="text-muted">
+                Organisasi Kemahasiswaan / BKM / Detail kegiatan
+            </p>
+        </div>
+        <div class="d-flex justify-content-center">
+            <h1><strong>Profil Organisasi BKM</strong></h1>
+        </div>
+        <div class="d-flex justify-content-center mt-3 mb-5">
+            <a href="{{ route('organisasi-bkm') }}"
+                class="btn btn-transparent btn-outline-primary border-1 rounded rounded-pill">Kegiatan Organisasi BKM</a>
+        </div>
     </div>
     @forelse ($profilbkm->take(1) as $item)
         <section id="about" class="about mb-5">
@@ -50,7 +61,7 @@
                 <hr>
                 <h5 class="right-aligned-paragraph">{!! nl2br($item->deskripsi) !!}</h5>
                 <div class="mt-5">
-                    <h6><strong>Contact me</strong></h6>
+                    <h6><strong>About me</strong></h6>
                     <a href="https://www.instagram.com/bkmucic/" class="btn btn-light border"><i class="bx bxl-instagram"
                             style="border-radius: 8px" style="color: rgb(0, 0, 0)"></i></a>
                 </div>
@@ -68,9 +79,9 @@
             <div class="container">
                 <div class="row content">
                     <div class="col-lg-12">
-                        <br></br>
-                        <br></br>
-                        <br></br>
+                        <br>
+                        <br>
+                        <br>
                         <h4 class="text-center">Belum ada Profil Organisasi BKM.</h4>
                     </div>
                 </div>

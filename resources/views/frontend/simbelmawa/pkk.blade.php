@@ -39,10 +39,10 @@
         </div>
     </div>
     <br>
-    <br>
     @forelse ($pkk as $item)
         <div class="container">
             <div class="row content mb-4 mt-4">
+                <hr style="border: 1px solid black">
                 <div class="col-lg-4 mt-4">
                     <div class="square-image d-flex justify-content-center">
                         <img src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
@@ -65,9 +65,12 @@
                         $formattedContent = nl2br($limitedContent);
                     @endphp
                     <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
+                    @if (strlen($item->deskripsi) > 500)
+                        <a href="{{ route('detail-pkk', $item->id) }}" class="btn btn-primary"
+                            style="float:right">Selengkapnya</a>
+                    @endif
                 </div>
             </div>
-            <hr>
         </div>
     @empty
         <section id="pricing" class="pricing mb-5">

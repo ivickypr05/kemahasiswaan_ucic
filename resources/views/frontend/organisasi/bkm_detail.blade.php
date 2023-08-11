@@ -11,7 +11,11 @@
 @section('content-fe')
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
-
+            <div class="d-flex justify-content-end">
+                <p class="text-muted">
+                    Organisasi Kemahasiswaan / BKM / Detail kegiatan
+                </p>
+            </div>
             <div class="row">
 
                 <div class="col-lg-12 entries">

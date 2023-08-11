@@ -47,8 +47,11 @@
     </style>
 @endsection
 @section('content-fe')
-    <div class="container d-flex justify-content-center" style="padding-top: 10%!important;">
-        <h1>Berita Universitas Catur Insan Cendekia</h1>
+    <div class="container mb-4" style="padding-top: 10%!important;">
+        <div class="d-flex justify-content-center">
+            <h1><strong>Berita Universitas Catur Insan Cendekia</strong></h1>
+        </div>
+
     </div>
     <section id="about" class="about">
         <div class="container">

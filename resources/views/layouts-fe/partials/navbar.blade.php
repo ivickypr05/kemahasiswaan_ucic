@@ -8,8 +8,9 @@
                 <li><a href="{{ route('beasiswa') }}"
                         class="{{ request()->routeIs('beasiswa') ? 'active' : '' }}"><span><strong>Beasiswa</strong></span></a>
                 </li>
-                <li class="dropdown"><a href="#"><span> <strong>Prestasi</strong></span> <i
-                            class="bi bi-chevron-down"></i></a>
+                <li class="dropdown"><a href="#"
+                        class="{{ request()->routeIs('prestasi-akademik', 'prestasi-nonakademik') ? 'active' : '' }}"><span>
+                            <strong>Prestasi</strong></span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a href="{{ route('prestasi-akademik') }}"
                                 class="{{ request()->routeIs('prestasi-akademik') ? 'active' : '' }}"><strong>Prestasi
@@ -21,8 +22,9 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#"><span><strong>Organisasi Kemahasiswaan</strong></span> <i
-                            class="bi bi-chevron-down"></i></a>
+                    <a href="#"
+                        class="{{ request()->routeIs('organisasi-bkm', 'organisasi-ukm', 'organisasi-hima') ? 'active' : '' }}"><span><strong>Organisasi
+                                Kemahasiswaan</strong></span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a href="{{ route('organisasi-bkm') }}"
                                 class="{{ request()->routeIs('organisasi-bkm') ? 'active' : '' }}"><strong>BKM</strong></a>
@@ -36,8 +38,9 @@
                     </ul>
                 </li>
 
-                <li class="dropdown"><a href="#"><span><strong>SIMBELMAWA</strong></span> <i
-                            class="bi bi-chevron-down"></i></a>
+                <li class="dropdown"><a href="#"
+                        class="{{ request()->routeIs('pkm', 'pkk') ? 'active' : '' }}"><span><strong>SIMBELMAWA</strong></span>
+                        <i class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a href="{{ route('pkm') }}"
                                 class="{{ request()->routeIs('pkm') ? 'active' : '' }}"><strong>PKM

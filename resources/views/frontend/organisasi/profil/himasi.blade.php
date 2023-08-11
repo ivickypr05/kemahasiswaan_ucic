@@ -11,8 +11,19 @@
 @endsection
 
 @section('content-fe')
-    <div class="container d-flex justify-content-center" style="padding-top: 10%!important;">
-        <h1>Profil Organisasi HIMASI</h1>
+    <div class="container" style="padding-top: 10%!important;">
+        <div class="d-flex justify-content-end mb-5">
+            <p class="text-muted">
+                Organisasi Kemahasiswaan / HIMA / Profil Organisasi HIMASI
+            </p>
+        </div>
+        <div class="d-flex justify-content-center">
+            <h1><strong>Profil Organisasi HIMASI</strong></h1>
+        </div>
+        <div class="d-flex justify-content-center mt-3 mb-5">
+            <a href="{{ route('organisasi-hima') }}"
+                class="btn btn-transparent btn-outline-primary border-1 rounded rounded-pill">Kegiatan Organisasi HIMA</a>
+        </div>
     </div>
     <section id="about" class="about mb-5">
         <div class="container">
@@ -22,7 +33,8 @@
                 </div>
             </div>
             <hr>
-            <h5 class="right-aligned-paragraph">HIMASI (Himpunan Mahasiswa Sistem Informasi) adalah organisasi mahasiswa yang
+            <h5 class="right-aligned-paragraph">HIMASI (Himpunan Mahasiswa Sistem Informasi) adalah organisasi mahasiswa
+                yang
                 berfokus pada bidang studi Sistem Informasi. HIMASI adalah singkatan dari "Himpunan Mahasiswa Sistem
                 Informasi" dan umumnya berada di lingkungan perguruan tinggi atau universitas yang menawarkan program studi
                 Sistem Informasi.

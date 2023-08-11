@@ -30,7 +30,7 @@
         }
 
         .card {
-            width: 360px;
+            width: 350px;
             height: 600px;
             border: 1px solid #0267ff;
             border-radius: 8px;
@@ -139,7 +139,6 @@
                         yang didalamnya terdapat organisasi BKM (Badan Kegiatan Mahasiswa), UKM (Unit Kegiatan
                         Mahasiswa)
                         dan HIMA (Himpunan Mahasiswa).</p>
-
                 </div>
                 <div class="col-lg-6">
                     <img style="width:100%" src="{{ asset('img/cic.png') }}" alt="">
@@ -159,6 +158,7 @@
                 </div>
                 @forelse ($beasiswa->take(2) as $item)
                     <div class="container">
+                        <hr style="border: 1px solid black">
                         <div class="row content mb-4">
                             <div class="col-lg-4 mt-4">
                                 <div class="square-image d-flex justify-content-center">
@@ -185,9 +185,13 @@
                                     $formattedContent = nl2br($limitedContent);
                                 @endphp
                                 <p class="mt-1" style="text-align: justify;">{!! $formattedContent !!}</p>
+                                @if (strlen($item->content) > 500)
+                                    <a href="{{ route('detail-beasiswa', $item->id) }}" class="btn btn-primary"
+                                        style="float:right">Selengkapnya</a>
+                                @endif
+
                             </div>
                         </div>
-                        <hr>
                     </div>
                 @endforeach
             </div>
@@ -337,11 +341,11 @@
                                 </div>
                             </div>
                             <div class="col-lg-8 pt-4 pt-lg-0 mt-1">
-                                <h4 class="ukm-title right-aligned-paragraph mb-3">{{ $item->nama_kegiatan }}</h4>
+                                <h4 class="title right-aligned-paragraph mb-3">{{ $item->nama_kegiatan }}</h4>
 
-                                <div class="ukm-info">
+                                <div class="info">
                                     <h6><strong>Yang Mengadakan Kegiatan : {{ $item->nama_ukm }}</strong></h6>
-                                    <div class="ukm-time">
+                                    <div class="time">
                                         <i class="bi bi-clock"></i>
                                         {{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }}
                                         - {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}
@@ -372,11 +376,11 @@
                                 </div>
                             </div>
                             <div class="col-lg-8 pt-4 pt-lg-0 mt-1">
-                                <h4 class="hima-title right-aligned-paragraph mb-3">{{ $item->nama_kegiatan }}</h4>
+                                <h4 class="title right-aligned-paragraph mb-3">{{ $item->nama_kegiatan }}</h4>
 
-                                <div class="hima-info">
+                                <div class="info">
                                     <h6><strong>Yang Mengadakan Kegiatan : {{ $item->nama_himpunan }}</strong></h6>
-                                    <div class="hima-time">
+                                    <div class="time">
                                         <i class="bi bi-clock"></i>
                                         {{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }}
                                         - {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}
@@ -412,6 +416,7 @@
                 </div>
                 @forelse ($pkm->take(1) as $item)
                     <div class="container">
+                        <hr style="border: 1px solid black">
                         <div class="row content mb-4">
                             <div class="col-lg-4 mt-4">
                                 <div class="square-image d-flex justify-content-center">
@@ -436,14 +441,18 @@
                                     $formattedContent = nl2br($limitedContent);
                                 @endphp
                                 <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
+                                @if (strlen($item->deskripsi) > 500)
+                                    <a href="{{ route('detail-pkm', $item->id) }}" class="btn btn-primary"
+                                        style="float:right">Selengkapnya</a>
+                                @endif
                             </div>
                         </div>
-                        <hr>
                     </div>
                 @endforeach
 
                 @forelse ($pkk->take(1) as $item)
                     <div class="container">
+                        <hr style="border: 1px solid black">
                         <div class="row content">
                             <div class="col-lg-4 mt-4">
                                 <div class="square-image d-flex justify-content-center">
@@ -468,9 +477,12 @@
                                     $formattedContent = nl2br($limitedContent);
                                 @endphp
                                 <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
+                                @if (strlen($item->deskripsi) > 500)
+                                    <a href="{{ route('detail-pkk', $item->id) }}" class="btn btn-primary"
+                                        style="float:right">Selengkapnya</a>
+                                @endif
                             </div>
                         </div>
-                        <hr>
                     </div>
                 @endforeach
             </div>

@@ -54,7 +54,7 @@
 
 @section('content-fe')
     <div class="container d-flex justify-content-center mb-5" style="padding-top: 10%!important;">
-        <h1>Unit Kegiatan Mahasiswa UCIC</h1>
+        <h1><strong>Unit Kegiatan Mahasiswa UCIC</strong></h1>
     </div>
     <br>
     @forelse ($ukm as $item)

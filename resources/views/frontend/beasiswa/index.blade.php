@@ -32,17 +32,18 @@
         /* Tambahkan margin-top pada section#about */
     </style>
 @endsection
-<div class="container mb-5" style="padding-top: 10%!important;">
-    <div class="d-flex justify-content-center">
-        <h1><strong>Pengumuman Beasiswa</strong></h1>
-    </div>
-</div>
-<br>
-<br>
 @section('content-fe')
+    <div class="container mb-4" style="padding-top: 10%!important;">
+        <div class="d-flex justify-content-center">
+            <h1><strong>Pengumuman Beasiswa</strong></h1>
+        </div>
+    </div>
+    <br>
+    <br>
     @forelse ($beasiswa as $item)
         <div class="container">
             <div class="row content mb-4 mt-4">
+                <hr style="border: 1px solid black">
                 <div class="col-lg-4 mt-4">
                     <div class="square-image d-flex justify-content-center">
                         <img src="{{ asset('storage/' . ($item->gambar ?? 'https://c4.wallpaperflare.com/wallpaper/94/602/369/surface-light-silver-background-wallpaper-preview.jpg')) }}"
@@ -50,7 +51,7 @@
                     </div>
                 </div>
                 <div class="col-lg-8 pt-4 pt-lg-0 mt-3">
-                    <h4 class="beasiswa-title right-aligned-paragraph">
+                    <h4 class="beasiswa-title   ">
                         <a href="{{ route('detail-beasiswa', $item->id) }}">{{ $item->title }}</a>
                     </h4>
                     <div class="beasiswa-info">
@@ -65,9 +66,12 @@
                         $formattedContent = nl2br($limitedContent);
                     @endphp
                     <p class="mt-1" style="text-align: justify;">{!! $formattedContent !!}</p>
+                    @if (strlen($item->content) > 500)
+                        <a href="{{ route('detail-beasiswa', $item->id) }}" class="btn btn-primary"
+                            style="float:right">Selengkapnya</a>
+                    @endif
                 </div>
             </div>
-            <hr>
         </div>
     @empty
         <section id="pricing" class="pricing mb-5">

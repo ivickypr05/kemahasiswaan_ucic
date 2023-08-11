@@ -42,8 +42,8 @@
     </style>
 @endsection
 @section('content-fe')
-    <div class="container d-flex justify-content-center" style="padding-top: 10%!important;">
-        <h1>Prestasi Non Akademik Mahasiswa UCIC</h1>
+    <div class="container d-flex justify-content-center mb-4" style="padding-top: 10%!important;">
+        <h1><strong>Prestasi Non Akademik Mahasiswa UCIC</strong></h1>
     </div>
     <section id="about" class="about">
         <div class="container">

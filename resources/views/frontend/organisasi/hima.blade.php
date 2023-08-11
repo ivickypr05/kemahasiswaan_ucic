@@ -54,7 +54,7 @@
 
 @section('content-fe')
     <div class="container d-flex justify-content-center" style="padding-top: 10%!important;">
-        <h1>Himpunan Mahasiswa UCIC</h1>
+        <h1><strong>Himpunan Mahasiswa UCIC</strong></h1>
     </div>
     <div class="container d-flex justify-content-center mt-3 gap-4 mb-5">
         <a href="{{ route('profil-himatif') }}" class="btn btn-tranparent btn-outline-primary border-1 rounded rounded-pill">
