@@ -47,14 +47,16 @@
     </div>
     <section id="about" class="about">
         <div class="container">
-            <div class="row content d-flex justify-content-center">
+            <div class="row content d-flex justify-content-start">
                 @forelse ($preakademik as $item)
                     <div class="mt-1 mb-5 col-md-4">
                         {{-- card --}}
                         <div class="card card-deck">
                             <img src="{{ asset('storage/' . $item->gambar_1) }}" class="responsive-img" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title text-center"><strong>{{ $item->title }}</strong></h5>
+                                <h5 class="card-title text-center"><strong><a
+                                            href="{{ route('detail-prestasi-akademik', $item->id) }}">{{ $item->title }}</a></strong>
+                                </h5>
                                 <hr style="color: #0267ff">
                                 <h6 class="card-text"> Tingkat :
                                     {{ $item->tingkat_kejuaraan }} </h6>

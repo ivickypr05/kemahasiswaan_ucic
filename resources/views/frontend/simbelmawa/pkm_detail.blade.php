@@ -1,31 +1,25 @@
 @extends('layouts-fe.template')
 @section('title', 'UCIC | Detail Program PKM 8 Bidang')
 @section('style-fe')
-    <style>
-        #blog {
-            margin-top: 100px;
-        }
-    </style>
 @endsection
 
 @section('content-fe')
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
-            <div class="d-flex justify-content-end">
-                <p class="text-muted">
-                    SIMBELMAWA / PKM 8 Bidang / Detail
-                </p>
+            <div class="breadcrumbs">
+                <a href="{{ route('pkm') }}">PKM 8 Bidang</a>
+                <span class="separator"><i class="bi bi-chevron-double-right"></i></span>
+                <a href="{{ route('detail-pkm', $pkm->id) }}">Detail PKM 8 Bidang
+                    "{{ $pkm->judul }}"</a>
             </div>
             <div class="row">
 
                 <div class="col-lg-8 entries">
 
                     <article class="entry entry-single">
-                        <div class="d-flex justify-content-center">
-                            <img src="{{ asset('storage/' . $pkm->gambar) }}" alt="" class="img-top" width="300px">
-                        </div>
-                        <h2 class="mt-3 entry-title">
-                            <a href="{{ route('pkm') }}">{{ $pkm->judul }}</a>
+
+                        <h2 class="entry-title">
+                            {{ $pkm->judul }}
                         </h2>
                         <div class="entry-meta">
 
@@ -36,8 +30,10 @@
                             </li>
 
                         </div>
-
-                        <div class="entry-content right-aligned-paragraph">
+                        <div class="d-flex justify-content-start">
+                            <img src="{{ asset('storage/' . $pkm->gambar) }}" width="300px">
+                        </div>
+                        <div class="mt-3 entry-content right-aligned-paragraph">
                             {!! nl2br($pkm->deskripsi) !!}
                         </div>
                         <div class="entry-content mt-4">

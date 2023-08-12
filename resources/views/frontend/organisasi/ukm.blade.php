@@ -67,11 +67,12 @@
                     </div>
                 </div>
                 <div class="col-lg-8 pt-4 pt-lg-0 mt-1">
-                    <h4 class="ukm-title right-aligned-paragraph mb-3">{{ $item->nama_kegiatan }}</h4>
+                    <h4 class="ukm-title right-aligned-paragraph mb-3"><a
+                            href="{{ route('detail-ukm', $item->id) }}">{{ $item->nama_kegiatan }}</a></h4>
 
                     <div class="ukm-info">
                         <h6><strong>Yang Mengadakan Kegiatan : {{ $item->nama_ukm }}</strong></h6>
-                        <div class="ukm-time">
+                        <div class="ukm-time text-muted">
                             <i class="bi bi-clock"></i>
                             {{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }}
                             - {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}

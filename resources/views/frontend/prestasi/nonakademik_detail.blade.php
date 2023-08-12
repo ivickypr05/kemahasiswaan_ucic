@@ -2,10 +2,6 @@
 @section('title', 'UCIC | Detail Prestasi Non Akademik')
 @section('style-fe')
     <style>
-        #blog {
-            margin-top: 100px;
-        }
-
         .img-top {
             max-width: 100%;
             height: 100%;
@@ -19,10 +15,11 @@
 @section('content-fe')
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
-            <div class="d-flex justify-content-end">
-                <p class="text-muted">
-                    Prestasi / Prestasi Non Akademik / Detail
-                </p>
+            <div class="breadcrumbs">
+                <a href="{{ route('prestasi-nonakademik') }}">Prestasi Non Akademik</a>
+                <span class="separator"><i class="bi bi-chevron-double-right"></i></span>
+                <a href="{{ route('detail-prestasi-nonakademik', $prenonakademik->id) }}">Detail Prestasi Non Akademik
+                    "{{ $prenonakademik->title }}"</a>
             </div>
             <div class="row">
 
@@ -30,33 +27,29 @@
 
                     <article class="entry entry-single">
                         <h2 class="entry-title">
-                            <a href="{{ route('prestasi-nonakademik') }}">Non Akademik - {{ $prenonakademik->title }}</a>
+                            Non Akademik - {{ $prenonakademik->title }}
                         </h2>
                         <div class="entry-meta">
                             <li class="d-flex align-items-center"><i class="bi bi-clock"></i><time
                                     datetime="2020-01-01">{{ \Carbon\Carbon::parse($prenonakademik->tanggal)->translatedFormat('d F Y') }}
                             </li>
                             <div class="row mb-3 d-flex justify-content-center">
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     @if ($prenonakademik->gambar_2)
                                         <img src="{{ asset('storage/' . $prenonakademik->gambar_2) }}" alt="Gambar 2"
                                             class="img-top">
                                     @else
-                                        <img src="https://png.pngtree.com/png-vector/20190820/ourmid/pngtree-no-image-vector-illustration-isolated-png-image_1694547.jpg"
-                                            alt="Gambar 1" class="img-top">
                                     @endif
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     <img src="{{ asset('storage/' . $prenonakademik->gambar_1) }}" alt="Gambar 1"
                                         class="img-top">
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-4">
                                     @if ($prenonakademik->gambar_3)
                                         <img src="{{ asset('storage/' . $prenonakademik->gambar_3) }}" alt="Gambar 2"
                                             class="img-top">
                                     @else
-                                        <img src="https://png.pngtree.com/png-vector/20190820/ourmid/pngtree-no-image-vector-illustration-isolated-png-image_1694547.jpg"
-                                            alt="Gambar 1" class="img-top">
                                     @endif
                                 </div>
                             </div>

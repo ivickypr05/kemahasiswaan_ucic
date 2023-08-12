@@ -1,21 +1,17 @@
 @extends('layouts-fe.template')
 @section('title', 'UCIC | Detail Berita')
 @section('style-fe')
-    <style>
-        #blog {
-            margin-top: 100px;
-        }
-    </style>
 @endsection
 
 @section('content-fe')
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
 
-            <div class="d-flex justify-content-end">
-                <p class="text-muted">
-                    Berita / Detail
-                </p>
+            <div class="breadcrumbs">
+                <a href="{{ route('berita') }}">Berita</a>
+                <span class="separator"><i class="bi bi-chevron-double-right"></i></span>
+                <a href="{{ route('detail-berita', $berita->id) }}">Detail Berita
+                    "{{ $berita->title }}"</a>
             </div>
             <div class="row">
 
@@ -23,7 +19,7 @@
                     <article class="entry entry-single">
 
                         <h2 class="entry-title">
-                            <a href="{{ route('berita') }}">{{ $berita->title }}</a>
+                            {{ $berita->title }}
                         </h2>
 
                         <div class="entry-meta">
@@ -35,8 +31,10 @@
                             </li>
 
                         </div>
-
-                        <div class="entry-content right-aligned-paragraph">
+                        <div class="d-flex justify-content-start">
+                            <img src="{{ asset('storage/' . $berita->gambar) }}" width="300px">
+                        </div>
+                        <div class="mt-3 entry-content right-aligned-paragraph">
                             {!! nl2br($berita->content) !!}
                         </div>
 

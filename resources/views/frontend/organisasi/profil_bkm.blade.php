@@ -16,7 +16,7 @@
             width: 100%;
             height: 100%;
             /* object-fit: cover;
-                                                                                                                                                                                                                                                                                                                                        object-position: center center; */
+                                                                                                                                                                                                                                                                                                                                                                object-position: center center; */
         }
 
         .content {
@@ -40,18 +40,14 @@
 @endsection
 
 @section('content-fe')
-    <div class="container" style="padding-top: 10%!important;">
-        <div class="d-flex justify-content-end mb-5">
-            <p class="text-muted">
-                Organisasi Kemahasiswaan / BKM / Detail kegiatan
-            </p>
+    <div class="container">
+        <div class="breadcrumbs" style="padding-top: 3%!important;">
+            <a href="{{ route('organisasi-bkm') }}">Organisasi BKM</a>
+            <span class="separator"><i class="bi bi-chevron-double-right"></i></span>
+            <a href="">Profil BKM</a>
         </div>
         <div class="d-flex justify-content-center">
             <h1><strong>Profil Organisasi BKM</strong></h1>
-        </div>
-        <div class="d-flex justify-content-center mt-3 mb-5">
-            <a href="{{ route('organisasi-bkm') }}"
-                class="btn btn-transparent btn-outline-primary border-1 rounded rounded-pill">Kegiatan Organisasi BKM</a>
         </div>
     </div>
     @forelse ($profilbkm->take(1) as $item)

@@ -72,9 +72,10 @@
                     </div>
                 </div>
                 <div class="col-lg-8 pt-4 pt-lg-0 mt-1">
-                    <h4 class="bkm-title right-aligned-paragraph">{{ $item->nama_kegiatan }}</h4>
-                    <div class="bkm-info mb-1">
-                        <div class="bkm-time">
+                    <h4 class="bkm-title right-aligned-paragraph"><a
+                            href="{{ route('detail-bkm', $item->id) }}">{{ $item->nama_kegiatan }}</a></h4>
+                    <div class="bkm-info mb-3">
+                        <div class="bkm-time text-muted">
                             <i class="bi bi-clock"></i>
                             {{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }}
                             - {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}

@@ -1,31 +1,25 @@
 @extends('layouts-fe.template')
 @section('title', 'UCIC | Detail Program PPK Ormawa')
 @section('style-fe')
-    <style>
-        #blog {
-            margin-top: 100px;
-        }
-    </style>
 @endsection
 
 @section('content-fe')
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
-            <div class="d-flex justify-content-end">
-                <p class="text-muted">
-                    SIMBELMAWA / PPK Ormawa / Detail
-                </p>
+            <div class="breadcrumbs">
+                <a href="{{ route('pkk') }}">PPK Ormawa</a>
+                <span class="separator"><i class="bi bi-chevron-double-right"></i></span>
+                <a href="{{ route('detail-pkk', $pkk->id) }}">Detail PPK Ormawa
+                    "{{ $pkk->judul }}"</a>
             </div>
             <div class="row">
 
                 <div class="col-lg-8 entries">
 
                     <article class="entry entry-single">
-                        <div class="d-flex justify-content-center">
-                            <img src="{{ asset('storage/' . $pkk->gambar) }}" alt="" class="img-top" width="300px">
-                        </div>
-                        <h2 class="mt-3 entry-title">
-                            <a href="{{ route('pkk') }}">{{ $pkk->judul }}</a>
+
+                        <h2 class="entry-title">
+                            {{ $pkk->judul }}
                         </h2>
                         <div class="entry-meta">
                             <li class="d-flex align-items-center"><i class="bi bi-clock"></i><time
@@ -33,11 +27,11 @@
                                     -
                                     {{ \Carbon\Carbon::parse($pkk->sampai_tanggal)->translatedFormat('d F Y') }}</time></a>
                             </li>
-
                         </div>
-
-
-                        <div class="entry-content right-aligned-paragraph">
+                        <div class="d-flex justify-content-start">
+                            <img src="{{ asset('storage/' . $pkk->gambar) }}" width="300px">
+                        </div>
+                        <div class="entry-content right-aligned-paragraph mt-3">
                             {!! nl2br($pkk->deskripsi) !!}
                         </div>
                         <div class="entry-content mt-4">

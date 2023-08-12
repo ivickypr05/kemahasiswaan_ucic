@@ -1,20 +1,16 @@
 @extends('layouts-fe.template')
 @section('title', 'UCIC | Detail Kegiatan Organisasi HIMA')
 @section('style-fe')
-    <style>
-        #blog {
-            margin-top: 100px;
-        }
-    </style>
 @endsection
 
 @section('content-fe')
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
-            <div class="d-flex justify-content-end">
-                <p class="text-muted">
-                    Organisasi Kemahasiswaan / HIMA / Detail kegiatan
-                </p>
+            <div class="breadcrumbs">
+                <a href="{{ route('organisasi-hima') }}">Organisasi HIMA</a>
+                <span class="separator"><i class="bi bi-chevron-double-right"></i></span>
+                <a href="{{ route('detail-hima', $hima->id) }}">Detail Kegiatan HIMA
+                    "{{ $hima->nama_kegiatan }}"</a>
             </div>
             <div class="row">
 
@@ -23,8 +19,8 @@
                     <article class="entry entry-single">
 
                         <h2 class="entry-title">
-                            <a href="{{ route('organisasi-hima') }}">{{ $hima->nama_himpunan }} -
-                                {{ $hima->nama_kegiatan }}</a>
+                            {{ $hima->nama_himpunan }} -
+                            {{ $hima->nama_kegiatan }}
                         </h2>
                         <div class="col-md-3 mb-3 mt-3">
                             <img src="{{ asset('storage/' . $hima->gambar) }}" alt="" class="img-top"
@@ -56,7 +52,7 @@
                             @foreach ($rekhima->take(5) as $recommended)
                                 <li class="recommended-list-item">
                                     <b><a href="{{ route('detail-hima', $recommended->id) }}">
-                                            {{ $recommended->nama_kegiatan }}
+                                            {{ $recommended->nama_himpunan }} - {{ $recommended->nama_kegiatan }}
                                         </a></b>
                                 </li>
                             @endforeach

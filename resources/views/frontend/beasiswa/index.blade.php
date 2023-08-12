@@ -55,7 +55,7 @@
                         <a href="{{ route('detail-beasiswa', $item->id) }}">{{ $item->title }}</a>
                     </h4>
                     <div class="beasiswa-info">
-                        <div class="beasiswa-time">
+                        <div class="beasiswa-time text-muted">
                             <i class="mb-3 bi bi-clock"></i>
                             <p class="">{{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }}
                                 - {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}</p>

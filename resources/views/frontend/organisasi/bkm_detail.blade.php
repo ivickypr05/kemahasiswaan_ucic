@@ -1,31 +1,26 @@
 @extends('layouts-fe.template')
 @section('title', 'UCIC | Detail Kegiatan Organisasi BKM')
 @section('style-fe')
-    <style>
-        #blog {
-            margin-top: 100px;
-        }
-    </style>
 @endsection
 
 @section('content-fe')
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
-            <div class="d-flex justify-content-end">
-                <p class="text-muted">
-                    Organisasi Kemahasiswaan / BKM / Detail kegiatan
-                </p>
+            <div class="breadcrumbs">
+                <a href="{{ route('organisasi-bkm') }}">Organisasi BKM</a>
+                <span class="separator"><i class="bi bi-chevron-double-right"></i></span>
+                <a href="{{ route('detail-bkm', $bkm->id) }}">Detail Kegiatan BKM
+                    "{{ $bkm->nama_kegiatan }}"</a>
             </div>
             <div class="row">
 
                 <div class="col-lg-8 entries">
-
                     <article class="entry entry-single">
                         <h2 class="entry-title">
-                            <a href="{{ route('organisasi-bkm') }}">{{ $bkm->nama_kegiatan }}</a>
+                            {{ $bkm->nama_kegiatan }}
                         </h2>
 
-                        <div class="col-md-3 mb-3 mt-3">
+                        <div class="col-md-4 mb-3 mt-3">
                             <img src="{{ asset('storage/' . $bkm->gambar) }}" alt="" class="img-top" width="300px">
                         </div>
                         <div class="entry-meta">

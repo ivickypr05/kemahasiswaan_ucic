@@ -6,25 +6,11 @@
             width: 268px;
             height: 500px;
             padding: 10px;
-            font-family: "Times New Roman", sans-serif;
-
-            &:hover,
-            &:focus-within {
-                transform: scale(1.08);
-                box-shadow: 0 0.4rem 0.4rem rgb(0, 0, 0);
-                transition: 0.2s ease-in-out;
-                transform: translateY(-1rem);
-                backdrop-filter: blur(0.5rem);
-            }
-
-            &:not(:focus-within) {
-                transition: 0.2s ease-in-out;
-            }
+            border: 1px blue;
+            font-family: "Familjen Grotesk", sans-serif;
         }
 
-        .card-title {
-            font-family: "Helvetica", sans-serif;
-        }
+
 
         .card-text {
             font-family: "Times New Roman", sans-serif;
@@ -55,25 +41,27 @@
     </div>
     <section id="about" class="about">
         <div class="container">
-            <div class="row content d-flex justify-content-center">
+            <div class="row content d-flex justify-content-start">
                 @forelse ($berita as $item)
                     <div class="mt-1 mb-5 col-md-3">
                         {{-- card --}}
                         <div class="card card-deck">
-                            <h4 class="card-title text-center"><strong>{{ $item->title }}</strong></h4>
-                            <hr>
-                            <h6 class="card-text text-center"><i class="bi bi-clock"></i>
+                            <img src="{{ asset('storage/' . $item->gambar) }}" class="responsive-img" width="100%">
+                            <hr style="color: blue">
+                            <h4 class="card-title"><strong><a
+                                        href="{{ route('detail-berita', $item->id) }}">{{ $item->title }}</a></strong></h4>
+
+                            <h6 class="card-text text-muted"><i class="bi bi-clock"></i>
                                 {{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }} - <i
                                     class="bi bi-clock"></i>
                                 {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}</h6>
-                            <img src="{{ asset('storage/' . $item->gambar) }}" class="responsive-img" width="100%">
                             @php
                                 $limitedContent = Str::limit($item->content, 100);
                                 $formattedContent = nl2br($limitedContent);
                             @endphp
                             <p class="mt-1" style="text-align: justify;">{!! $formattedContent !!}</p>
                             @if (strlen($item->content) > 1)
-                                <div class="d-flex justify-content-center">
+                                <div class="d-flex justify-content-start">
                                     <a href="{{ route('detail-berita', $item->id) }}"
                                         class="btn btn-primary rounded">Selengkapnya</a>
                                 </div>

@@ -11,18 +11,14 @@
 @endsection
 
 @section('content-fe')
-    <div class="container" style="padding-top: 10%!important;">
-        <div class="d-flex justify-content-end mb-5">
-            <p class="text-muted">
-                Organisasi Kemahasiswaan / HIMA / Profil Organisasi HIMAKU
-            </p>
+    <div class="container">
+        <div class="breadcrumbs" style="padding-top: 3%!important;">
+            <a href="{{ route('organisasi-hima') }}">Organisasi HIMA</a>
+            <span class="separator"><i class="bi bi-chevron-double-right"></i></span>
+            <a href="">Profil HIMAKU</a>
         </div>
         <div class="d-flex justify-content-center">
             <h1><strong>Profil Organisasi HIMAKU</strong></h1>
-        </div>
-        <div class="d-flex justify-content-center mt-3 mb-5">
-            <a href="{{ route('organisasi-hima') }}"
-                class="btn btn-transparent btn-outline-primary border-1 rounded rounded-pill">Kegiatan Organisasi HIMA</a>
         </div>
     </div>
     <section id="about" class="about mb-5">
