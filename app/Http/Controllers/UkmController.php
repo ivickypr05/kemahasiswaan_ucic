@@ -61,8 +61,9 @@ class UkmController extends Controller
      */
     public function show($id)
     {
+        $rekukm = Ukm::get();
         $ukm = Ukm::findOrFail($id);
-        return view('frontend.organisasi.ukm_detail', compact('ukm'));
+        return view('frontend.organisasi.ukm_detail', compact('ukm', 'rekukm'));
     }
 
     /**

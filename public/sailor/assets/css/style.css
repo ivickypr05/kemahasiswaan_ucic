@@ -1310,7 +1310,7 @@ section {
 }
 
 .blog .entry .entry-title a {
-    color: #556270;
+    color: #000000;
     transition: 0.3s;
 }
 
@@ -1807,6 +1807,41 @@ section {
     margin: auto;
     overflow: hidden;
     /* untuk mengatur gambar menjadi tengah */
+}
+/*--------------------------------------------------------------
+# Rekomendasi
+--------------------------------------------------------------*/
+
+.recommended {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 2px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.recommended-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.recommended-list {
+    list-style: cross-fade();
+    margin-left: 1px;
+    font-size: 14px;
+}
+
+.recommended-list-item {
+    margin-bottom: 10px;
+}
+.recommended-list-item a {
+    display: block;
+    color: black;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.recommended-list-item a:hover {
+    color: #2f21f5;
 }
 /*--------------------------------------------------------------
 # Footer

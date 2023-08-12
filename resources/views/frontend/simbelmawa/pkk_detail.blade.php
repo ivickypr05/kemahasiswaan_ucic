@@ -18,7 +18,7 @@
             </div>
             <div class="row">
 
-                <div class="col-lg-12 entries">
+                <div class="col-lg-8 entries">
 
                     <article class="entry entry-single">
                         <div class="d-flex justify-content-center">
@@ -45,13 +45,31 @@
 
                             <a href="{{ asset('storage/' . $pkk->pedoman) }}" target="_blank"
                                 class="btn btn-transparent btn-outline-primary border-3 rounded rounded-pill">Pedoman
-                                {{ $pkk->judul }}</a>
+                                PPK Ormawa</a>
 
                         </div>
                     </article><!-- End blog entry -->
 
                 </div><!-- End blog entries list -->
-
+                <div class="col-lg-4">
+                    <div class="recommended">
+                        <h3 class="d-flex justify-content-center recommended-title mb-3"><b>Lihat Pengumuman PPK Lainnya</b>
+                        </h3>
+                        <hr>
+                        <ul class="recommended-list">
+                            @foreach ($rekpkk->take(5) as $recommended)
+                                <li class="recommended-list-item">
+                                    <b><a href="{{ route('detail-pkk', $recommended->id) }}">
+                                            {{ $recommended->judul }}
+                                        </a></b>
+                                </li>
+                            @endforeach
+                            {{-- @php
+                                dd($pkk);
+                            @endphp --}}
+                        </ul>
+                    </div>
+                </div>
             </div>
 
         </div>

@@ -62,8 +62,9 @@ class BeasiswaController extends Controller
      */
     public function show($id)
     {
+        $rekbeasiswa = Beasiswa::get();
         $beasiswa = Beasiswa::find($id);
-        return view('frontend.beasiswa.detail', compact('beasiswa'));
+        return view('frontend.beasiswa.detail', compact('beasiswa', 'rekbeasiswa'));
     }
 
 

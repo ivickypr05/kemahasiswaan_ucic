@@ -259,11 +259,8 @@
 
     <!-- <body data-layout="horizontal"> -->
     <div class="d-lg-flex half">
-        <div class="bg order-1 bg-perpus order-md-2" style="background-color: #ffffff;">
-            <br><br><br><br><br><br><br>
-            <div class="d-flex justify-content-center">
-                <img src="{{ asset('img/cic.png') }}" alt="" width="700px">
-            </div>
+        <div class="bg order-1 bg-perpus order-md-2"
+            style="background-image: url('https://aboutcirebon.id/wp-content/uploads/2021/01/22.jpg')">
         </div>
         <div class="contents">
 

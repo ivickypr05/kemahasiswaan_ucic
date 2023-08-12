@@ -82,8 +82,9 @@ class PrestasiAkademikController extends Controller
      */
     public function show($id)
     {
+        $rekakademik = Preakademik::get();
         $preakademik = Preakademik::with('categories')->find($id);
-        return view('frontend.prestasi.akademik_detail', compact('preakademik'));
+        return view('frontend.prestasi.akademik_detail', compact('preakademik', 'rekakademik'));
     }
 
     /**

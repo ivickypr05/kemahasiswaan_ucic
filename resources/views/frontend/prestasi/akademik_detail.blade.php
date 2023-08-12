@@ -26,9 +26,7 @@
                 </p>
             </div>
             <div class="row">
-
-                <div class="col-lg-12 entries">
-
+                <div class="col-lg-8 entries">
                     <article class="entry entry-single">
                         <h2 class="entry-title">
                             <a href="{{ route('prestasi-akademik') }}">Akademik - {{ $preakademik->title }}</a>
@@ -81,13 +79,29 @@
                         <div class="entry-content text-dark"><strong> Deskripsi : </strong> <br>
                             {!! nl2br($preakademik->deskripsi) !!}
                         </div>
-
                     </article><!-- End blog entry -->
-
                 </div><!-- End blog entries list -->
-
+                <div class="col-lg-4">
+                    <div class="recommended">
+                        <h3 class="d-flex justify-content-center recommended-title mb-3"><b>Prestasi Akademik
+                                Lainnya</b>
+                        </h3>
+                        <hr>
+                        <ul class="recommended-list">
+                            @foreach ($rekakademik->take(5) as $recommended)
+                                <li class="recommended-list-item">
+                                    <b><a href="{{ route('detail-prestasi-akademik', $recommended->id) }}">
+                                            {{ $recommended->title }}
+                                        </a></b>
+                                </li>
+                            @endforeach
+                            {{-- @php
+                                dd($beasiswa);
+                            @endphp --}}
+                        </ul>
+                    </div>
+                </div>
             </div>
-
         </div>
 
     </section><!-- End Blog Single Section -->

@@ -63,8 +63,9 @@ class BkmController extends Controller
      */
     public function show($id)
     {
+        $rekbkm = Bkm::get();
         $bkm = Bkm::findOrFail($id);
-        return view('frontend.organisasi.bkm_detail', compact('bkm'));
+        return view('frontend.organisasi.bkm_detail', compact('bkm', 'rekbkm'));
     }
 
     /**

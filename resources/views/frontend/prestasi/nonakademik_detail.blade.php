@@ -9,7 +9,6 @@
         .img-top {
             max-width: 100%;
             height: 100%;
-            display: block;
             margin: 0 auto;
             display: block;
             /* untuk mengatur gambar menjadi tengah */
@@ -27,7 +26,7 @@
             </div>
             <div class="row">
 
-                <div class="col-lg-12 entries">
+                <div class="col-lg-8 entries">
 
                     <article class="entry entry-single">
                         <h2 class="entry-title">
@@ -85,7 +84,23 @@
                     </article><!-- End blog entry -->
 
                 </div><!-- End blog entries list -->
-
+                <div class="col-lg-4">
+                    <div class="recommended">
+                        <h3 class="d-flex justify-content-center recommended-title mb-3"><b>Prestasi Non Akademik
+                                Lainnya</b>
+                        </h3>
+                        <hr>
+                        <ul class="recommended-list">
+                            @foreach ($reknonakademik->take(5) as $recommended)
+                                <li class="recommended-list-item">
+                                    <b><a href="{{ route('detail-prestasi-nonakademik', $recommended->id) }}">
+                                            {{ $recommended->title }}
+                                        </a></b>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
             </div>
 
         </div>

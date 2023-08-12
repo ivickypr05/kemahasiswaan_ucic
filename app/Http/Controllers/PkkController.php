@@ -67,8 +67,9 @@ class PkkController extends Controller
      */
     public function show($id)
     {
+        $rekpkk = Pkk::get();
         $pkk = Pkk::findOrFail($id);
-        return view('frontend.simbelmawa.pkk_detail', compact('pkk'));
+        return view('frontend.simbelmawa.pkk_detail', compact('pkk', 'rekpkk'));
     }
 
     /**

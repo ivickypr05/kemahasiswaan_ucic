@@ -66,8 +66,9 @@ class PkmController extends Controller
      */
     public function show($id)
     {
+        $rekpkm = Pkm::get();
         $pkm = Pkm::findOrFail($id);
-        return view('frontend.simbelmawa.pkm_detail', compact('pkm'));
+        return view('frontend.simbelmawa.pkm_detail', compact('pkm', 'rekpkm'));
     }
 
     /**

@@ -83,8 +83,9 @@ class PrestasiNonAkademikController extends Controller
      */
     public function show($id)
     {
+        $reknonakademik = Prenonakademik::get();
         $prenonakademik = Prenonakademik::with('categories')->find($id);
-        return view('frontend.prestasi.nonakademik_detail', compact('prenonakademik'));
+        return view('frontend.prestasi.nonakademik_detail', compact('prenonakademik', 'reknonakademik'));
     }
 
     /**

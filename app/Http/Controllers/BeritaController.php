@@ -63,8 +63,9 @@ class BeritaController extends Controller
      */
     public function show($id)
     {
+        $rekberita = Berita::get();
         $berita = Berita::find($id);
-        return view('frontend.berita.detail', compact('berita'));
+        return view('frontend.berita.detail', compact('berita', 'rekberita'));
     }
 
 

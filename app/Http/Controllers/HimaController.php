@@ -64,8 +64,9 @@ class HimaController extends Controller
      */
     public function show($id)
     {
+        $rekhima = Hima::get();
         $hima = Hima::findOrFail($id);
-        return view('frontend.organisasi.hima_detail', compact('hima'));
+        return view('frontend.organisasi.hima_detail', compact('hima', 'rekhima'));
     }
 
     /**
