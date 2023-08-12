@@ -68,7 +68,7 @@
                                 {{ \Carbon\Carbon::parse($item->sampai_tanggal)->translatedFormat('d F Y') }}</h6>
                             <img src="{{ asset('storage/' . $item->gambar) }}" class="responsive-img" width="100%">
                             @php
-                                $limitedContent = Str::limit($item->content, 150);
+                                $limitedContent = Str::limit($item->content, 100);
                                 $formattedContent = nl2br($limitedContent);
                             @endphp
                             <p class="mt-1" style="text-align: justify;">{!! $formattedContent !!}</p>
