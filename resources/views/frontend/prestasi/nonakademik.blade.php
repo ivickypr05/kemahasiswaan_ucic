@@ -105,7 +105,10 @@
         </div>
     </section><!-- End About Section -->
     @endforelse
-    {{ $prenonakademik->links() }}
+    <div class="container">
+
+        {{ $prenonakademik->links() }}
+    </div>
 @endsection
 
 @section('script-fe')

@@ -85,7 +85,7 @@
             width: 275px;
             height: 500px;
             padding: 10px;
-            font-family: "Times New Roman", sans-serif;
+            font-family: "Familjen Grotesk", sans-serif;
 
             &:hover,
             &:focus-within {
@@ -99,10 +99,6 @@
             &:not(:focus-within) {
                 transition: 0.2s ease-in-out;
             }
-        }
-
-        .card-title-berita {
-            font-family: "Helvetica", sans-serif;
         }
 
         .card-text-berita {
@@ -155,6 +151,9 @@
                         <h2><b>Daftar Beasiswa</b></h2>
                     </center>
                     <br><br>
+                    <div class="d-flex justify-content-end"><i class="bi bi-chevron-compact-right" style="color: blue"></i>
+                        <a href="{{ route('beasiswa') }}">Lihat Semua</a>
+                    </div>
                 </div>
                 @forelse ($beasiswa->take(2) as $item)
                     <div class="container">
@@ -206,6 +205,9 @@
                         <h2><b>Prestasi Mahasiswa UCIC</b></h2>
                     </center>
                     <br><br>
+                    <div class="d-flex justify-content-end"><i class="bi bi-chevron-compact-right" style="color: blue"></i>
+                        <a href="{{ route('prestasi-akademik') }}">Lihat Semua</a>
+                    </div>
                 </div>
                 @forelse ($preakademik->take(2) as $item)
                     <div class="mt-1 mb-5 col-md-4">
@@ -213,7 +215,9 @@
                         <div class="card card-deck">
                             <img src="{{ asset('storage/' . $item->gambar_1) }}" class="responsive-img" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title text-center"><strong>Akademik - {{ $item->title }}</strong></h5>
+                                <h5 class="card-title text-center"><strong><a
+                                            href="{{ route('detail-prestasi-akademik', $item->id) }}">Akademik -
+                                            {{ $item->title }}</a></strong></h5>
                                 <hr style="color: #0267ff">
                                 <h6 class="card-text"> Tingkat :
                                     {{ $item->tingkat_kejuaraan }} </h6>
@@ -252,7 +256,9 @@
                         <div class="card card-deck">
                             <img src="{{ asset('storage/' . $item->gambar_1) }}" class="responsive-img" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title text-center"><strong>Non Akademik - {{ $item->title }}</strong></h5>
+                                <h5 class="card-title text-center"><strong> <a
+                                            href="{{ route('detail-prestasi-nonakademik', $item->id) }}">Non Akademik -
+                                            {{ $item->title }}</a></strong></h5>
                                 <hr style="color: #0267ff">
                                 <h6 class="card-text"> Tingkat :
                                     {{ $item->tingkat_kejuaraan }} </h6>
@@ -297,6 +303,9 @@
                         <h2><b>Kegiatan Organisasi Mahasiswa UCIC</b></h2>
                     </center>
                     <br><br>
+                    <div class="d-flex justify-content-end"><i class="bi bi-chevron-compact-right" style="color: blue"></i>
+                        <a href="{{ route('organisasi-bkm') }}">Lihat Semua</a>
+                    </div>
                 </div>
                 @forelse ($bkm->take(1) as $item)
                     <div class="container card-organisasi border border-primary">
@@ -308,7 +317,8 @@
                                 </div>
                             </div>
                             <div class="col-lg-8 pt-4 pt-lg-0 mt-1">
-                                <h4 class="title right-aligned-paragraph">{{ $item->nama_kegiatan }}</h4>
+                                <h4 class="title right-aligned-paragraph"><a
+                                        href="{{ route('detail-bkm', $item->id) }}">{{ $item->nama_kegiatan }}</a></h4>
                                 <div class="info mb-1">
                                     <div class="time">
                                         <i class="bi bi-clock"></i>
@@ -341,7 +351,8 @@
                                 </div>
                             </div>
                             <div class="col-lg-8 pt-4 pt-lg-0 mt-1">
-                                <h4 class="title right-aligned-paragraph mb-3">{{ $item->nama_kegiatan }}</h4>
+                                <h4 class="title right-aligned-paragraph mb-3"><a
+                                        href="{{ route('detail-ukm', $item->id) }}">{{ $item->nama_kegiatan }}</a></h4>
 
                                 <div class="info">
                                     <h6><strong>Yang Mengadakan Kegiatan : {{ $item->nama_ukm }}</strong></h6>
@@ -376,7 +387,8 @@
                                 </div>
                             </div>
                             <div class="col-lg-8 pt-4 pt-lg-0 mt-1">
-                                <h4 class="title right-aligned-paragraph mb-3">{{ $item->nama_kegiatan }}</h4>
+                                <h4 class="title right-aligned-paragraph mb-3"><a
+                                        href="{{ route('detail-hima', $item->id) }}">{{ $item->nama_kegiatan }}</a></h4>
 
                                 <div class="info">
                                     <h6><strong>Yang Mengadakan Kegiatan : {{ $item->nama_himpunan }}</strong></h6>
@@ -413,6 +425,10 @@
                         <h2><b>Daftar Informasi SIMBELMAWA</b></h2>
                     </center>
                     <br><br>
+                    <div class="d-flex justify-content-end"><i class="bi bi-chevron-compact-right"
+                            style="color: blue"></i>
+                        <a href="{{ route('pkm') }}">Lihat Semua</a>
+                    </div>
                 </div>
                 @forelse ($pkm->take(1) as $item)
                     <div class="container">
@@ -497,12 +513,19 @@
                         <h2><b>Berita Universitas Catur Insan Cendekia</b></h2>
                     </center>
                     <br><br>
+                    <div class="d-flex justify-content-end"><i class="bi bi-chevron-compact-right"
+                            style="color: blue"></i>
+                        <a href="{{ route('berita') }}">Lihat Semua</a>
+                    </div>
                 </div>
                 @foreach ($berita->take(4) as $item)
                     <div class="mt-1 mb-5 col-md-3">
                         {{-- card --}}
                         <div class="card-berita card-deck border border-2">
-                            <h4 class="card-title-berita text-center"><strong>{{ $item->title }}</strong></h4>
+                            <h4 class="card-title-berita text-center"><strong><a
+                                        href="{{ route('detail-berita', $item->id) }}"
+                                        style="color: rgb(37, 35, 35)">{{ $item->title }}</a></strong>
+                            </h4>
                             <hr>
                             <h6 class="card-text-berita text-center"><i class="bi bi-clock"></i>
                                 {{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }} - <i

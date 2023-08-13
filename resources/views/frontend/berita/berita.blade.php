@@ -87,7 +87,9 @@
         </div>
     </section><!-- End About Section -->
     @endforelse
-    {{ $berita->links() }}
+    <div class="container">
+        {{ $berita->links() }}
+    </div>
 @endsection
 
 @section('script-fe')
