@@ -15,6 +15,7 @@ class Ukm extends Model
         'deskripsi',
         'dari_tanggal',
         'sampai_tanggal',
+        'status'
 
     ];
 }

@@ -50,7 +50,7 @@ class BkmController extends Controller
 
         $gambar = $request->file('gambar')->store('gambar_bkm', 'public');
         $validatedData['gambar'] = $gambar;
-
+        $validatedData['status'] = 0;
         Bkm::create($validatedData);
         return redirect('/bkm-list')->with('toast_success', 'Kegiatan BKM berhasil ditambah');
     }
@@ -126,7 +126,33 @@ class BkmController extends Controller
 
     public function frontBkm()
     {
-        $bkm = Bkm::paginate(8);
+        $bkm = Bkm::where('status', 1)->paginate(5);
         return view('frontend.organisasi.bkm', compact('bkm'));
+    }
+
+    // Admin
+
+    public function indexadmin()
+    {
+        $bkm = Bkm::where('status', 0)->get();
+        return view('admin.organisasi.bkm.indexadmin', compact('bkm'));
+    }
+
+    public function approve($id)
+    {
+        $bkm = Bkm::where('id', $id)
+            ->where('status', 0)
+            ->firstOrFail();
+        $bkm->update([
+            'status' => '1',
+        ]);
+        return redirect('/request-bkm')->with('success', 'Berhasil Menerima Kegiatan BKM');
+    }
+    public function disapprove($id)
+    {
+        $bkm = Bkm::findOrFail($id);
+        File::delete('storage/' .  $bkm->gambar);
+        $bkm->delete();
+        return redirect('/request-bkm')->with('success', 'Berhasil Menolak Kegiatan BKM');
     }
 }

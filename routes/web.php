@@ -142,6 +142,27 @@ Route::middleware(['auth', 'kemahasiswaan'])->group(function () {
     Route::post('pkk-update/{id}', [PkkController::class, 'update'])->name('pkk-update');
     Route::get('pkk-destroy/{id}', [PkkController::class, 'destroy'])->name('pkk-destroy');
 
+    // Kelola Konten
+    Route::get('request-prestasi-akademik', [PrestasiAkademikController::class, 'indexadmin'])->name('request-prestasi-akademik');
+    Route::post('approve-prestasi-akademik/{id}', [PrestasiAkademikController::class, 'approve'])->name('approve-prestasi-akademik');
+    Route::get('disapprove-prestasi-akademik/{id}', [PrestasiAkademikController::class, 'disapprove'])->name('dissapprove-prestasi-akademik');
+
+    Route::get('request-prestasi-nonakademik', [PrestasiNonAkademikController::class, 'indexadmin'])->name('request-prestasi-nonakademik');
+    Route::post('approve-prestasi-nonakademik/{id}', [PrestasiNonAkademikController::class, 'approve'])->name('approve-prestasi-nonakademik');
+    Route::get('disapprove-prestasi-nonakademik/{id}', [PrestasiNonAkademikController::class, 'disapprove'])->name('dissapprove-prestasi-nonakademik');
+
+    Route::get('request-bkm', [BkmController::class, 'indexadmin'])->name('request-bkm');
+    Route::post('approve-bkm/{id}', [BkmController::class, 'approve'])->name('approve-bkm');
+    Route::get('disapprove-bkm/{id}', [BkmController::class, 'disapprove'])->name('dissapprove-bkm');
+
+    Route::get('request-ukm', [UkmController::class, 'indexadmin'])->name('request-ukm');
+    Route::post('approve-ukm/{id}', [UkmController::class, 'approve'])->name('approve-ukm');
+    Route::get('disapprove-ukm/{id}', [UkmController::class, 'disapprove'])->name('dissapprove-ukm');
+
+    Route::get('request-hima', [HimaController::class, 'indexadmin'])->name('request-hima');
+    Route::post('approve-hima/{id}', [HimaController::class, 'approve'])->name('approve-hima');
+    Route::get('disapprove-hima/{id}', [HimaController::class, 'disapprove'])->name('dissapprove-hima');
+
     Route::get('berita-list', [BeritaController::class, 'index'])->name('berita-list');
     Route::get('berita-create', [BeritaController::class, 'create'])->name('berita-create');
     Route::post('berita-store', [BeritaController::class, 'store'])->name('berita-store');

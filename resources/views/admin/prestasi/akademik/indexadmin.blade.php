@@ -1,6 +1,7 @@
 @extends('layouts-admin.app')
-@section('title', 'UCIC | List Kegiatan BKM')
+@section('title', 'UCIC | Request Prestasi Akademik')
 @section('style')
+
 @endsection
 
 @section('breadcumb')
@@ -13,11 +14,11 @@
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item">Admin</li>
                         <li class="breadcrumb-item">/</li>
-                        <li class="breadcrumb-item">Organisasi</li>
+                        <li class="breadcrumb-item">Kelola Konten</li>
                         <li class="breadcrumb-item">/</li>
-                        <li class="breadcrumb-item">BKM</li>
+                        <li class="breadcrumb-item">Prestasi Akademik</li>
                         <li class="breadcrumb-item">/</li>
-                        <li class="breadcrumb-item">List BKM</li>
+                        <li class="breadcrumb-item">Request Prestasi Akademik</li>
 
                     </ol>
                 </div>
@@ -36,15 +37,8 @@
                         <div class="col-6 mt-1">
                             <span class="tx-bold text-lg text-white" style="font-size:1.2rem;">
                                 <i class="far fa-user text-lg"></i>
-                                List Kegiatan Organisasi BKM
+                                List Request Prestasi Akademik
                             </span>
-                        </div>
-
-                        <div class="col-6 d-flex justify-content-end">
-                            <a href="{{ route('bkm-create') }}" class="btn btn-md btn-info">
-                                <i class="fa fa-plus"></i>
-                                Add New
-                            </a>
                         </div>
                     </div>
 
@@ -55,48 +49,58 @@
                     </div>
                 </div>
 
+
                 <div class="card-body table-responsive">
                     <table id="example" class="table table-hover table-bordered dt-responsive" style="width:100%">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Judul Kegiatan</th>
-                                <th>Gambar Kegiatan</th>
-                                <th>Deskripsi Kegiatan</th>
+                                <th>Judul Prestasi Akademik</th>
+                                <th>Nama Peserta</th>
+                                <th>Tingkat Kejuaraan</th>
+                                <th>Foto 1</th>
+                                <th>Foto 2</th>
+                                <th>Foto 3</th>
+                                <th>Deskripsi</th>
                                 <th>Tanggal</th>
-                                <th>Action</th>
+                                <th>Kategori Prestasi</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($bkm as $item)
+                            @foreach ($preakademik as $item)
                                 <tr>
                                     <th>{{ $loop->iteration }}</th>
-                                    <th>{{ $item->nama_kegiatan }}</th>
+                                    <th>{{ $item->title }}</th>
+                                    <th>{{ $item->nama }}</th>
+                                    <th>{{ $item->tingkat_kejuaraan }}</th>
                                     <th>
-                                        <img src="{{ asset('storage/' . $item->gambar) }}" width="110px">
+                                        <img src="{{ asset('storage/' . $item->gambar_1) }}" width="110px">
+                                    </th>
+                                    <th>
+                                        <img src="{{ asset('storage/' . $item->gambar_2) }}" width="110px">
+                                    </th>
+                                    <th>
+                                        <img src="{{ asset('storage/' . $item->gambar_3) }}" width="110px">
                                     </th>
                                     <th>{{ Str::limit($item->deskripsi, 100) }}</th>
-                                    <th>{{ \Carbon\Carbon::parse($item->mulai_tanggal)->translatedFormat('d F Y') }} -
-                                        {{ \Carbon\Carbon::parse($item->akhir_tanggal)->translatedFormat('d F Y') }} </th>
+                                    <th>{{ \Carbon\Carbon::parse($item->dari_tanggal)->translatedFormat('d F Y') }}
+                                    <th>{{ $item->categories->nama }}</th>
                                     <th>
                                         <div class="btn-group">
-                                            <a href="{{ route('bkm-edit', $item->id) }}" class="btn btn-warning text-white">
-                                                <i class="far fa-edit"></i>
-                                                Edit
-                                            </a>
-                                            <a href="{{ route('bkm-destroy', $item->id) }}" class="btn btn-danger f-12">
-                                                <i class="far fa-trash-alt"></i>
-                                                Delete
+
+
+                                            <form action="{{ route('approve-prestasi-akademik', $item->id) }}"
+                                                method="post" class="d-inline">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $item->id }}">
+                                                <button type="submit" class="btn btn-success">terima</button>
+                                            </form>
+                                            <a href="{{ route('dissapprove-prestasi-akademik', $item->id) }}"
+                                                class="btn btn-danger f-12">
+                                                Tolak
                                             </a>
                                         </div>
-                                    </th>
-                                    <th>
-                                        @if ($item->status === 0)
-                                            Menunggu
-                                        @elseif ($item->status === 1)
-                                            Diterima
-                                        @endif
                                     </th>
                                 </tr>
                             @endforeach

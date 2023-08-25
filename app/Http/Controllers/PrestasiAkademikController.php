@@ -67,6 +67,9 @@ class PrestasiAkademikController extends Controller
             $validatedData['gambar_3'] = $gambar_3;
         }
 
+        // default status 0
+        $validatedData['status'] = 0;
+
         // nyimpen ke database
         Preakademik::create($validatedData);
 
@@ -173,7 +176,34 @@ class PrestasiAkademikController extends Controller
 
     public function frontPrestasiakademik()
     {
-        $preakademik = Preakademik::with('categories')->paginate(9);
+        $preakademik = Preakademik::with('categories')->where('status', 1)->paginate(6);
         return view('frontend.prestasi.akademik', compact('preakademik'));
+    }
+
+
+    // Admin
+
+    public function indexadmin()
+    {
+        $preakademik = Preakademik::with('categories')->where('status', 0)->get();
+        return view('admin.prestasi.akademik.indexadmin', compact('preakademik'));
+    }
+
+    public function approve($id)
+    {
+        $preakademik = Preakademik::with('categories')->where('id', $id)->where('status', 0)->firstOrFail();
+        $preakademik->update([
+            'status' => '1',
+        ]);
+        return redirect('/request-prestasi-akademik')->with('success', 'Berhasil Menerima Prestasi Akademik');
+    }
+    public function disapprove($id)
+    {
+        $preakademik = Preakademik::findOrFail($id);
+        File::delete('storage/' .  $preakademik->gambar_1);
+        File::delete('storage/' .  $preakademik->gambar_2);
+        File::delete('storage/' .  $preakademik->gambar_3);
+        $preakademik->delete();
+        return redirect('/request-prestasi-akademik')->with('success', 'Berhasil Menolak Prestasi Akademik');
     }
 }

@@ -19,6 +19,7 @@ class Prenonakademik extends Model
         'gambar_3',
         'deskripsi',
         'tanggal',
+        'status',
         'category_id'
     ];
     public function categories(): BelongsTo

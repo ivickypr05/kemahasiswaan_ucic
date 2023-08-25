@@ -68,6 +68,8 @@ class PrestasiNonAkademikController extends Controller
             $validatedData['gambar_3'] = $gambar_3;
         }
 
+        $validatedData['status'] = 0;
+
         // nyimpen ke database
         Prenonakademik::create($validatedData);
 
@@ -175,7 +177,33 @@ class PrestasiNonAkademikController extends Controller
 
     public function frontPrestasinonakademik()
     {
-        $prenonakademik = Prenonakademik::with('categories')->paginate(9);
+        $prenonakademik = Prenonakademik::with('categories')->where('status', 1)->paginate(6);
         return view('frontend.prestasi.nonakademik', compact('prenonakademik'));
+    }
+
+    // Admin
+
+    public function indexadmin()
+    {
+        $prenonakademik = Prenonakademik::with('categories')->where('status', 0)->get();
+        return view('admin.prestasi.nonakademik.indexadmin', compact('prenonakademik'));
+    }
+
+    public function approve($id)
+    {
+        $prenonakademik = Prenonakademik::with('categories')->where('id', $id)->where('status', 0)->firstOrFail();
+        $prenonakademik->update([
+            'status' => '1',
+        ]);
+        return redirect('/request-prestasi-nonakademik')->with('success', 'Berhasil Menerima Prestasi Non Akademik');
+    }
+    public function disapprove($id)
+    {
+        $prenonakademik = Prenonakademik::findOrFail($id);
+        File::delete('storage/' .  $prenonakademik->gambar_1);
+        File::delete('storage/' .  $prenonakademik->gambar_2);
+        File::delete('storage/' .  $prenonakademik->gambar_3);
+        $prenonakademik->delete();
+        return redirect('/request-prestasi-nonakademik')->with('success', 'Berhasil Menolak Prestasi Non Akademik');
     }
 }

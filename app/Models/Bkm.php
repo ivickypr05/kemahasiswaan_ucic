@@ -13,6 +13,7 @@ class Bkm extends Model
         'gambar',
         'deskripsi',
         'mulai_tanggal',
-        'akhir_tanggal'
+        'akhir_tanggal',
+        'status'
     ];
 }

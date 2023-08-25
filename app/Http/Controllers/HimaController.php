@@ -51,6 +51,7 @@ class HimaController extends Controller
 
         $gambar = $request->file('gambar')->store('gambar_hima', 'public');
         $validatedData['gambar'] = $gambar;
+        $validatedData['status'] = 0;
 
         Hima::create($validatedData);
         return redirect('/hima-list')->with('toast_success', 'Kegiatan HIMA berhasil ditambah');
@@ -78,7 +79,6 @@ class HimaController extends Controller
     public function edit($id)
     {
         $data['hima'] = Hima::find($id);
-
         return view('admin.organisasi.hima.edit', $data);
     }
 
@@ -129,8 +129,35 @@ class HimaController extends Controller
 
     public function frontHima()
     {
-        $hima = Hima::paginate(8);
+        $hima = Hima::where('status', 1)->paginate(5);
 
         return view('frontend.organisasi.hima', compact('hima'));
+    }
+
+    // Admin
+
+    public function indexadmin()
+    {
+        $hima = Hima::where('status', 0)->get();
+        return view('admin.organisasi.hima.indexadmin', compact('hima'));
+    }
+
+    public function approve($id)
+    {
+        $hima = Hima::where('id', $id)
+            ->where('status', 0)
+            ->firstOrFail();
+
+        $hima->update([
+            'status' => '1',
+        ]);
+        return redirect('/request-hima')->with('success', 'Berhasil Menerima Kegiatan HIMA');
+    }
+    public function disapprove($id)
+    {
+        $hima = Hima::findOrFail($id);
+        File::delete('storage/' .  $hima->gambar);
+        $hima->delete();
+        return redirect('/request-hima')->with('success', 'Berhasil Menolak Kegiatan HIMA');
     }
 }

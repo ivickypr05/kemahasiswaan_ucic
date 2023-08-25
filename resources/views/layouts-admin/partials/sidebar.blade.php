@@ -48,13 +48,13 @@
                             <span key="t-dashboards">Kelola Konten</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="{{ route('prestasi-akademik-list') }}" key="t-default">Prestasi Akademik</a>
+                            <li><a href="{{ route('request-prestasi-akademik') }}" key="t-default">Prestasi Akademik</a>
                             </li>
-                            <li><a href="{{ route('prestasi-nonakademik-list') }}" key="t-default">Prestasi Non
+                            <li><a href="{{ route('request-prestasi-nonakademik') }}" key="t-default">Prestasi Non
                                     Akademik</a></li>
-                            <li><a href="{{ route('bkm-list') }}" key="t-default">Kegiatan BKM</a></li>
-                            <li><a href="{{ route('ukm-list') }}" key="t-default">Kegiatan UKM</a></li>
-                            <li><a href="{{ route('hima-list') }}" key="t-default">Kegiatan HIMA</a></li>
+                            <li><a href="{{ route('request-bkm') }}" key="t-default">Kegiatan BKM</a></li>
+                            <li><a href="{{ route('request-ukm') }}" key="t-default">Kegiatan UKM</a></li>
+                            <li><a href="{{ route('request-hima') }}" key="t-default">Kegiatan HIMA</a></li>
                         </ul>
                     </li>
                     <li>

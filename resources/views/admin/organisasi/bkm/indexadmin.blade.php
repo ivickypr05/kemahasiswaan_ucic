@@ -1,5 +1,5 @@
 @extends('layouts-admin.app')
-@section('title', 'UCIC | List Kegiatan BKM')
+@section('title', 'UCIC | Request Kegiatan BKM')
 @section('style')
 @endsection
 
@@ -13,12 +13,9 @@
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item">Admin</li>
                         <li class="breadcrumb-item">/</li>
-                        <li class="breadcrumb-item">Organisasi</li>
+                        <li class="breadcrumb-item">Kelola Konten</li>
                         <li class="breadcrumb-item">/</li>
-                        <li class="breadcrumb-item">BKM</li>
-                        <li class="breadcrumb-item">/</li>
-                        <li class="breadcrumb-item">List BKM</li>
-
+                        <li class="breadcrumb-item">Request Kegiatan BKM</li>
                     </ol>
                 </div>
 
@@ -36,15 +33,8 @@
                         <div class="col-6 mt-1">
                             <span class="tx-bold text-lg text-white" style="font-size:1.2rem;">
                                 <i class="far fa-user text-lg"></i>
-                                List Kegiatan Organisasi BKM
+                                Request Kegiatan Organisasi BKM
                             </span>
-                        </div>
-
-                        <div class="col-6 d-flex justify-content-end">
-                            <a href="{{ route('bkm-create') }}" class="btn btn-md btn-info">
-                                <i class="fa fa-plus"></i>
-                                Add New
-                            </a>
                         </div>
                     </div>
 
@@ -64,7 +54,6 @@
                                 <th>Gambar Kegiatan</th>
                                 <th>Deskripsi Kegiatan</th>
                                 <th>Tanggal</th>
-                                <th>Action</th>
                                 <th>Status</th>
                             </tr>
                         </thead>
@@ -81,22 +70,16 @@
                                         {{ \Carbon\Carbon::parse($item->akhir_tanggal)->translatedFormat('d F Y') }} </th>
                                     <th>
                                         <div class="btn-group">
-                                            <a href="{{ route('bkm-edit', $item->id) }}" class="btn btn-warning text-white">
-                                                <i class="far fa-edit"></i>
-                                                Edit
-                                            </a>
-                                            <a href="{{ route('bkm-destroy', $item->id) }}" class="btn btn-danger f-12">
-                                                <i class="far fa-trash-alt"></i>
-                                                Delete
+                                            <form action="{{ route('approve-bkm', $item->id) }}" method="post"
+                                                class="d-inline">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $item->id }}">
+                                                <button type="submit" class="btn btn-success">Terima</button>
+                                            </form>
+                                            <a href="{{ route('dissapprove-bkm', $item->id) }}" class="btn btn-danger f-12">
+                                                Tolak
                                             </a>
                                         </div>
-                                    </th>
-                                    <th>
-                                        @if ($item->status === 0)
-                                            Menunggu
-                                        @elseif ($item->status === 1)
-                                            Diterima
-                                        @endif
                                     </th>
                                 </tr>
                             @endforeach

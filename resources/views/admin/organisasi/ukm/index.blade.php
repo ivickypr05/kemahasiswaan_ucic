@@ -65,6 +65,7 @@
                                 <th>Deskripsi Kegiatan</th>
                                 <th>Tanggal</th>
                                 <th>Action</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -91,6 +92,13 @@
                                                 Delete
                                             </a>
                                         </div>
+                                    </th>
+                                    <th>
+                                        @if ($item->status === 0)
+                                            Menunggu
+                                        @elseif ($item->status === 1)
+                                            Diterima
+                                        @endif
                                     </th>
                                 </tr>
                             @endforeach

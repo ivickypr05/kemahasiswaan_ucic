@@ -47,6 +47,7 @@ class UkmController extends Controller
         ]);
         $gambar = $request->file('gambar')->store('gambar_ukm', 'public');
         $validatedData['gambar'] = $gambar;
+        $validatedData['status'] = 0;
 
         Ukm::create($validatedData);
 
@@ -94,6 +95,7 @@ class UkmController extends Controller
             'deskripsi'   => 'required|min:3',
             'dari_tanggal'   => 'required',
             'sampai_tanggal'   => 'required',
+
         ]);
         $ukm = Ukm::find($id);
         if ($request->file('gambar')) {
@@ -101,6 +103,8 @@ class UkmController extends Controller
             File::delete('storage/' .  $ukm->gambar);
             $validatedData['gambar'] = $gambar;
         }
+
+        $validatedData['status'] = 0;
         $ukm->update($validatedData);
 
         return redirect()->route('ukm-list')->with('toast success', 'Kegiatan UKM berhasil diubah');
@@ -123,7 +127,31 @@ class UkmController extends Controller
 
     public function frontUkm()
     {
-        $ukm = Ukm::paginate(8);
+        $ukm = Ukm::where('status', 1)->paginate(5);
         return view('frontend.organisasi.ukm', compact('ukm'));
+    }
+
+    // Admin
+
+    public function indexadmin()
+    {
+        $ukm = Ukm::where('status', 0)->get();
+        return view('admin.organisasi.ukm.indexadmin', compact('ukm'));
+    }
+
+    public function approve($id)
+    {
+        $ukm = Ukm::where('id', $id)->where('status', 0)->firstOrFail();
+        $ukm->update([
+            'status' => '1',
+        ]);
+        return redirect('/request-ukm')->with('success', 'Berhasil Menerima Kegiatan UKM');
+    }
+    public function disapprove($id)
+    {
+        $ukm = Ukm::findOrFail($id);
+        File::delete('storage/' .  $ukm->gambar);
+        $ukm->delete();
+        return redirect('/request-ukm')->with('success', 'Berhasil Menolak Kegiatan UKM');
     }
 }
