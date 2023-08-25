@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('deskripsi');
             $table->string('mulai_tanggal');
             $table->string('akhir_tanggal');
+            $table->integer('status');
             $table->timestamps();
         });
     }

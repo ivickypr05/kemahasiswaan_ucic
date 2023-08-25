@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Pretim;
 use App\Models\Category;
+use App\Models\Preakademik;
 use App\Models\Preindividu;
 use Illuminate\Http\Request;
+use App\Models\Prenonakademik;
 
 class CategoryController extends Controller
 {
@@ -93,8 +95,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $prestasi = Preindividu::with('Category')->where('category_id', $id)->count();
-        $prestasi = Pretim::with('Category')->where('category_id', $id)->count();
+        $prestasi = Preakademik::with('Category')->where('category_id', $id)->count();
+        $prestasi = Prenonakademik::with('Category')->where('category_id', $id)->count();
         if ($prestasi >= 1) {
             return redirect()->back()->with('toast_error', 'Maaf kategori tidak bisa dihapus karena masih terhubung dengan beberapa produk');
         } else {

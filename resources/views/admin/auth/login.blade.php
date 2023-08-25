@@ -276,14 +276,14 @@
                                 </h5>
                                 <p class="text-muted mt-2">Silahkan Login</p>
                             </div>
-                            <form class="mt-2 pt-2" method="POST" action="{{ route('loginPost2') }}">
+                            <form class="mt-2 pt-2" method="POST" action="{{ route('login') }}">
                                 @csrf
                                 @include('sweetalert::alert')
 
                                 <div class="form-floating form-floating-custom mb-4">
                                     <input id="username" type="text"
-                                        class="form-control  @error('nip') is-invalid @enderror" name="nip"
-                                        value="{{ old('nip') }}" required autofocus placeholder="Enter Nip Or Nim">
+                                        class="form-control  @error('username') is-invalid @enderror" name="username"
+                                        value="{{ old('username') }}" required autofocus placeholder="Enter username">
                                     <label for="input-username">Username</label>
                                     <div class="form-floating-icon">
                                         <i data-feather="users"></i>

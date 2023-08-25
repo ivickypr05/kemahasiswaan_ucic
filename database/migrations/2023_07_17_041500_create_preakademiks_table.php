@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('gambar_3')->nullable();
             $table->text('deskripsi');
             $table->string('tanggal');
+            $table->integer('status');
             $table->foreignId('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();

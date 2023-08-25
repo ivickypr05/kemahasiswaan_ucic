@@ -75,8 +75,8 @@
                     <ol class="breadcrumb m-0">
                         <li class="breadcrumb-item">home</li>
                         <li class="breadcrumb-item">/</li>
-                        <li class="breadcrumb-item active"><a
-                                href="{{ route('admin.dashboard.index') }}">{{ $breadcumb ?? '' }}</a></li>
+                        <li class="breadcrumb-item active"><a href="{{ route('dashboard') }}">{{ $breadcumb ?? '' }}</a>
+                        </li>
                     </ol>
                 </div>
 

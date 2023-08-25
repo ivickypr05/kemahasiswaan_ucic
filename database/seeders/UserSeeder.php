@@ -15,15 +15,14 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::where('name', 'Root')->first();
+        $user = User::where('name', 'Kemahasiswaan')->first();
 
         if (!$user) {
             $user = new User();
-            $user->name = 'Root';
-            $user->username = 'root';
-            $user->email = 'root@root.com';
-            $user->password = Hash::make('root');
-
+            $user->name = 'Kemahasiswaan';
+            $user->username = 'kemahasiswaan';
+            $user->email = 'kemahasiswaan@cic.ac.id';
+            $user->password = Hash::make('kemahasiswaan');
             $user->save();
         }
     }

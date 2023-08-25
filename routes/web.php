@@ -81,30 +81,19 @@ Route::post('send-mail', [ContactController::class, 'sendMail'])->name('send-mai
 // admmin
 
 Route::get('login', function () {
-    $data['page_title'] = "Login Admin";
-    return view('admin.auth.login', $data);
+    return view('admin.auth.login');
 })->name('login');
 
-Route::get('register', [RegisterController::class, 'index'])->name('register');
-Route::post('loginPost2', [UserController::class, 'loginPost2'])->name('loginPost2');
-Route::post('loginPostAdmin', [UserController::class, 'loginPostAdmin'])->name('loginPostAdmin');
+
+Route::post('login', [UserController::class, 'login'])->name('login');
 Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 
+Route::middleware(['auth'])->group(function () {
 
-Route::middleware('auth:web')->group(function () {
-    // Dashboard admin
-    Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('admin.dashboard.index');
-    // Dashboard umum
+    Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+});
 
-
-    //Beasiswa Manajemen
-    Route::get('beasiswa-list', [BeasiswaController::class, 'index'])->name('beasiswa-list');
-    Route::get('beasiswa-create', [BeasiswaController::class, 'create'])->name('beasiswa-create');
-    Route::post('beasiswa-store', [BeasiswaController::class, 'store'])->name('beasiswa-store');
-    Route::get('beasiswa-edit/{id}', [BeasiswaController::class, 'edit'])->name('beasiswa-edit');
-    Route::post('beasiswa-update/{id}', [BeasiswaController::class, 'update'])->name('beasiswa-update');
-    Route::get('beasiswa-destroy/{id}', [BeasiswaController::class, 'destroy'])->name('beasiswa-destroy');
-
+Route::middleware('checkRole:bkm,ukm,hima')->group(function () {
     // Category Prestasi Manajemen
     Route::get('category-list', [CategoryController::class, 'index'])->name('category-list');
     Route::get('category-create', [CategoryController::class, 'create'])->name('category-create');
@@ -128,15 +117,48 @@ Route::middleware('auth:web')->group(function () {
     Route::get('prestasi-nonakademik-edit/{id}', [PrestasiNonAkademikController::class, 'edit'])->name('prestasi-nonakademik-edit');
     Route::post('prestasi-nonakademik-update/{id}', [PrestasiNonAkademikController::class, 'update'])->name('prestasi-nonakademik-update');
     Route::get('prestasi-nonakademik-destroy/{id}', [PrestasiNonAkademikController::class, 'destroy'])->name('prestasi-nonakademik-destroy');
+});
 
+Route::middleware(['auth', 'kemahasiswaan'])->group(function () {
+    //Beasiswa Manajemen
+    Route::get('beasiswa-list', [BeasiswaController::class, 'index'])->name('beasiswa-list');
+    Route::get('beasiswa-create', [BeasiswaController::class, 'create'])->name('beasiswa-create');
+    Route::post('beasiswa-store', [BeasiswaController::class, 'store'])->name('beasiswa-store');
+    Route::get('beasiswa-edit/{id}', [BeasiswaController::class, 'edit'])->name('beasiswa-edit');
+    Route::post('beasiswa-update/{id}', [BeasiswaController::class, 'update'])->name('beasiswa-update');
+    Route::get('beasiswa-destroy/{id}', [BeasiswaController::class, 'destroy'])->name('beasiswa-destroy');
 
-    // Organisasi UKM Manajemen
-    Route::get('ukm-list', [UkmController::class, 'index'])->name('ukm-list');
-    Route::get('ukm-create', [UkmController::class, 'create'])->name('ukm-create');
-    Route::post('ukm-store', [UkmController::class, 'store'])->name('ukm-store');
-    Route::get('ukm-edit/{id}', [UkmController::class, 'edit'])->name('ukm-edit');
-    Route::post('ukm-update/{id}', [UkmController::class, 'update'])->name('ukm-update');
-    Route::get('ukm-destroy/{id}', [UkmController::class, 'destroy'])->name('ukm-destroy');
+    Route::get('pkm-list', [PkmController::class, 'index'])->name('pkm-list');
+    Route::get('pkm-create', [PkmController::class, 'create'])->name('pkm-create');
+    Route::post('pkm-store', [PkmController::class, 'store'])->name('pkm-store');
+    Route::get('pkm-edit/{id}', [PkmController::class, 'edit'])->name('pkm-edit');
+    Route::post('pkm-update/{id}', [PkmController::class, 'update'])->name('pkm-update');
+    Route::get('pkm-destroy/{id}', [PkmController::class, 'destroy'])->name('pkm-destroy');
+
+    Route::get('pkk-list', [PkkController::class, 'index'])->name('pkk-list');
+    Route::get('pkk-create', [PkkController::class, 'create'])->name('pkk-create');
+    Route::post('pkk-store', [PkkController::class, 'store'])->name('pkk-store');
+    Route::get('pkk-edit/{id}', [PkkController::class, 'edit'])->name('pkk-edit');
+    Route::post('pkk-update/{id}', [PkkController::class, 'update'])->name('pkk-update');
+    Route::get('pkk-destroy/{id}', [PkkController::class, 'destroy'])->name('pkk-destroy');
+
+    Route::get('berita-list', [BeritaController::class, 'index'])->name('berita-list');
+    Route::get('berita-create', [BeritaController::class, 'create'])->name('berita-create');
+    Route::post('berita-store', [BeritaController::class, 'store'])->name('berita-store');
+    Route::get('berita-edit/{id}', [BeritaController::class, 'edit'])->name('berita-edit');
+    Route::post('berita-update/{id}', [BeritaController::class, 'update'])->name('berita-update');
+    Route::get('berita-destroy/{id}', [BeritaController::class, 'destroy'])->name('berita-destroy');
+
+    Route::get('user-list', [UserController::class, 'index'])->name('user-list');
+    Route::get('user-create', [UserController::class, 'create'])->name('user-create');
+    Route::post('user-store', [UserController::class, 'store'])->name('user-store');
+    Route::get('user-edit/{id}', [UserController::class, 'edit'])->name('user-edit');
+    Route::post('user-update/{id}', [UserController::class, 'update'])->name('user-update');
+    Route::get('user-destroy/{id}', [UserController::class, 'destroy'])->name('user-destroy');
+});
+
+Route::middleware(['auth', 'bkm'])->group(function () {
+    // Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
     //Organisasi BKM Manajemmen
     Route::get('bkm-list', [BkmController::class, 'index'])->name('bkm-list');
@@ -152,13 +174,22 @@ Route::middleware('auth:web')->group(function () {
     Route::get('profil-bkm-edit/{id}', [ProfilBkmController::class, 'edit'])->name('profil-bkm-edit');
     Route::post('profil-bkm-update/{id}', [ProfilBkmController::class, 'update'])->name('profil-bkm-update');
     Route::get('profil-bkm-destroy/{id}', [ProfilBkmController::class, 'destroy'])->name('profil-bkm-destroy');
+});
 
-    Route::get('berita-list', [BeritaController::class, 'index'])->name('berita-list');
-    Route::get('berita-create', [BeritaController::class, 'create'])->name('berita-create');
-    Route::post('berita-store', [BeritaController::class, 'store'])->name('berita-store');
-    Route::get('berita-edit/{id}', [BeritaController::class, 'edit'])->name('berita-edit');
-    Route::post('berita-update/{id}', [BeritaController::class, 'update'])->name('berita-update');
-    Route::get('berita-destroy/{id}', [BeritaController::class, 'destroy'])->name('berita-destroy');
+Route::middleware(['auth', 'ukm'])->group(function () {
+    // Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+
+    // Organisasi UKM Manajemen
+    Route::get('ukm-list', [UkmController::class, 'index'])->name('ukm-list');
+    Route::get('ukm-create', [UkmController::class, 'create'])->name('ukm-create');
+    Route::post('ukm-store', [UkmController::class, 'store'])->name('ukm-store');
+    Route::get('ukm-edit/{id}', [UkmController::class, 'edit'])->name('ukm-edit');
+    Route::post('ukm-update/{id}', [UkmController::class, 'update'])->name('ukm-update');
+    Route::get('ukm-destroy/{id}', [UkmController::class, 'destroy'])->name('ukm-destroy');
+});
+
+Route::middleware(['auth', 'hima'])->group(function () {
+    // Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
     Route::get('hima-list', [HimaController::class, 'index'])->name('hima-list');
     Route::get('hima-create', [HimaController::class, 'create'])->name('hima-create');
@@ -166,18 +197,4 @@ Route::middleware('auth:web')->group(function () {
     Route::get('hima-edit/{id}', [HimaController::class, 'edit'])->name('hima-edit');
     Route::post('hima-update/{id}', [HimaController::class, 'update'])->name('hima-update');
     Route::get('hima-destroy/{id}', [HimaController::class, 'destroy'])->name('hima-destroy');
-
-    Route::get('pkm-list', [PkmController::class, 'index'])->name('pkm-list');
-    Route::get('pkm-create', [PkmController::class, 'create'])->name('pkm-create');
-    Route::post('pkm-store', [PkmController::class, 'store'])->name('pkm-store');
-    Route::get('pkm-edit/{id}', [PkmController::class, 'edit'])->name('pkm-edit');
-    Route::post('pkm-update/{id}', [PkmController::class, 'update'])->name('pkm-update');
-    Route::get('pkm-destroy/{id}', [PkmController::class, 'destroy'])->name('pkm-destroy');
-
-    Route::get('pkk-list', [PkkController::class, 'index'])->name('pkk-list');
-    Route::get('pkk-create', [PkkController::class, 'create'])->name('pkk-create');
-    Route::post('pkk-store', [PkkController::class, 'store'])->name('pkk-store');
-    Route::get('pkk-edit/{id}', [PkkController::class, 'edit'])->name('pkk-edit');
-    Route::post('pkk-update/{id}', [PkkController::class, 'update'])->name('pkk-update');
-    Route::get('pkk-destroy/{id}', [PkkController::class, 'destroy'])->name('pkk-destroy');
 });

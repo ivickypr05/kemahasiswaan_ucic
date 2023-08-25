@@ -46,6 +46,7 @@
 
 
     @include('layouts-admin.partials.foot')
+    @include('sweetalert::alert')
 </body>
 
 </html>
