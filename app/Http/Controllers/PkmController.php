@@ -140,7 +140,7 @@ class PkmController extends Controller
 
     public function frontPkm()
     {
-        $data['pkm'] = Pkm::paginate(5);
+        $data['pkm'] = Pkm::paginate(3);
         return view('frontend.simbelmawa.pkm', $data);
     }
 }

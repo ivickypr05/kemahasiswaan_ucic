@@ -79,7 +79,7 @@
                         </div>
                     </div>
                     @php
-                        $limitedContent = Str::limit($item->deskripsi, 500);
+                        $limitedContent = Str::limit($item->deskripsi, 350);
                         $formattedContent = nl2br($limitedContent);
                     @endphp
                     <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>

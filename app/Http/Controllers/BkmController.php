@@ -126,7 +126,7 @@ class BkmController extends Controller
 
     public function frontBkm()
     {
-        $bkm = Bkm::where('status', 1)->paginate(5);
+        $bkm = Bkm::where('status', 1)->paginate(3);
         return view('frontend.organisasi.bkm', compact('bkm'));
     }
 

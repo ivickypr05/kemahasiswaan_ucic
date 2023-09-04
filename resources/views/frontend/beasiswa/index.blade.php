@@ -62,11 +62,11 @@
                         </div>
                     </div>
                     @php
-                        $limitedContent = Str::limit($item->content, 500);
+                        $limitedContent = Str::limit($item->content, 350);
                         $formattedContent = nl2br($limitedContent);
                     @endphp
                     <p class="mt-1" style="text-align: justify;">{!! $formattedContent !!}</p>
-                    @if (strlen($item->content) > 500)
+                    @if (strlen($item->content) > 350)
                         <a href="{{ route('detail-beasiswa', $item->id) }}" class="btn btn-primary"
                             style="float:right">Selengkapnya</a>
                     @endif

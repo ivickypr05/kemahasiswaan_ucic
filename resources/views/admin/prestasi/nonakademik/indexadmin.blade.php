@@ -16,8 +16,6 @@
                         <li class="breadcrumb-item">/</li>
                         <li class="breadcrumb-item">Kelola Konten</li>
                         <li class="breadcrumb-item">/</li>
-                        <li class="breadcrumb-item">Prestasi Non Akademik</li>
-                        <li class="breadcrumb-item">/</li>
                         <li class="breadcrumb-item">Request Prestasi Non Akademik</li>
 
                     </ol>
@@ -34,7 +32,7 @@
             <div class="card">
                 <div class="card-header" style="border-radius:10px 10px 0px 0px; background-color: #1C3F94;">
                     <div class="row">
-                        <div class="col-6 mt-1">
+                        <div class="mt-1">
                             <span class="tx-bold text-lg text-white" style="font-size:1.2rem;">
                                 <i class="far fa-user text-lg"></i>
                                 List Request Prestasi Non Akademik

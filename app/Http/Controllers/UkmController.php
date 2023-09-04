@@ -127,7 +127,7 @@ class UkmController extends Controller
 
     public function frontUkm()
     {
-        $ukm = Ukm::where('status', 1)->paginate(5);
+        $ukm = Ukm::where('status', 1)->paginate(3);
         return view('frontend.organisasi.ukm', compact('ukm'));
     }
 

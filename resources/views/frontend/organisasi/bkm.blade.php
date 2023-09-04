@@ -82,11 +82,11 @@
                         </div>
                     </div>
                     @php
-                        $limitedContent = Str::limit($item->deskripsi, 500);
+                        $limitedContent = Str::limit($item->deskripsi, 350);
                         $formattedContent = nl2br($limitedContent);
                     @endphp
                     <p class="mt-2" style="text-align: justify;">{!! $formattedContent !!}</p>
-                    @if (strlen($item->deskripsi) > 2)
+                    @if (strlen($item->deskripsi) > 1)
                         <a href="{{ route('detail-bkm', $item->id) }}" class="btn btn-primary"
                             style="float:right">Selengkapnya</a>
                     @endif

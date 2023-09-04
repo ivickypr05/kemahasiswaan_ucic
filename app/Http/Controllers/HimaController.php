@@ -129,7 +129,7 @@ class HimaController extends Controller
 
     public function frontHima()
     {
-        $hima = Hima::where('status', 1)->paginate(5);
+        $hima = Hima::where('status', 1)->paginate(3);
 
         return view('frontend.organisasi.hima', compact('hima'));
     }
