@@ -523,6 +523,20 @@ h6 {
 /*--------------------------------------------------------------
 # Sections General
 --------------------------------------------------------------*/
+.title-container {
+    padding-top: 3cm;
+    margin-bottom: 2cm;
+}
+
+@media (max-width: 768px) {
+    .title-container {
+        padding-top: 4cm;
+        margin-bottom: 0cm;
+    }
+}
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
 section {
     padding: 60px 0;
     overflow: hidden;
@@ -1876,7 +1890,7 @@ section {
 
 #footer .footer-top {
     background: #0074d9;
-    padding: 60px 0 30px 0;
+    padding: 30px 0 30px 0;
 }
 
 #footer .footer-top .footer-info {
@@ -1925,7 +1939,7 @@ section {
     font-weight: 600;
     color: #fff;
     position: relative;
-    padding-bottom: 12px;
+    padding-bottom: 5px;
 }
 
 #footer .footer-top .footer-links {
@@ -1946,7 +1960,7 @@ section {
 }
 
 #footer .footer-top .footer-links ul li {
-    padding: 10px 0;
+    padding: 5px 0;
     display: flex;
     align-items: center;
 }
@@ -2019,4 +2033,18 @@ section {
 
 #footer .credits a:hover {
     color: white;
+}
+
+/* Default styles for the map container */
+#map-container {
+    width: 150%; /* Set the map container to 100% width */
+    height: 250px; /* Set the initial height of the map */
+}
+
+/* Media query for smaller screens (e.g., mobile devices) */
+@media (max-width: 768px) {
+    #map-container {
+        width: 100%;
+        height: 300px; /* Adjust the height for smaller screens */
+    }
 }

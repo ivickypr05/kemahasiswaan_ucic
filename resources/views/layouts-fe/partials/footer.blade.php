@@ -26,7 +26,7 @@
 
                 <div class="col-lg-2 col-md-6">
                     <div class="footer-links">
-                        <h4>Fitur</h4>
+                        <h4><b>Fitur</b></h4>
                         <ul>
                             <li><i class="bx bx-chevron-right"></i> <a href="{{ route('beasiswa') }}">Informasi
                                     Beasiswa</a></li>
@@ -44,22 +44,23 @@
 
                 <div class="col-lg-3 col-md-6">
                     <div class="footer-links">
-                        <h4>Kontak</h4>
+                        <h4><b>Kontak</b></h4>
                         <p>
                             <strong>Phone:</strong> 0231-200418<br>
                             <strong>Email:</strong> stmik.cic.cirebon@gmail.com<br>
                         </p><br>
-                        <h4>Alamat</h4>
+
+                        <h4><b>Alamat</b></h4>
                         <p>
-                            Jl. Kesambi No.202, Drajat, Kec. Kesambi, <br>
-                            Kota Cirebon, Jawa Barat 45133<br><br>
+                            Jl. Kesambi No.202, Drajat, Kec. Kesambi,
+                            Kota Cirebon, Jawa Barat 45133
 
                         </p>
                     </div>
                 </div>
 
                 <div class="col-lg-3 col-md-6">
-                    <iframe style="border:0; width: 150%; height: 250px;"
+                    <iframe id="map-container"
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.296980321091!2d108.55121841424463!3d-6.733576795132232!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f1d8ebc133e3f%3A0x91385801f5822049!2sUNIVERSITAS%20CIC!5e0!3m2!1sen!2sid!4v1677997552754!5m2!1sen!2sid"
                         frameborder="0" allowfullscreen></iframe>
                 </div>

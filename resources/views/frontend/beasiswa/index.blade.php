@@ -29,17 +29,32 @@
             margin-right: 5px;
         }
 
+        @media (max-width: 768px) {
+
+            .container {
+                padding-top: 5% !important;
+            }
+
+            .beasiswa-title {
+                font-size: 1.5rem;
+                /* Adjust the font size for smaller screens */
+            }
+
+            .square-image img {
+                max-width: 100%;
+                height: auto;
+            }
+        }
+
         /* Tambahkan margin-top pada section#about */
     </style>
 @endsection
 @section('content-fe')
-    <div class="container mb-4" style="padding-top: 10%!important;">
+    <div class="title-container">
         <div class="d-flex justify-content-center">
             <h1><strong>Pengumuman Beasiswa</strong></h1>
         </div>
     </div>
-    <br>
-    <br>
     @forelse ($beasiswa as $item)
         <div class="container">
             <div class="row content mb-4 mt-4">
